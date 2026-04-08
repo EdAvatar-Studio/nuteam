@@ -91,18 +91,25 @@
       color: white;
     }
 
-    .hero {
-      position: relative;
-      min-height: 92vh;
-      display: flex;
-      align-items: center;
-      overflow: hidden;
-      border-bottom: 1px solid var(--line);
-      background:
-        linear-gradient(180deg, rgba(0,0,0,0.35), rgba(0,0,0,0.7)),
-        radial-gradient(circle at top right, rgba(210,138,29,0.18), transparent 32%),
-        linear-gradient(135deg, #171717, #0f0f0f 60%, #161616);
-    }
+   .hero {
+  position: relative;
+  min-height: 92vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  border-bottom: 1px solid var(--line);
+  background:
+    radial-gradient(circle at 20% 30%, rgba(210,138,29,0.15), transparent 40%),
+    radial-gradient(circle at 80% 70%, rgba(255,255,255,0.05), transparent 40%),
+    linear-gradient(180deg, rgba(0,0,0,0.5), rgba(0,0,0,0.8)),
+    repeating-linear-gradient(
+      45deg,
+      #1a1a1a,
+      #1a1a1a 2px,
+      #161616 2px,
+      #161616 4px
+    );
+}
 
     .hero-grid {
       display: grid;
