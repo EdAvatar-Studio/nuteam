@@ -1,88 +1,811 @@
 <!DOCTYPE html>
-<html lang="th">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NUTEAM | Art & Technology Hub</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=Prompt:wght@300;400&display=swap');
-        
-        body { 
-            font-family: 'Prompt', sans-serif; 
-            background-color: #050505; 
-            color: #e2e8f0;
-            overflow-x: hidden;
-        }
-        .heading-font { font-family: 'Space Grotesk', sans-serif; }
-        
-        /* Effect พื้นหลังแบบละอองดาวเบาๆ */
-        .bg-gradient {
-            background: radial-gradient(circle at 50% 50%, #1e293b 0%, #050505 100%);
-        }
-        
-        .card-hover {
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-        }
-        .card-hover:hover {
-            transform: translateY(-10px);
-            border-color: #38bdf8;
-            box-shadow: 0 0 30px rgba(56, 189, 248, 0.2);
-        }
-    </style>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>NUTEAM.ORG — Built in Reality</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --silver:     #c8c2b8;
+    --silver-lt:  #ddd8d0;
+    --silver-dk:  #8a857e;
+    --gold:       #b8963e;
+    --gold-lt:    #d4aa55;
+    --gold-dk:    #7a6228;
+    --bg:         #1a1814;
+    --bg2:        #211e1a;
+    --bg3:        #2a2620;
+    --bg4:        #32302a;
+    --text:       #c2bdb5;
+    --text-dim:   #7a766e;
+    --border:     rgba(184,150,62,0.18);
+    --border-lt:  rgba(200,194,184,0.12);
+    --rivet:      #3a3630;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Mono', monospace;
+    font-size: 13px;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* ─── TEXTURE OVERLAY ─────────────────────────────── */
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background-image:
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 1000;
+    opacity: 0.6;
+  }
+
+  /* ─── RIVET ────────────────────────────────────────── */
+  .rivet {
+    width: 18px; height: 18px;
+    background: radial-gradient(circle at 35% 35%, #5a5550, var(--rivet));
+    border-radius: 50%;
+    border: 1px solid rgba(200,194,184,0.15);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.6), inset 0 1px 1px rgba(255,255,255,0.06);
+    flex-shrink: 0;
+  }
+
+  /* ─── NAV ──────────────────────────────────────────── */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    display: flex; align-items: center; gap: 0;
+    background: var(--bg2);
+    border-bottom: 1px solid var(--border);
+    padding: 0 20px;
+    height: 52px;
+  }
+  .nav-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    letter-spacing: 0.12em;
+    color: var(--silver-lt);
+    margin-right: 32px;
+    text-decoration: none;
+  }
+  .nav-links {
+    display: flex; gap: 0;
+    list-style: none;
+    flex: 1;
+  }
+  .nav-links a {
+    display: block;
+    padding: 0 16px;
+    height: 52px; line-height: 52px;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--silver-dk);
+    text-decoration: none;
+    border-right: 1px solid var(--border-lt);
+    transition: color 0.2s, background 0.2s;
+  }
+  .nav-links a:first-child { border-left: 1px solid var(--border-lt); }
+  .nav-links a:hover { color: var(--silver-lt); background: rgba(200,194,184,0.05); }
+
+  .btn-explore {
+    margin-left: auto;
+    display: flex; align-items: center; gap: 8px;
+    padding: 8px 20px;
+    background: var(--gold);
+    color: var(--bg);
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    border: none; cursor: pointer;
+    text-decoration: none;
+    font-weight: 500;
+    transition: background 0.2s;
+  }
+  .btn-explore:hover { background: var(--gold-lt); }
+  .btn-explore .arr { font-size: 14px; }
+
+  .nav-corner {
+    width: 32px; height: 52px;
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  /* ─── HERO ─────────────────────────────────────────── */
+  .hero {
+    position: relative;
+    min-height: 480px;
+    background: linear-gradient(135deg, var(--bg2) 0%, var(--bg3) 60%, #1e1b16 100%);
+    border-bottom: 1px solid var(--border);
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 1fr 340px;
+  }
+
+  .hero-panel {
+    border: 1px solid var(--border);
+    margin: 16px;
+    padding: 36px 40px;
+    position: relative;
+    display: flex; flex-direction: column; justify-content: space-between;
+  }
+
+  /* corner rivets on hero panel */
+  .hero-panel::before,
+  .hero-panel::after {
+    content: '';
+    position: absolute;
+    width: 10px; height: 10px;
+    background: radial-gradient(circle at 35% 35%, #5a5550, var(--rivet));
+    border-radius: 50%;
+    border: 1px solid rgba(200,194,184,0.2);
+  }
+  .hero-panel::before { top: 8px; left: 8px; }
+  .hero-panel::after  { top: 8px; right: 8px; }
+
+  .hero-eyebrow {
+    font-size: 10px; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--silver-dk);
+    margin-bottom: 16px;
+  }
+  .hero-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(64px, 10vw, 110px);
+    line-height: 0.9;
+    color: var(--silver-lt);
+    letter-spacing: 0.04em;
+    margin-bottom: 8px;
+  }
+  .hero-sub {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(20px, 3vw, 32px);
+    color: var(--gold);
+    letter-spacing: 0.12em;
+    margin-bottom: 24px;
+  }
+  .hero-desc {
+    font-size: 12px;
+    line-height: 1.7;
+    color: var(--text-dim);
+    max-width: 420px;
+    margin-bottom: 32px;
+  }
+  .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 10px 22px;
+    background: transparent;
+    border: 1px solid var(--gold);
+    color: var(--gold-lt);
+    font-family: 'DM Mono', monospace;
+    font-size: 11px; letter-spacing: 0.12em;
+    text-transform: uppercase; cursor: pointer;
+    text-decoration: none;
+    transition: background 0.2s, color 0.2s;
+  }
+  .btn-primary:hover { background: rgba(184,150,62,0.12); }
+
+  .btn-secondary {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 10px 22px;
+    background: transparent;
+    border: 1px solid var(--border-lt);
+    color: var(--silver-dk);
+    font-family: 'DM Mono', monospace;
+    font-size: 11px; letter-spacing: 0.12em;
+    text-transform: uppercase; cursor: pointer;
+    text-decoration: none;
+    transition: background 0.2s, color 0.2s;
+  }
+  .btn-secondary:hover { background: rgba(200,194,184,0.06); color: var(--silver-lt); }
+
+  .hero-locations {
+    display: flex; gap: 24px;
+    font-size: 10px; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--silver-dk);
+    padding-top: 24px;
+    border-top: 1px solid var(--border-lt);
+    flex-wrap: wrap;
+  }
+
+  /* hero right side panel */
+  .hero-sidebar {
+    border-left: 1px solid var(--border);
+    border: 1px solid var(--border);
+    margin: 16px 16px 16px 0;
+    padding: 28px 24px;
+    display: flex; flex-direction: column; gap: 0;
+  }
+  .sidebar-label {
+    font-size: 9px; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--gold);
+    margin-bottom: 4px;
+  }
+  .sidebar-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 20px; letter-spacing: 0.1em;
+    color: var(--silver-lt);
+    margin-bottom: 12px;
+  }
+  .sidebar-text {
+    font-size: 11px; line-height: 1.7;
+    color: var(--text-dim);
+    margin-bottom: 28px;
+  }
+  .sidebar-divider {
+    height: 1px; background: var(--border-lt);
+    margin: 0 0 20px;
+  }
+  .sidebar-item {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border-lt);
+    cursor: pointer;
+    transition: color 0.2s;
+  }
+  .sidebar-item:last-child { border-bottom: none; }
+  .sidebar-item span {
+    font-size: 11px; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--silver-dk);
+    transition: color 0.2s;
+  }
+  .sidebar-item:hover span { color: var(--silver-lt); }
+  .sidebar-item .plus { color: var(--gold); font-size: 16px; }
+
+  /* ─── SECTION LABEL ─────────────────────────────────── */
+  .section-rule {
+    display: flex; align-items: center; gap: 16px;
+    padding: 0 16px;
+    height: 40px;
+    background: var(--bg2);
+    border-bottom: 1px solid var(--border);
+  }
+  .section-rule .rivet { width: 12px; height: 12px; }
+  .section-rule-line { flex: 1; height: 1px; background: var(--border-lt); }
+  .section-rule-label {
+    font-size: 9px; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--silver-dk);
+  }
+
+  /* ─── PILLARS ──────────────────────────────────────── */
+  .pillars {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .pillar {
+    padding: 28px 24px;
+    border-right: 1px solid var(--border);
+    position: relative;
+    cursor: pointer;
+    transition: background 0.2s;
+    min-height: 220px;
+    display: flex; flex-direction: column;
+  }
+  .pillar:last-child { border-right: none; }
+  .pillar:hover { background: rgba(200,194,184,0.03); }
+
+  .pillar-num {
+    font-size: 10px; color: var(--gold-dk);
+    letter-spacing: 0.08em;
+    margin-bottom: 6px;
+  }
+  .pillar-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px; letter-spacing: 0.08em;
+    color: var(--silver-lt);
+    margin-bottom: 12px;
+  }
+  .pillar-desc {
+    font-size: 11px; line-height: 1.65;
+    color: var(--text-dim);
+    flex: 1;
+  }
+  .pillar-arr {
+    margin-top: 16px;
+    color: var(--gold);
+    font-size: 16px;
+    display: inline-block;
+    transition: transform 0.2s;
+  }
+  .pillar:hover .pillar-arr { transform: translateX(4px); }
+
+  .pillar-icon {
+    position: absolute; right: 16px; top: 24px;
+    width: 56px; height: 56px;
+    background: var(--rivet);
+    border-radius: 4px;
+    border: 1px solid var(--border-lt);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 24px;
+    opacity: 0.7;
+  }
+
+  /* ─── APPS SECTION ─────────────────────────────────── */
+  .apps-header {
+    display: flex; align-items: baseline; justify-content: space-between;
+    padding: 28px 24px 20px;
+    border-bottom: 1px solid var(--border-lt);
+  }
+  .apps-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px; letter-spacing: 0.1em;
+    color: var(--silver-lt);
+  }
+  .apps-subtitle {
+    font-size: 11px; color: var(--text-dim);
+    margin-left: 16px;
+  }
+  .view-all {
+    display: flex; align-items: center; gap: 8px;
+    font-size: 10px; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--gold);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .view-all:hover { color: var(--gold-lt); }
+
+  .apps-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .app-card {
+    padding: 24px 20px;
+    border-right: 1px solid var(--border);
+    cursor: pointer;
+    transition: background 0.2s;
+    display: flex; flex-direction: column;
+  }
+  .app-card:last-child { border-right: none; }
+  .app-card:hover { background: rgba(200,194,184,0.04); }
+
+  .app-icon {
+    width: 64px; height: 64px;
+    background: var(--bg4);
+    border: 1px solid var(--border-lt);
+    border-radius: 6px;
+    margin-bottom: 16px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 28px;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.04), 0 2px 8px rgba(0,0,0,0.4);
+  }
+  .app-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 18px; letter-spacing: 0.08em;
+    color: var(--silver-lt);
+    margin-bottom: 4px;
+  }
+  .app-tagline {
+    font-size: 10px; color: var(--text-dim);
+    line-height: 1.5; margin-bottom: 14px; flex: 1;
+  }
+  .app-status {
+    display: inline-block;
+    padding: 3px 8px;
+    font-size: 9px; letter-spacing: 0.12em;
+    text-transform: uppercase;
+    border: 1px solid;
+  }
+  .app-status.active   { color: var(--gold-lt); border-color: var(--gold-dk); }
+  .app-status.testing  { color: #7ab8d4;         border-color: #3a7090; }
+  .app-status.working  { color: #8aaa6a;         border-color: #4a6a3a; }
+  .app-status.progress { color: var(--silver-dk); border-color: var(--border); }
+  .app-status.growing  { color: #c47a5a;         border-color: #7a4a3a; }
+  .app-status.future   { color: var(--text-dim);  border-color: var(--border-lt); }
+
+  /* ─── BOTTOM 3 SECTIONS ─────────────────────────────── */
+  .bottom-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr 1fr;
+    gap: 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .bottom-section {
+    padding: 36px 32px;
+    border-right: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+  }
+  .bottom-section:last-child { border-right: none; }
+
+  .bottom-label {
+    font-size: 9px; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--gold-dk);
+    margin-bottom: 8px;
+  }
+  .bottom-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px; letter-spacing: 0.1em;
+    color: var(--silver-lt);
+    margin-bottom: 14px;
+    line-height: 1;
+  }
+  .bottom-text {
+    font-size: 11px; line-height: 1.7;
+    color: var(--text-dim);
+    margin-bottom: 24px;
+  }
+  .bottom-links { display: flex; flex-direction: column; gap: 10px; }
+  .bottom-link {
+    display: flex; align-items: center; justify-content: space-between;
+    font-size: 11px; color: var(--silver-dk);
+    text-decoration: none; cursor: pointer;
+    padding: 4px 0;
+    border-bottom: 1px solid var(--border-lt);
+    transition: color 0.2s;
+  }
+  .bottom-link:hover { color: var(--silver-lt); }
+  .bottom-link .arr2 { color: var(--gold-dk); }
+
+  .section-img {
+    position: absolute; right: 0; bottom: 0;
+    width: 140px; opacity: 0.08;
+    pointer-events: none;
+  }
+
+  /* ─── FOOTER ───────────────────────────────────────── */
+  footer {
+    background: var(--bg2);
+    border-top: 1px solid var(--border);
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 0;
+  }
+  .footer-col {
+    padding: 32px 28px;
+    border-right: 1px solid var(--border);
+  }
+  .footer-col:last-child { border-right: none; }
+  .footer-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 24px; letter-spacing: 0.12em;
+    color: var(--silver-lt);
+    margin-bottom: 8px;
+    display: block;
+  }
+  .footer-tagline {
+    font-size: 10px; color: var(--text-dim);
+    margin-bottom: 16px; line-height: 1.6;
+  }
+  .footer-copy {
+    font-size: 9px; color: var(--text-dim);
+    letter-spacing: 0.06em;
+    border-top: 1px solid var(--border-lt);
+    padding-top: 12px; margin-top: 12px;
+  }
+  .footer-heading {
+    font-size: 9px; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--gold-dk);
+    margin-bottom: 16px;
+  }
+  .social-row {
+    display: flex; gap: 12px; margin-bottom: 16px; flex-wrap: wrap;
+  }
+  .social-link {
+    font-size: 10px; letter-spacing: 0.06em;
+    color: var(--silver-dk); text-decoration: none;
+    transition: color 0.2s;
+  }
+  .social-link:hover { color: var(--gold-lt); }
+  .social-icons { display: flex; gap: 12px; margin-top: 4px; }
+  .sicon {
+    width: 32px; height: 32px;
+    border: 1px solid var(--border-lt);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--silver-dk); font-size: 14px;
+    text-decoration: none; cursor: pointer;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .sicon:hover { border-color: var(--gold-dk); color: var(--gold-lt); }
+
+  .email-row {
+    display: flex; margin-top: 16px;
+  }
+  .email-input {
+    flex: 1;
+    background: var(--bg3);
+    border: 1px solid var(--border-lt);
+    border-right: none;
+    color: var(--text);
+    padding: 8px 12px;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    outline: none;
+  }
+  .email-input::placeholder { color: var(--text-dim); }
+  .email-btn {
+    padding: 8px 14px;
+    background: var(--gold-dk);
+    border: 1px solid var(--gold-dk);
+    color: var(--bg);
+    cursor: pointer;
+    font-size: 14px;
+    transition: background 0.2s;
+  }
+  .email-btn:hover { background: var(--gold); }
+
+  .footer-stay {
+    font-size: 9px; letter-spacing: 0.15em;
+    text-transform: uppercase; color: var(--silver-dk);
+    margin-bottom: 8px;
+  }
+  .footer-stay-sub {
+    font-size: 11px; color: var(--text-dim);
+    margin-bottom: 16px;
+  }
+
+  /* ─── ANIMATIONS ───────────────────────────────────── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .hero-panel > * { animation: fadeUp 0.6s ease both; }
+  .hero-eyebrow   { animation-delay: 0.05s; }
+  .hero-title     { animation-delay: 0.15s; }
+  .hero-sub       { animation-delay: 0.25s; }
+  .hero-desc      { animation-delay: 0.30s; }
+  .hero-actions   { animation-delay: 0.35s; }
+  .hero-locations { animation-delay: 0.45s; }
+
+  /* ─── SCROLLBAR ────────────────────────────────────── */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--border-lt); border-radius: 3px; }
+
+  /* ─── RESPONSIVE ───────────────────────────────────── */
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; }
+    .hero-sidebar { display: none; }
+    .pillars { grid-template-columns: repeat(2, 1fr); }
+    .apps-grid { grid-template-columns: repeat(3, 1fr); }
+    .bottom-grid { grid-template-columns: 1fr; }
+    footer { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+  }
+</style>
 </head>
-<body class="bg-gradient min-h-screen">
+<body>
 
-    <nav class="flex justify-between items-center p-6 max-w-6xl mx-auto">
-        <div class="text-2xl font-bold heading-font tracking-tighter text-white">
-            NU<span class="text-blue-500">TEAM</span>.ORG
-        </div>
-        <div class="space-x-6 text-sm uppercase tracking-widest hidden md:block">
-            <a href="#projects" class="hover:text-blue-400 transition">Projects</a>
-            <a href="#art" class="hover:text-blue-400 transition">Artworks</a>
-            <a href="mailto:nu@nuteam.org" class="bg-blue-600 px-4 py-2 rounded-full text-white">Contact</a>
-        </div>
-    </nav>
+<!-- NAV -->
+<nav>
+  <div class="rivet"></div>
+  <a class="nav-logo" href="#" style="margin-left:12px">NUTEAM.ORG</a>
+  <ul class="nav-links">
+    <li><a href="#">HOME</a></li>
+    <li><a href="#apps">APPS</a></li>
+    <li><a href="#artspace">ART SPACE</a></li>
+    <li><a href="#ed">ED</a></li>
+    <li><a href="#about">ABOUT</a></li>
+    <li><a href="#contact">CONTACT</a></li>
+  </ul>
+  <a href="#apps" class="btn-explore">EXPLORE <span class="arr">→</span></a>
+  <div class="nav-corner"><div class="rivet"></div></div>
+</nav>
 
-    <header class="flex flex-col items-center justify-center text-center py-20 px-4">
-        <h1 class="text-6xl md:text-8xl font-bold heading-font text-white mb-6">
-            WHERE <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-emerald-400">ART</span><br>
-            MEETS <span class="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">LOGIC</span>
-        </h1>
-        <p class="max-w-xl text-gray-400 text-lg">
-            ขับเคลื่อนจินตนาการด้วย AI และงานประติมากรรม โดย Nu ศิลปินและนักพัฒนาแอป
-        </p>
-    </header>
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-panel">
+    <div>
+      <p class="hero-eyebrow">BUILT IN REALITY</p>
+      <h1 class="hero-title">NUTEAM</h1>
+      <p class="hero-sub">EXPANDING INTO DIGITAL.</p>
+      <p class="hero-desc">
+        A creative base for art, apps, local AI, and future digital exchange.<br/>
+        Rooted in real world construction, sculpture, texture,<br/>
+        and visual making — now growing into tools,<br/>
+        experiments, and open creative systems.
+      </p>
+      <div class="hero-actions">
+        <a href="#apps" class="btn-primary">EXPLORE APPS →</a>
+        <a href="#ed" class="btn-secondary">ENTER ED →</a>
+      </div>
+    </div>
+    <div class="hero-locations">
+      <span>HONG KONG</span>
+      <span>SINGAPORE</span>
+      <span>THAILAND</span>
+      <span>CHINA</span>
+      <span>MALAYSIA</span>
+      <span>JAPAN</span>
+      <span>INDONESIA</span>
+    </div>
+  </div>
 
-    <main id="projects" class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 p-6">
-        
-        <div class="card-hover bg-white/5 backdrop-blur-md p-8 rounded-3xl col-span-1 md:col-span-2">
-            <span class="text-blue-400 text-xs font-mono uppercase">Featured Project</span>
-            <h2 class="text-3xl font-bold mt-2 mb-4 heading-font">EdAvatar</h2>
-            <p class="text-gray-400 mb-6">การพัฒนา Local LLM บน S23 Ultra เพื่อสร้าง AI คู่คิดที่เป็นมิตรและเข้าใจในงานศิลปะ</p>
-            <div class="flex gap-3">
-                <span class="bg-blue-500/10 text-blue-400 px-3 py-1 rounded-full text-xs italic">#LocalLLM</span>
-                <span class="bg-blue-500/10 text-blue-400 px-3 py-1 rounded-full text-xs italic">#AndroidDevelopment</span>
-            </div>
-        </div>
+  <aside class="hero-sidebar">
+    <p class="sidebar-label">CREATIVE BASE</p>
+    <p class="sidebar-title">NUTEAM IDENTITY</p>
+    <p class="sidebar-text">
+      Nuteam is no longer only a work identity. It is becoming a home for
+      projects, apps, ideas, and future systems in the digital world.
+    </p>
+    <div class="sidebar-divider"></div>
+    <div class="sidebar-item">
+      <span>ART</span>
+      <span class="plus">+</span>
+    </div>
+    <div class="sidebar-item">
+      <span>APPS</span>
+      <span class="plus">+</span>
+    </div>
+    <div class="sidebar-item">
+      <span>ED / LOCAL AI</span>
+      <span class="plus">+</span>
+    </div>
+    <div class="sidebar-item">
+      <span>FUTURE EXCHANGE</span>
+      <span class="plus">+</span>
+    </div>
+  </aside>
+</section>
 
-        <div class="card-hover bg-white/5 backdrop-blur-md p-8 rounded-3xl">
-            <h2 class="text-2xl font-bold mb-4 heading-font text-emerald-400">Upcycled Art</h2>
-            <p class="text-gray-400 text-sm">เปลี่ยนเศษวัสดุให้มีชีวิต ผ่านงานประติมากรรมแนว Robot และ Art Toy</p>
-            <div class="mt-10 h-24 flex items-end justify-between">
-                <div class="w-2 h-12 bg-emerald-500/20 rounded-full"></div>
-                <div class="w-2 h-20 bg-emerald-500/40 rounded-full"></div>
-                <div class="w-2 h-16 bg-emerald-500/60 rounded-full"></div>
-                <div class="w-2 h-24 bg-emerald-500 rounded-full"></div>
-            </div>
-        </div>
+<!-- SECTION RULE -->
+<div class="section-rule">
+  <div class="rivet" style="width:12px;height:12px"></div>
+  <span class="section-rule-label">FOUR PILLARS</span>
+  <div class="section-rule-line"></div>
+  <div class="rivet" style="width:12px;height:12px"></div>
+</div>
 
-    </main>
+<!-- PILLARS -->
+<div class="pillars">
+  <div class="pillar">
+    <p class="pillar-num">01</p>
+    <h3 class="pillar-title">ART</h3>
+    <div class="pillar-icon">🪨</div>
+    <p class="pillar-desc">Real objects, real surfaces, conceptual forms, network — and visual systems both for physical and digital.</p>
+    <span class="pillar-arr">→</span>
+  </div>
+  <div class="pillar">
+    <p class="pillar-num">02</p>
+    <h3 class="pillar-title">APPS</h3>
+    <div class="pillar-icon">📱</div>
+    <p class="pillar-desc">Independent APK projects developed by Nu. Direct, simple experiments, and practical use.</p>
+    <span class="pillar-arr">→</span>
+  </div>
+  <div class="pillar">
+    <p class="pillar-num">03</p>
+    <h3 class="pillar-title">ED / LOCAL AI</h3>
+    <div class="pillar-icon" style="font-size:20px">🤖</div>
+    <p class="pillar-desc">A growing set focused on local AI. Ed is a center, creative assistant, and accessible digital intelligence.</p>
+    <span class="pillar-arr">→</span>
+  </div>
+  <div class="pillar">
+    <p class="pillar-num">04</p>
+    <h3 class="pillar-title">FUTURE EXCHANGE</h3>
+    <div class="pillar-icon">🪨</div>
+    <p class="pillar-desc">A platform for art agents, digital spirit, discovery, discount, and creative participation.</p>
+    <span class="pillar-arr">→</span>
+  </div>
+</div>
 
-    <footer class="text-center py-10 text-gray-600 text-sm font-mono">
-        &copy; 2026 NUTEAM.ORG | Built with passion on GitHub
-    </footer>
+<!-- APPS -->
+<section id="apps" style="background:var(--bg2); border-bottom:1px solid var(--border)">
+  <div class="apps-header">
+    <div style="display:flex; align-items:baseline; gap:16px">
+      <h2 class="apps-title">APPS &amp; APK</h2>
+      <span class="apps-subtitle">Simple, direct, and evolving.</span>
+    </div>
+    <a href="#" class="view-all">VIEW ALL APPS →</a>
+  </div>
+  <div class="apps-grid">
+    <div class="app-card">
+      <div class="app-icon">👤</div>
+      <p class="app-name">EdAvatar</p>
+      <p class="app-tagline">AI Companion</p>
+      <span class="app-status active">ACTIVE</span>
+    </div>
+    <div class="app-card">
+      <div class="app-icon">✦</div>
+      <p class="app-name">EdAvatar</p>
+      <p class="app-tagline">Thai Lite</p>
+      <span class="app-status testing">TESTING</span>
+    </div>
+    <div class="app-card">
+      <div class="app-icon">△</div>
+      <p class="app-name">Ed Prompt</p>
+      <p class="app-tagline">Tool</p>
+      <span class="app-status working">WORKING</span>
+    </div>
+    <div class="app-card">
+      <div class="app-icon">P◇</div>
+      <p class="app-name">Ed Prompt</p>
+      <p class="app-tagline">Pro</p>
+      <span class="app-status progress">IN PROGRESS</span>
+    </div>
+    <div class="app-card">
+      <div class="app-icon">◎</div>
+      <p class="app-name">Numo</p>
+      <p class="app-tagline">Creative Apps</p>
+      <span class="app-status growing">GROWING</span>
+    </div>
+    <div class="app-card">
+      <div class="app-icon">✦✦</div>
+      <p class="app-name">More</p>
+      <p class="app-tagline">to Come</p>
+      <span class="app-status future">OPEN FUTURE</span>
+    </div>
+  </div>
+</section>
+
+<!-- BOTTOM SECTIONS -->
+<div class="bottom-grid">
+  <section id="artspace" class="bottom-section">
+    <p class="bottom-label">SPACE</p>
+    <h3 class="bottom-title">ART SPACE</h3>
+    <p class="bottom-text">A future place for showing, sharing, and calling art.</p>
+    <div class="bottom-links">
+      <span class="bottom-link">Build your page <span class="arr2">›</span></span>
+      <span class="bottom-link">Open your space <span class="arr2">›</span></span>
+      <span class="bottom-link">Grow your presence <span class="arr2">›</span></span>
+    </div>
+  </section>
+
+  <section id="ed" class="bottom-section" style="background:var(--bg3)">
+    <p class="bottom-label">LOCAL AI</p>
+    <h3 class="bottom-title">ED IS GROWING HERE</h3>
+    <p class="bottom-text">
+      Ed / Avatar is the beginning in a local AI direction — present, independent,
+      and close to real use.
+    </p>
+    <a href="#" class="btn-primary">EXPLORE ED →</a>
+  </section>
+
+  <section id="about" class="bottom-section">
+    <p class="bottom-label">FOUNDER</p>
+    <h3 class="bottom-title">ABOUT NU</h3>
+    <p class="bottom-text">
+      Founder of Nuteam. Works in international art construction, sculpture, and texture
+      — from global theme parks to digital systems — still building.
+    </p>
+    <a href="#contact" class="btn-secondary">READ MORE →</a>
+  </section>
+</div>
+
+<!-- FOOTER -->
+<footer id="contact">
+  <div class="footer-col">
+    <span class="footer-logo">NUTEAM.ORG</span>
+    <p class="footer-tagline">Art / Apps / Local AI / Future Exchange</p>
+    <p class="footer-copy">© 2026 Nuteam. All rights reserved.</p>
+  </div>
+  <div class="footer-col">
+    <p class="footer-heading">CONNECT</p>
+    <div class="social-row">
+      <a href="#" class="social-link">Email</a>
+      <a href="#" class="social-link">Facebook</a>
+      <a href="#" class="social-link">Github</a>
+      <a href="#" class="social-link">Pinterest</a>
+    </div>
+    <div class="social-icons">
+      <a class="sicon" title="Email">✉</a>
+      <a class="sicon" title="Facebook">f</a>
+      <a class="sicon" title="Github">⌥</a>
+      <a class="sicon" title="Pinterest">P</a>
+    </div>
+  </div>
+  <div class="footer-col">
+    <p class="footer-stay">STAY UPDATED</p>
+    <p class="footer-stay-sub">New apps, courses, and ideas.</p>
+    <div class="email-row">
+      <input class="email-input" type="email" placeholder="Your email"/>
+      <button class="email-btn">→</button>
+    </div>
+  </div>
+</footer>
 
 </body>
 </html>
