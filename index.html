@@ -512,7 +512,7 @@
 
   .bottom-grid {
     display: grid;
-    grid-template-columns: 1fr 1.4fr 1fr;
+    grid-template-columns: 1fr 1.8fr 1fr;
     gap: 18px;
     padding: 0 16px 16px;
   }
@@ -529,7 +529,12 @@
     overflow: hidden;
     min-height: 260px;
   }
-
+.ed-focus {
+  box-shadow:
+    0 20px 40px rgba(184,150,62,0.12),
+    0 6px 14px rgba(31,27,22,0.08);
+  border: 1px solid rgba(184,150,62,0.25);
+}
   .bottom-label {
     font-size: 9px;
     letter-spacing: 0.2em;
@@ -889,7 +894,7 @@
   </div>
 </section>
 
-  <section id="ed" class="bottom-section" style="background:linear-gradient(180deg, rgba(255,255,255,0.34), rgba(255,255,255,0.10)), linear-gradient(180deg, #e9e1d5, #ddd4c8)">
+ <section id="ed" class="bottom-section ed-focus" style="background:linear-gradient(180deg, rgba(255,255,255,0.34), rgba(255,255,255,0.10)), linear-gradient(180deg, #e9e1d5, #ddd4c8)">
     <p class="bottom-label">Local AI</p>
     <h3 class="bottom-title">Ed is Growing Here</h3>
     <p class="bottom-text">
