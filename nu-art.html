@@ -1,1 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nu Art — NUTEAM.ORG</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root{
+      --bg:#ece9e2;
+      --panel:#f7f4ee;
+      --panel-2:#efebe3;
+      --line:#d8d2c8;
+      --text:#1f1b16;
+      --muted:#6d675f;
+      --gold:#c6a85b;
+      --shadow:0 18px 40px rgba(31,27,22,0.08);
+      --radius:24px;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{
+      background:linear-gradient(180deg,#efebe4,#e7e3db);
+      color:var(--text);
+      font-family:'DM Mono',monospace;
+      line-height:1.7;
+    }
+    nav{
+      position:sticky; top:0; z-index:20;
+      display:flex; align-items:center; justify-content:space-between;
+      padding:0 24px;
+      height:68px;
+      background:rgba(247,244,238,0.92);
+      backdrop-filter:blur(8px);
+      border-bottom:1px solid var(--line);
+    }
+    .logo{
+      font-family:'Bebas Neue',sans-serif;
+      letter-spacing:.12em;
+      font-size:34px;
+      color:var(--text);
+      text-decoration:none;
+    }
+    .nav-links{
+      display:flex; gap:18px; list-style:none;
+    }
+    .nav-links a{
+      text-decoration:none;
+      color:var(--muted);
+      font-size:12px;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+    }
+    .nav-btn{
+      display:inline-flex; align-items:center; gap:8px;
+      background:var(--gold);
+      color:#1c1813;
+      padding:10px 18px;
+      border-radius:999px;
+      text-decoration:none;
+      font-size:11px;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      border:1px solid rgba(0,0,0,0.08);
+    }
+    .wrap{
+      width:min(1180px, calc(100% - 32px));
+      margin:0 auto;
+    }
+    .hero{
+      padding:42px 0 22px;
+    }
+    .hero-card{
+      background:linear-gradient(180deg,rgba(255,255,255,0.45),rgba(255,255,255,0.12)), var(--panel);
+      border:1px solid var(--line);
+      border-radius:32px;
+      box-shadow:var(--shadow);
+      padding:34px;
+      display:grid;
+      grid-template-columns:420px 1fr;
+      gap:28px;
+    }
+    .hero-image{
+      min-height:520px;
+      border-radius:24px;
+      border:1px solid var(--line);
+      background:
+        linear-gradient(135deg, rgba(255,255,255,0.35), rgba(255,255,255,0.08)),
+        url('hero.jpeg') center/cover no-repeat;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.4);
+    }
+    .eyebrow{
+      font-size:10px;
+      letter-spacing:.22em;
+      text-transform:uppercase;
+      color:#a48337;
+      margin-bottom:10px;
+    }
+    h1,h2,h3{
+      font-family:'Bebas Neue',sans-serif;
+      line-height:1;
+      letter-spacing:.06em;
+    }
+    h1{
+      font-size:72px;
+      margin-bottom:8px;
+    }
+    .hero-sub{
+      font-size:30px;
+      color:#4b463f;
+      margin-bottom:18px;
+    }
+    .hero-text{
+      color:var(--muted);
+      font-size:14px;
+      max-width:680px;
+    }
+    .hero-actions{
+      display:flex; gap:12px; flex-wrap:wrap;
+      margin-top:24px;
+    }
+    .btn{
+      display:inline-flex; align-items:center; gap:8px;
+      border-radius:999px;
+      padding:12px 20px;
+      text-decoration:none;
+      font-size:11px;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      border:1px solid rgba(0,0,0,0.08);
+    }
+    .btn-primary{
+      background:var(--gold);
+      color:#1f1b16;
+    }
+    .btn-secondary{
+      background:#fff8;
+      color:var(--text);
+    }
+    .meta-row{
+      display:flex; flex-wrap:wrap; gap:10px;
+      margin-top:18px;
+    }
+    .meta-pill{
+      padding:8px 12px;
+      border-radius:999px;
+      background:#ffffff80;
+      border:1px solid var(--line);
+      font-size:11px;
+      color:var(--muted);
+    }
+    .section{
+      padding:22px 0 28px;
+    }
+    .section-head{
+      display:flex; align-items:end; justify-content:space-between;
+      margin-bottom:16px;
+    }
+    .section-note{
+      color:var(--muted);
+      font-size:12px;
+    }
+    h2{font-size:42px}
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:18px;
+    }
+    .work-card{
+      background:linear-gradient(180deg,rgba(255,255,255,0.42),rgba(255,255,255,0.14)), var(--panel);
+      border:1px solid var(--line);
+      border-radius:24px;
+      box-shadow:var(--shadow);
+      overflow:hidden;
+    }
+    .work-image{
+      aspect-ratio: 4 / 3;
+      background:linear-gradient(135deg,#ddd7ce,#f4efe7);
+      border-bottom:1px solid var(--line);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color:#8d8579;
+      font-size:13px;
+      letter-spacing:.1em;
+      text-transform:uppercase;
+    }
+    .work-body{
+      padding:20px;
+    }
+    .work-title{
+      font-family:'Bebas Neue',sans-serif;
+      font-size:28px;
+      margin-bottom:8px;
+    }
+    .work-text{
+      color:var(--muted);
+      font-size:13px;
+      margin-bottom:12px;
+    }
+    .split{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:18px;
+    }
+    .panel{
+      background:linear-gradient(180deg,rgba(255,255,255,0.42),rgba(255,255,255,0.14)), var(--panel);
+      border:1px solid var(--line);
+      border-radius:24px;
+      box-shadow:var(--shadow);
+      padding:26px;
+    }
+    .panel p{
+      color:var(--muted);
+      font-size:14px;
+    }
+    footer{
+      padding:28px 0 48px;
+      color:var(--muted);
+      font-size:12px;
+    }
+    @media (max-width: 980px){
+      .hero-card,
+      .split,
+      .grid{
+        grid-template-columns:1fr;
+      }
+      .hero-image{min-height:340px}
+      h1{font-size:52px}
+      .hero-sub{font-size:22px}
+      .nav-links{display:none}
+      .wrap{width:min(1180px, calc(100% - 20px))}
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <a class="logo" href="index.html">NUTEAM.ORG</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="art-space.html">Art Space</a></li>
+      <li><a href="index.html#ed">Ed</a></li>
+      <li><a href="index.html#about">About</a></li>
+    </ul>
+    <a class="nav-btn" href="https://pin.it/210UZE6aG" target="_blank" rel="noopener">Pinterest →</a>
+  </nav>
 
+  <main class="wrap">
+    <section class="hero">
+      <div class="hero-card">
+        <div class="hero-image"></div>
+
+        <div>
+          <p class="eyebrow">Artist Profile</p>
+          <h1>NU ART</h1>
+          <div class="hero-sub">Personal works from real-world making.</div>
+
+          <p class="hero-text">
+            Nu Art is the personal visual direction of Wisanu Saengwirun —
+            rooted in sculpture, texture, carving, and large-scale physical construction,
+            then extended into experiments, studies, and evolving digital presentation.
+            <br><br>
+            This page is not only a gallery of finished works.
+            It is a view into artistic thinking, material language, and form built through real experience.
+          </p>
+
+          <div class="meta-row">
+            <span class="meta-pill">Sculpture</span>
+            <span class="meta-pill">Texture</span>
+            <span class="meta-pill">Carving</span>
+            <span class="meta-pill">Material Thinking</span>
+            <span class="meta-pill">Visual Experiments</span>
+          </div>
+
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="https://pin.it/210UZE6aG" target="_blank" rel="noopener">View on Pinterest →</a>
+            <a class="btn btn-secondary" href="art-space.html">Back to Art Space →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Current Selection</p>
+          <h2>WORK CATEGORIES</h2>
+        </div>
+        <p class="section-note">A growing archive</p>
+      </div>
+
+      <div class="grid">
+        <article class="work-card">
+          <div class="work-image">Sculpture</div>
+          <div class="work-body">
+            <div class="work-title">SCULPTURE</div>
+            <p class="work-text">
+              Portrait study, form development, and sculptural pieces built from observation, feeling, and structure.
+            </p>
+          </div>
+        </article>
+
+        <article class="work-card">
+          <div class="work-image">Texture</div>
+          <div class="work-body">
+            <div class="work-title">TEXTURE</div>
+            <p class="work-text">
+              Surface language shaped through carving, wall texture, rockwork, and the translation of material character.
+            </p>
+          </div>
+        </article>
+
+        <article class="work-card">
+          <div class="work-image">Experiments</div>
+          <div class="work-body">
+            <div class="work-title">VISUAL EXPERIMENTS</div>
+            <p class="work-text">
+              Studies, fragments, and evolving directions that connect physical art with future digital presentation.
+            </p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="split">
+        <div class="panel">
+          <p class="eyebrow">Artist Statement</p>
+          <h2>BUILT FROM REAL WORK</h2>
+          <p>
+            Nu Art comes from years of working with real scale, real surfaces, and real environments.
+            The artistic mindset was not built only in studios, but also through construction sites,
+            international projects, and material problem-solving.
+          </p>
+        </div>
+
+        <div class="panel">
+          <p class="eyebrow">Direction</p>
+          <h2>FROM PHYSICAL TO DIGITAL</h2>
+          <p>
+            The direction now expands from physical work into digital systems —
+            not to replace the real, but to extend it. Art, tools, AI, and presentation
+            can live together under the same identity.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      NUTEAM.ORG — Nu Art / Sculpture / Texture / Visual Experiments
+    </footer>
+  </main>
+</body>
+</html>
