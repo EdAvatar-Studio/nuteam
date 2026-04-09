@@ -1,844 +1,145 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>NUTEAM — Built in Reality. Expanding into Digital.</title>
-  <meta name="description" content="Nuteam is a creative base for art, apps, local AI, and future digital exchange." />
-  <style>
-    :root{
-      --bg:#0a0b0d;
-      --bg-soft:#101216;
-      --panel:#11141a;
-      --panel-2:#151922;
-      --text:#f3f1ea;
-      --muted:#bdb6aa;
-      --line:rgba(255,255,255,0.08);
-      --line-strong:rgba(255,255,255,0.14);
-      --accent:#c99a3c;
-      --accent-soft:rgba(201,154,60,0.18);
-      --max:1280px;
-      --radius:28px;
-      --shadow:0 20px 50px rgba(0,0,0,0.35);
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nuteam</title>
+
+<style>
+body{
+  margin:0;
+  font-family:Arial, sans-serif;
+  background:#0f1115;
+  color:#eee;
+}
+
+.container{
+  width:90%;
+  margin:auto;
+}
+
+/* HERO */
+.hero{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:80px 0;
+}
+
+.hero-text h1{
+  font-size:60px;
+  margin:0;
+}
+
+.hero-text p{
+  color:#aaa;
+  margin:20px 0;
+}
+
+.btn{
+  padding:12px 24px;
+  border-radius:30px;
+  border:1px solid #d6a85f;
+  margin-right:10px;
+  cursor:pointer;
+}
+
+.btn.primary{
+  background:#d6a85f;
+  color:#000;
+}
+
+/* CARDS */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:20px;
+  margin:60px 0;
+}
+
+.card{
+  background:#1a1d23;
+  padding:20px;
+  border-radius:16px;
+  transition:0.3s;
+}
+
+.card:hover{
+  border:1px solid #d6a85f;
+  transform:translateY(-5px);
+}
+
+/* APPS */
+.apps{
+  margin:60px 0;
+}
+
+.app-grid{
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:20px;
+}
+
+.app{
+  background:#1a1d23;
+  padding:20px;
+  border-radius:12px;
+  text-align:center;
+}
+
+/* FOOTER */
+footer{
+  margin-top:80px;
+  padding:20px;
+  text-align:center;
+  color:#777;
+}
+</style>
 
-    *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
-    body{
-      margin:0;
-      background:
-        radial-gradient(circle at top left, rgba(201,154,60,0.08), transparent 30%),
-        linear-gradient(180deg, #0a0b0d 0%, #0b0d10 100%);
-      color:var(--text);
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      line-height:1.55;
-    }
-
-    a{color:inherit;text-decoration:none}
-    img{max-width:100%;display:block}
-    .container{width:min(var(--max), calc(100% - 32px)); margin:0 auto}
-
-    .site-shell{
-      position:relative;
-      overflow:hidden;
-    }
-
-    .site-shell::before{
-      content:"";
-      position:fixed;
-      inset:0;
-      pointer-events:none;
-      background-image:
-        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
-      background-size: 80px 80px;
-      mask-image: linear-gradient(180deg, rgba(0,0,0,0.55), transparent 90%);
-      opacity:.35;
-    }
-
-    header{
-      position:sticky;
-      top:0;
-      z-index:20;
-      backdrop-filter: blur(10px);
-      background:rgba(10,11,13,0.78);
-      border-bottom:1px solid var(--line);
-    }
-
-    .nav{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:24px;
-      min-height:78px;
-    }
-
-    .brand{
-      font-weight:800;
-      letter-spacing:.14em;
-      font-size:1.1rem;
-      white-space:nowrap;
-    }
-
-    .nav-links{
-      display:flex;
-      gap:26px;
-      flex-wrap:wrap;
-      justify-content:flex-end;
-      font-size:.95rem;
-      color:var(--muted);
-    }
-
-    .nav-links a:hover{color:var(--text)}
-
-    .hero{
-      padding:56px 0 28px;
-    }
-
-    .hero-grid{
-      display:grid;
-      grid-template-columns:1.15fr .9fr;
-      gap:28px;
-      align-items:stretch;
-    }
-
-    .hero-left,
-    .hero-right,
-    .block,
-    .mini-card,
-    .feature-card,
-    .project-card,
-    .footer-card{
-      background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-      border:1px solid var(--line);
-      border-radius:var(--radius);
-      box-shadow:var(--shadow);
-    }
-
-    .hero-left{
-      padding:40px;
-      min-height:580px;
-      display:flex;
-      flex-direction:column;
-      justify-content:space-between;
-      position:relative;
-      overflow:hidden;
-    }
-
-    .hero-left::before{
-      content:"";
-      position:absolute;
-      inset:0;
-      background:
-        linear-gradient(135deg, rgba(201,154,60,0.08), transparent 42%),
-        linear-gradient(180deg, transparent, rgba(255,255,255,0.01));
-      pointer-events:none;
-    }
-
-    .eyebrow{
-      display:inline-block;
-      color:var(--text);
-      font-weight:700;
-      font-size:.9rem;
-      letter-spacing:.18em;
-      text-transform:uppercase;
-      padding-bottom:10px;
-      border-bottom:4px solid var(--accent);
-      margin-bottom:22px;
-    }
-
-    h1{
-      margin:0;
-      font-size:clamp(3.5rem, 9vw, 6.8rem);
-      line-height:.96;
-      letter-spacing:.03em;
-      font-weight:900;
-    }
-
-    .hero-tagline{
-      font-size:clamp(1.4rem, 3vw, 2rem);
-      margin:18px 0 14px;
-      font-weight:700;
-    }
-
-    .hero-lead{
-      max-width:700px;
-      color:var(--muted);
-      font-size:1.08rem;
-      margin:0 0 28px;
-    }
-
-    .hero-actions{
-      display:flex;
-      gap:14px;
-      flex-wrap:wrap;
-      margin-bottom:28px;
-    }
-
-    .btn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      min-height:54px;
-      padding:0 22px;
-      border-radius:999px;
-      border:1px solid var(--line-strong);
-      font-weight:700;
-      transition:.2s ease;
-    }
-
-    .btn-primary{
-      background:var(--accent);
-      color:#121212;
-      border-color:transparent;
-    }
-
-    .btn-primary:hover{transform:translateY(-1px); filter:brightness(1.04)}
-    .btn-secondary{
-      color:var(--text);
-      background:rgba(255,255,255,0.02);
-    }
-    .btn-secondary:hover{
-      border-color:rgba(255,255,255,0.24);
-      background:rgba(255,255,255,0.04);
-    }
-
-    .hero-meta{
-      display:flex;
-      flex-wrap:wrap;
-      gap:16px 22px;
-      color:var(--text);
-      font-weight:500;
-      opacity:.9;
-      font-size:.98rem;
-    }
-
-    .hero-meta span::before{
-      content:"—";
-      color:var(--accent);
-      margin-right:8px;
-    }
-
-    .hero-right{
-      padding:22px;
-      display:grid;
-      grid-template-rows:1.05fr auto auto;
-      gap:18px;
-      min-height:580px;
-    }
-
-    .block{
-      padding:26px;
-      position:relative;
-      overflow:hidden;
-    }
-
-    .block.dark{
-      background:
-        linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)),
-        radial-gradient(circle at top left, rgba(201,154,60,0.10), transparent 35%);
-    }
-
-    .block-title{
-      font-size:1.4rem;
-      font-weight:800;
-      letter-spacing:.04em;
-      margin:0 0 10px;
-    }
-
-    .block-copy{
-      color:var(--muted);
-      margin:0;
-      font-size:.98rem;
-    }
-
-    .small-grid{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:18px;
-    }
-
-    .mini-card{
-      min-height:132px;
-      padding:22px;
-      display:flex;
-      flex-direction:column;
-      justify-content:flex-end;
-      position:relative;
-      overflow:hidden;
-    }
-
-    .mini-card::before,
-    .feature-card::before,
-    .project-card::before{
-      content:"";
-      position:absolute;
-      inset:0;
-      background:linear-gradient(135deg, rgba(201,154,60,0.10), transparent 45%);
-      pointer-events:none;
-    }
-
-    .mini-card strong,
-    .feature-card strong,
-    .project-card strong{
-      position:relative;
-      z-index:1;
-      font-size:1.1rem;
-      letter-spacing:.05em;
-    }
-
-    .section{
-      padding:32px 0;
-    }
-
-    .section-grid{
-      display:grid;
-      grid-template-columns:1.1fr .9fr;
-      gap:28px;
-      align-items:start;
-    }
-
-    .section-head{
-      margin-bottom:18px;
-    }
-
-    .kicker{
-      color:var(--accent);
-      text-transform:uppercase;
-      letter-spacing:.16em;
-      font-size:.82rem;
-      font-weight:800;
-      margin-bottom:10px;
-      display:block;
-    }
-
-    h2{
-      margin:0;
-      font-size:clamp(2rem, 4vw, 3rem);
-      line-height:1.05;
-      letter-spacing:.02em;
-    }
-
-    .section-sub{
-      color:var(--muted);
-      margin-top:14px;
-      max-width:760px;
-    }
-
-    .feature-grid,
-    .project-grid,
-    .hub-grid{
-      display:grid;
-      grid-template-columns:repeat(2, minmax(0, 1fr));
-      gap:18px;
-    }
-
-    .feature-card,
-    .project-card,
-    .footer-card{
-      padding:24px;
-      position:relative;
-      overflow:hidden;
-      min-height:220px;
-    }
-
-    .feature-card p,
-    .project-card p,
-    .footer-card p{
-      color:var(--muted);
-      margin:10px 0 0;
-    }
-
-    .project-card{
-      display:grid;
-      gap:18px;
-      align-content:start;
-    }
-
-    .project-thumb{
-      aspect-ratio:16/10;
-      border-radius:18px;
-      overflow:hidden;
-      border:1px solid var(--line);
-      background:#0e1014;
-    }
-
-    .project-thumb img{
-      width:100%;
-      height:100%;
-      object-fit:cover;
-    }
-
-    .project-meta{
-      color:var(--muted);
-      font-size:.95rem;
-    }
-
-    .hub-grid{
-      grid-template-columns:repeat(3, minmax(0, 1fr));
-    }
-
-    .app-card{
-      background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.015));
-      border:1px solid var(--line);
-      border-radius:24px;
-      padding:24px;
-      min-height:220px;
-      position:relative;
-      overflow:hidden;
-    }
-
-    .app-card::before{
-      content:"";
-      position:absolute;
-      inset:0;
-      background:linear-gradient(135deg, rgba(201,154,60,0.08), transparent 45%);
-      pointer-events:none;
-    }
-
-    .app-card h3{
-      margin:0 0 8px;
-      font-size:1.25rem;
-      position:relative;
-      z-index:1;
-    }
-
-    .app-card p{
-      margin:0 0 18px;
-      color:var(--muted);
-      position:relative;
-      z-index:1;
-    }
-
-    .status{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      font-size:.83rem;
-      color:var(--text);
-      padding:8px 12px;
-      border-radius:999px;
-      background:rgba(255,255,255,0.04);
-      border:1px solid var(--line);
-      position:relative;
-      z-index:1;
-    }
-
-    .status::before{
-      content:"";
-      width:8px;
-      height:8px;
-      border-radius:50%;
-      background:var(--accent);
-      display:block;
-    }
-
-    .split-card{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:18px;
-    }
-
-    .about-card,
-    .lab-card{
-      background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.015));
-      border:1px solid var(--line);
-      border-radius:28px;
-      padding:28px;
-      min-height:280px;
-    }
-
-    .about-card p,
-    .lab-card p{
-      color:var(--muted);
-      margin:14px 0 0;
-    }
-
-    .quote-line{
-      margin-top:20px;
-      padding-top:18px;
-      border-top:1px solid var(--line);
-      color:var(--text);
-      font-weight:600;
-    }
-
-    .footer{
-      padding:32px 0 56px;
-    }
-
-    .footer-grid{
-      display:grid;
-      grid-template-columns:1.2fr .8fr;
-      gap:18px;
-    }
-
-    .footer-card ul{
-      list-style:none;
-      padding:0;
-      margin:16px 0 0;
-      display:grid;
-      gap:10px;
-      color:var(--muted);
-    }
-
-    .muted{
-      color:var(--muted);
-    }
-
-    @media (max-width: 1100px){
-      .hero-grid,
-      .section-grid,
-      .footer-grid,
-      .split-card{
-        grid-template-columns:1fr;
-      }
-
-      .hub-grid{
-        grid-template-columns:repeat(2, minmax(0, 1fr));
-      }
-    }
-
-    @media (max-width: 760px){
-      .nav{
-        align-items:flex-start;
-        flex-direction:column;
-        padding:18px 0;
-      }
-
-      .nav-links{
-        gap:14px 18px;
-        justify-content:flex-start;
-      }
-
-      .hero-left,
-      .hero-right,
-      .feature-card,
-      .project-card,
-      .app-card,
-      .about-card,
-      .lab-card,
-      .footer-card{
-        border-radius:22px;
-      }
-
-      .hero-left{
-        min-height:auto;
-        padding:28px 22px;
-      }
-
-      .hero-right{
-        min-height:auto;
-        padding:16px;
-      }
-
-      .small-grid,
-      .feature-grid,
-      .project-grid,
-      .hub-grid{
-        grid-template-columns:1fr;
-      }
-
-      .hero-meta{
-        gap:10px 16px;
-        font-size:.95rem;
-      }
-
-      .btn{
-        width:100%;
-      }
-
-      .hero-actions{
-        flex-direction:column;
-      }
-    }
-  </style>
 </head>
+
 <body>
-  <div class="site-shell">
-    <header>
-      <div class="container nav">
-        <a href="#home" class="brand">NUTEAM</a>
-        <nav class="nav-links">
-          <a href="#apps">Apps</a>
-          <a href="#art-space">Art Space</a>
-          <a href="#ed">Ed</a>
-          <a href="#about">About Nu</a>
-          <a href="#contact">Contact</a>
-        </nav>
-      </div>
-    </header>
 
-    <main id="home">
-      <section class="hero">
-        <div class="container hero-grid">
-          <div class="hero-left">
-            <div>
-              <div class="eyebrow">Built in Reality</div>
-              <h1>NUTEAM</h1>
-              <p class="hero-tagline">Expanding into Digital.</p>
-              <p class="hero-lead">
-                A creative base for art, apps, local AI, and future digital exchange.
-                Rooted in real-world construction, sculpture, texture, and visual making —
-                now growing into tools, experiments, and open creative systems.
-              </p>
+<div class="container">
 
-              <div class="hero-actions">
-                <a class="btn btn-primary" href="#apps">Explore Apps</a>
-                <a class="btn btn-secondary" href="#ed">Enter Ed</a>
-              </div>
-            </div>
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-text">
+    <h1>NUTEAM</h1>
+    <h2>Expanding into Digital</h2>
+    <p>A creative base for art, apps, local AI, and future exchange.</p>
 
-            <div class="hero-meta">
-              <span>Hong Kong</span>
-              <span>Singapore</span>
-              <span>Thailand</span>
-              <span>China</span>
-              <span>Malaysia</span>
-              <span>Japan</span>
-              <span>Indonesia</span>
-            </div>
-          </div>
-
-          <div class="hero-right">
-            <div class="block dark">
-              <h3 class="block-title">Creative Base</h3>
-              <p class="block-copy">
-                Nuteam is no longer only a work identity. It is becoming a home for
-                projects, apps, ideas, and future systems in the digital world.
-              </p>
-            </div>
-
-            <div class="small-grid">
-              <div class="mini-card"><strong>Art</strong></div>
-              <div class="mini-card"><strong>Apps</strong></div>
-              <div class="mini-card"><strong>Ed / Local AI</strong></div>
-              <div class="mini-card"><strong>Future Exchange</strong></div>
-            </div>
-
-            <div class="block">
-              <h3 class="block-title">Not a personal page.</h3>
-              <p class="block-copy">
-                Nuteam is evolving into a platform direction — where physical making,
-                digital tools, and creative community can live together.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="section" id="what">
-        <div class="container">
-          <div class="section-head">
-            <span class="kicker">What is Nuteam?</span>
-            <h2>From real-world making to digital expansion.</h2>
-            <p class="section-sub">
-              Nuteam began from international art construction, sculpture, texture work,
-              and site-based problem-solving. Now it is growing into a digital base
-              for apps, local AI, art space, and future creative exchange.
-            </p>
-          </div>
-
-          <div class="feature-grid">
-            <article class="feature-card">
-              <strong>Art</strong>
-              <p>
-                Real projects, real surfaces, sculpture, texture, rockwork, and visual systems
-                built for physical spaces.
-              </p>
-            </article>
-
-            <article class="feature-card">
-              <strong>Apps</strong>
-              <p>
-                Independent APK projects developed from real needs, direct experiments,
-                and practical use.
-              </p>
-            </article>
-
-            <article class="feature-card">
-              <strong>Ed / Local AI</strong>
-              <p>
-                A growing path focused on local AI, EdAvatar, creative assistants,
-                and accessible digital intelligence.
-              </p>
-            </article>
-
-            <article class="feature-card">
-              <strong>Future Exchange</strong>
-              <p>
-                A platform direction for art pages, digital space, discussion,
-                support, and creative participation.
-              </p>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section class="section" id="apps">
-        <div class="container">
-          <div class="section-head">
-            <span class="kicker">Apps & APK</span>
-            <h2>Independent tools built from real use.</h2>
-            <p class="section-sub">
-              Nuteam is not only about finished art. It is also a place for tools,
-              experiments, and apps that solve creative problems in simple and direct ways.
-            </p>
-          </div>
-
-          <div class="hub-grid">
-            <article class="app-card">
-              <h3>EdAvatar</h3>
-              <p>Local AI companion direction built around identity, usability, and practical conversation.</p>
-              <span class="status">Active Direction</span>
-            </article>
-
-            <article class="app-card">
-              <h3>EdAvatar Thai Lite</h3>
-              <p>Lightweight Thai-speaking direction for accessible local AI experience on mobile devices.</p>
-              <span class="status">Testing</span>
-            </article>
-
-            <article class="app-card">
-              <h3>Ed Prompt Tool</h3>
-              <p>Prompt support tool focused on simple use, clearer output, and faster creative workflow.</p>
-              <span class="status">Working Build</span>
-            </article>
-
-            <article class="app-card">
-              <h3>Ed Prompt Pro</h3>
-              <p>An expanded direction for smarter prompting, richer guidance, and future AI-assisted workflows.</p>
-              <span class="status">In Progress</span>
-            </article>
-
-            <article class="app-card">
-              <h3>Numo</h3>
-              <p>A digital branch for lightweight creative apps, experiments, and everyday interaction.</p>
-              <span class="status">Growing</span>
-            </article>
-
-            <article class="app-card">
-              <h3>More to Come</h3>
-              <p>Nuteam is a base. New APK tools, AI utilities, and digital ideas will continue to grow here.</p>
-              <span class="status">Open Future</span>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section class="section" id="art-space">
-        <div class="container section-grid">
-          <div>
-            <div class="section-head">
-              <span class="kicker">Art Space</span>
-              <h2>A future place for showing, sharing, and selling art.</h2>
-              <p class="section-sub">
-                Nuteam can also grow into an open art space — a place where artists
-                can show work, build presence, and open room for selling, support,
-                or contribution in flexible ways.
-              </p>
-            </div>
-
-            <div class="feature-grid">
-              <article class="feature-card">
-                <strong>Show Work</strong>
-                <p>Open pages for artists to present work clearly and beautifully.</p>
-              </article>
-              <article class="feature-card">
-                <strong>Sell Work</strong>
-                <p>Future space for paid placement, promoted visibility, or direct contact-based selling.</p>
-              </article>
-            </div>
-          </div>
-
-          <div class="block">
-            <h3 class="block-title">This should feel open, not crowded.</h3>
-            <p class="block-copy">
-              The direction is not to build a noisy marketplace. It is to create a clean
-              and meaningful digital place where art can breathe, be seen, and be valued.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <section class="section" id="ed">
-        <div class="container split-card">
-          <article class="about-card">
-            <span class="kicker">Ed / Local AI</span>
-            <h2 style="font-size:2.2rem; margin:0;">Ed is growing here.</h2>
-            <p>
-              EdAvatar is not just an app idea. It represents a future direction of Nuteam —
-              local AI that can live closer to real users, practical use, and independent creative systems.
-            </p>
-            <p class="quote-line">Built from real need. Not from trend.</p>
-          </article>
-
-          <article class="lab-card">
-            <span class="kicker">Future Systems</span>
-            <h2 style="font-size:2.2rem; margin:0;">Tools, dialogue, and intelligent assistance.</h2>
-            <p>
-              Nuteam can become a place where art, local AI, conversation, and digital tools
-              connect in a way that feels direct, human, and usable.
-            </p>
-          </article>
-        </div>
-      </section>
-
-      <section class="section" id="about">
-        <div class="container section-grid">
-          <div>
-            <div class="section-head">
-              <span class="kicker">About Nu</span>
-              <h2>One part of Nuteam. Not the whole of it.</h2>
-              <p class="section-sub">
-                Nu is the founder behind Nuteam — with roots in international art construction,
-                sculpture, texture work, and real-world project execution. As physical work slows down,
-                Nuteam expands into apps, local AI, and digital creative systems.
-              </p>
-            </div>
-          </div>
-
-          <div class="block">
-            <h3 class="block-title">Real work still matters.</h3>
-            <p class="block-copy">
-              Nuteam carries credibility from real experience. That is what gives weight
-              to everything that grows next in the digital world.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <section class="section" id="contact">
-        <div class="container footer-grid">
-          <article class="footer-card">
-            <span class="kicker">Contact</span>
-            <h2 style="font-size:2.1rem; margin:0;">Start with a message.</h2>
-            <p>
-              For collaboration, app interest, art space direction, or future exchange,
-              Nuteam is open to meaningful connection.
-            </p>
-            <ul>
-              <li>Email: your-email@example.com</li>
-              <li>Facebook: your-facebook-link</li>
-              <li>GitHub: edavatar-studio.github.io</li>
-            </ul>
-          </article>
-
-          <article class="footer-card">
-            <span class="kicker">Nuteam</span>
-            <h2 style="font-size:2.1rem; margin:0;">Creative Base.</h2>
-            <p class="muted">
-              Art / Apps / Local AI / Future Exchange
-            </p>
-            <ul>
-              <li><a href="#apps">Apps</a></li>
-              <li><a href="#art-space">Art Space</a></li>
-              <li><a href="#ed">Ed</a></li>
-              <li><a href="#about">About Nu</a></li>
-            </ul>
-          </article>
-        </div>
-      </section>
-    </main>
+    <button class="btn primary">Explore Apps</button>
+    <button class="btn">Enter Ed</button>
   </div>
+
+  <img src="hero.jpg" width="400">
+</div>
+
+<!-- CORE -->
+<div class="grid">
+  <div class="card">ART</div>
+  <div class="card">APPS</div>
+  <div class="card">ED / LOCAL AI</div>
+  <div class="card">FUTURE EXCHANGE</div>
+</div>
+
+<!-- APPS -->
+<div class="apps">
+  <h2>APPS & APK</h2>
+  <div class="app-grid">
+    <div class="app">EdAvatar</div>
+    <div class="app">Ed Prompt</div>
+    <div class="app">Numo</div>
+    <div class="app">More</div>
+  </div>
+</div>
+
+</div>
+
+<footer>
+Nuteam © 2026
+</footer>
+
 </body>
 </html>
