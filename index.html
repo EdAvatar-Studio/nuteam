@@ -413,7 +413,73 @@
     display: flex; align-items: baseline; justify-content: space-between;
     padding: 28px 24px 20px;
   }
+.app-hub {
+  padding: 60px 24px;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+}
 
+.app-hub-inner {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 40px 36px;
+  border-radius: 26px;
+
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.45), rgba(255,255,255,0.18)),
+    linear-gradient(180deg, #f3ede4, #e4dccf);
+
+  border: 1px solid rgba(0,0,0,0.08);
+
+  box-shadow:
+    0 20px 40px rgba(31,27,22,0.10),
+    0 6px 14px rgba(31,27,22,0.05),
+    inset 0 1px 0 rgba(255,255,255,0.6);
+
+  text-align: center;
+}
+
+.app-hub-label {
+  font-size: 10px;
+  letter-spacing: 0.25em;
+  color: var(--gold-dk);
+  margin-bottom: 10px;
+}
+
+.app-hub-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 46px;
+  letter-spacing: 0.12em;
+  color: #1f1b16;
+  margin-bottom: 14px;
+}
+
+.app-hub-desc {
+  font-size: 13px;
+  color: #5c564d;
+  margin-bottom: 26px;
+  line-height: 1.7;
+}
+
+.app-hub-btn {
+  display: inline-block;
+  padding: 12px 28px;
+  border-radius: 30px;
+
+  background: var(--gold);
+  color: #1a1814;
+
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+
+  text-decoration: none;
+  transition: 0.2s;
+}
+
+.app-hub-btn:hover {
+  background: var(--gold-lt);
+}
   .apps-title {
     font-family: 'Bebas Neue', sans-serif;
     font-size: 28px;
@@ -836,55 +902,25 @@
   </div>
 </div>
 
-<section id="apps">
-  <div class="apps-header">
-    <div style="display:flex; align-items:baseline; gap:16px">
-      <h2 class="apps-title">Apps & APK</h2>
-      <span class="apps-subtitle">Simple, direct, and evolving.</span>
-    </div>
-    <a href="#" class="view-all">View All Apps →</a>
-  </div>
+<section id="apps" class="app-hub">
+  <div class="app-hub-inner">
 
-  <div class="apps-grid">
-    <div class="app-card">
-      <div class="app-icon">👤</div>
-      <p class="app-name">EdAvatar</p>
-      <p class="app-tagline">AI Companion</p>
-      <span class="app-status active">Active</span>
+    <div class="app-hub-text">
+      <p class="app-hub-label">APP HUB</p>
+      <h2 class="app-hub-title">EDAVATAR STUDIO</h2>
+      <p class="app-hub-desc">
+        The home of Nuteam’s apps, APK tools, and local AI projects.<br/>
+        Simple, direct, and evolving.
+      </p>
+
+      <a href="https://edavatar-studio.github.io" class="app-hub-btn" target="_blank">
+        ENTER STUDIO →
+      </a>
     </div>
-    <div class="app-card">
-      <div class="app-icon">✦</div>
-      <p class="app-name">EdAvatar</p>
-      <p class="app-tagline">Thai Lite</p>
-      <span class="app-status testing">Testing</span>
-    </div>
-    <div class="app-card">
-      <div class="app-icon">△</div>
-      <p class="app-name">Ed Prompt</p>
-      <p class="app-tagline">Tool</p>
-      <span class="app-status working">Working</span>
-    </div>
-    <div class="app-card">
-      <div class="app-icon">P◇</div>
-      <p class="app-name">Ed Prompt Pro</p>
-      <p class="app-tagline">Advanced Prompt Tool</p>
-      <span class="app-status progress">In Progress</span>
-    </div>
-    <div class="app-card">
-      <div class="app-icon">◎</div>
-      <p class="app-name">Numo</p>
-      <p class="app-tagline">Creative Apps</p>
-      <span class="app-status growing">Growing</span>
-    </div>
-    <div class="app-card">
-      <div class="app-icon">✦✦</div>
-      <p class="app-name">More</p>
-      <p class="app-tagline">To Come</p>
-      <span class="app-status future">Open Future</span>
-    </div>
+
   </div>
 </section>
-
+  
 <div class="bottom-grid">
  <section id="nuart" class="bottom-section">
   <p class="bottom-label">Nu Art</p>
