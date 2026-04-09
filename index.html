@@ -141,17 +141,24 @@
   }
 
   .hero-panel {
-    background:
-      linear-gradient(145deg, rgba(255,255,255,0.35), rgba(255,255,255,0.08)),
-      linear-gradient(180deg, var(--panel), var(--panel-2));
-    border: 1px solid rgba(0,0,0,0.08);
-    border-radius: 28px;
-    box-shadow: var(--shadow);
-    padding: 40px 42px;
-    position: relative;
-    display: flex; flex-direction: column; justify-content: space-between;
-    min-height: 470px;
-  }
+  background:
+    radial-gradient(circle at top left, rgba(184,150,62,0.12), transparent 28%),
+    linear-gradient(145deg, rgba(255,255,255,0.38), rgba(255,255,255,0.10)),
+    linear-gradient(180deg, var(--panel), var(--panel-2));
+  border: 1px solid rgba(0,0,0,0.08);
+  border-radius: 28px;
+  box-shadow:
+    0 18px 40px rgba(31,27,22,0.10),
+    inset 0 1px 0 rgba(255,255,255,0.45),
+    inset 0 -1px 0 rgba(0,0,0,0.04);
+  padding: 40px 42px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 470px;
+  overflow: hidden;
+}
 
   .hero-panel::before,
   .hero-panel::after {
@@ -166,6 +173,20 @@
   .hero-panel::before { top: 10px; left: 10px; }
   .hero-panel::after  { top: 10px; right: 10px; }
 
+  .hero-glow {
+  position: absolute;
+  right: 40px;
+  bottom: 48px;
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle, rgba(184,150,62,0.16) 0%, rgba(184,150,62,0.04) 42%, transparent 68%);
+  filter: blur(8px);
+  pointer-events: none;
+  opacity: 0.9;
+}
+  
   .hero-eyebrow {
     font-size: 10px;
     letter-spacing: 0.2em;
@@ -757,6 +778,7 @@
       <span>Japan</span>
       <span>Indonesia</span>
     </div>
+    <div class="hero-glow"></div>
   </div>
 
   <aside class="hero-sidebar">
