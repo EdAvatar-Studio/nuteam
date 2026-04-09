@@ -140,17 +140,18 @@
     padding: 16px;
   }
 
-  .hero-panel {
+ .hero-panel {
   background:
-    radial-gradient(circle at top left, rgba(184,150,62,0.12), transparent 28%),
-    linear-gradient(145deg, rgba(255,255,255,0.38), rgba(255,255,255,0.10)),
-    linear-gradient(180deg, var(--panel), var(--panel-2));
-  border: 1px solid rgba(0,0,0,0.08);
+    radial-gradient(circle at 78% 72%, rgba(184,150,62,0.18), transparent 18%),
+    linear-gradient(145deg, rgba(255,255,255,0.55), rgba(255,255,255,0.18)),
+    linear-gradient(180deg, #f3ede4 0%, #e4dccf 100%);
+  border: 1px solid rgba(0,0,0,0.10);
   border-radius: 28px;
   box-shadow:
-    0 18px 40px rgba(31,27,22,0.10),
-    inset 0 1px 0 rgba(255,255,255,0.45),
-    inset 0 -1px 0 rgba(0,0,0,0.04);
+    0 24px 48px rgba(31,27,22,0.12),
+    0 8px 18px rgba(31,27,22,0.06),
+    inset 0 1px 0 rgba(255,255,255,0.7),
+    inset 0 -2px 0 rgba(0,0,0,0.05);
   padding: 40px 42px;
   position: relative;
   display: flex;
@@ -159,7 +160,6 @@
   min-height: 470px;
   overflow: hidden;
 }
-
   .hero-panel::before,
   .hero-panel::after {
     content: '';
@@ -173,18 +173,30 @@
   .hero-panel::before { top: 10px; left: 10px; }
   .hero-panel::after  { top: 10px; right: 10px; }
 
-  .hero-glow {
+ .hero-glow {
   position: absolute;
-  right: 40px;
-  bottom: 48px;
-  width: 220px;
-  height: 220px;
+  right: 20px;
+  bottom: 20px;
+  width: 320px;
+  height: 320px;
   border-radius: 50%;
   background:
-    radial-gradient(circle, rgba(184,150,62,0.16) 0%, rgba(184,150,62,0.04) 42%, transparent 68%);
-  filter: blur(8px);
+    radial-gradient(circle,
+      rgba(184,150,62,0.24) 0%,
+      rgba(184,150,62,0.12) 24%,
+      rgba(184,150,62,0.05) 44%,
+      transparent 68%);
+  filter: blur(18px);
   pointer-events: none;
-  opacity: 0.9;
+  opacity: 1;
+}
+  
+  .hero-panel-frame {
+  position: absolute;
+  inset: 14px;
+  border: 1px solid rgba(0,0,0,0.06);
+  border-radius: 20px;
+  pointer-events: none;
 }
   
   .hero-eyebrow {
@@ -779,6 +791,7 @@
       <span>Indonesia</span>
     </div>
     <div class="hero-glow"></div>
+    <div class="hero-panel-frame"></div>
   </div>
 
   <aside class="hero-sidebar">
