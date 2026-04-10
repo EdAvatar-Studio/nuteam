@@ -612,14 +612,14 @@
   const ENABLED_POST_IDS = ["art1", "art2", "art3"];
 
   for (const postId of ENABLED_POST_IDS) {
-    const card = document.querySelector(.post-card[data-post-id="${postId}"]);
+    const card = document.querySelector(`.post-card[data-post-id="${postId}"]`);
     if (!card) continue;
 
     const button = card.querySelector(".heart-btn");
     const countEl = card.querySelector(".heart-count");
     if (!button || !countEl) continue;
 
-    const likeRef = ref(db, likes/${postId});
+    const likeRef = ref(db, `likes/${postId}`);
 
     onValue(likeRef, (snapshot) => {
       countEl.textContent = snapshot.exists() ? snapshot.val() : 0;
