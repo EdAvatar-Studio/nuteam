@@ -346,8 +346,9 @@ body::before{
   height:100%;
   object-fit:cover;
   display:block;
+  border-radius:16px;
   filter:saturate(0.92) contrast(1.02);
-  transition:opacity 0.9s ease;
+  transition:opacity 0.6s ease;
 }
 
 .gallery-meta{
@@ -965,11 +966,19 @@ Nuteam is where hands-on craft meets future thinking.
   <div class="gallery-frame" onclick="window.location.href='nu-art.html'">
     <img id="heroSlide" src="art-1.jpeg" alt="Nu Art exhibition" />
   </div>
-
+<p class="art-caption">Artist: Nu — Sculpture Series</p>
+  
   <div class="gallery-meta">
     <p class="gallery-artist">NU ART</p>
     <p class="gallery-title">Selected works currently on view.</p>
-
+   
+.art-caption{
+  font-size:11px;
+  color:var(--muted);
+  margin:8px 0 0 2px;
+  letter-spacing:0.08em;
+}
+   
     <div class="gallery-actions">
       <a href="nu-art.html" class="gallery-btn">View Artist →</a>
       <a href="art-space.html" class="gallery-link">Art Space →</a>
