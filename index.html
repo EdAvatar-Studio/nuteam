@@ -917,6 +917,72 @@ body::before{
   margin:8px 0 0 2px;
   letter-spacing:0.08em;
 }
+ .pillar-links{
+  display:block;
+}
+
+.mini-links-grid{
+  display:grid;
+  grid-template-columns:repeat(2, 1fr);
+  gap:14px;
+  margin-top:18px;
+}
+
+.mini-link-card{
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  min-height:120px;
+  padding:16px 16px 14px;
+  text-decoration:none;
+  border-radius:18px;
+
+  background:
+    linear-gradient(145deg, rgba(255,255,255,0.48), rgba(255,255,255,0.16)),
+    linear-gradient(145deg, var(--panel), var(--panel-2));
+  border:1px solid rgba(255,255,255,0.42);
+  box-shadow:
+    8px 8px 18px rgba(70,70,70,0.10),
+    -6px -6px 12px rgba(255,255,255,0.50),
+    inset 1px 1px 0 rgba(255,255,255,0.50);
+  transition:transform .18s ease, box-shadow .18s ease;
+}
+
+.mini-link-card:hover{
+  transform:translateY(-2px);
+  box-shadow:
+    10px 10px 22px rgba(70,70,70,0.12),
+    -7px -7px 14px rgba(255,255,255,0.56),
+    inset 1px 1px 0 rgba(255,255,255,0.55);
+}
+
+.mini-link-title{
+  font-family:'Bebas Neue', sans-serif;
+  font-size:22px;
+  letter-spacing:.08em;
+  color:#20201d;
+  line-height:1;
+  margin-bottom:8px;
+}
+
+.mini-link-text{
+  font-size:11px;
+  line-height:1.6;
+  color:var(--muted);
+}
+
+.mini-link-arrow{
+  margin-top:12px;
+  font-size:14px;
+  color:#8d7a4a;
+  align-self:flex-start;
+}
+
+@media (max-width: 900px){
+  .mini-links-grid{
+    grid-template-columns:1fr;
+  }
+}
 </style>
 </head>
 <body>
@@ -1005,31 +1071,40 @@ in a more open digital environment.
   <span class="pillar-arr">→</span>
 </div>
  
- <div class="pillar" onclick="window.open('https://edavatar-studio.github.io','_blank')">
-    <p class="pillar-num">02</p>
-    <h3 class="pillar-title">Ed / Local AI</h3>
-    <div class="pillar-icon">◎</div>
-   <p class="pillar-desc">
-A growing direction focused on local AI —
-practical, independent, and close to real users.
-Built to work without dependency,
-and designed to serve real creative workflows.
-</p>
-    <span class="pillar-arr">→</span>
-  </div>
-  <div class="pillar">
-    <p class="pillar-num">03</p>
-    <h3 class="pillar-title">Future Exchange</h3>
-    <div class="pillar-icon">✦</div>
-   <p class="pillar-desc">
-A future platform for creative exchange —
-connecting art, digital ownership,
-and new forms of participation.
-</p>
-    <span class="pillar-arr">→</span>
+<div class="pillar pillar-links">
+  <p class="pillar-num">02</p>
+  <h3 class="pillar-title">CURATED LINKS</h3>
+  <p class="pillar-desc">
+    A curated set of entry points connecting artist highlights, participation,
+    and future support around Nuteam.
+  </p>
+
+  <div class="mini-links-grid">
+    <a class="mini-link-card" href="nu-art.html">
+      <span class="mini-link-title">FEATURED ARTIST</span>
+      <span class="mini-link-text">This month’s selected artist.</span>
+      <span class="mini-link-arrow">→</span>
+    </a>
+
+    <a class="mini-link-card" href="art-space.html">
+      <span class="mini-link-title">ART SPACE</span>
+      <span class="mini-link-text">Explore works from artists and creators.</span>
+      <span class="mini-link-arrow">→</span>
+    </a>
+
+    <a class="mini-link-card" href="mailto:wisanunu26@gmail.com?subject=Open%20Call%20Submission">
+      <span class="mini-link-title">OPEN CALL</span>
+      <span class="mini-link-text">Submit your work to be featured.</span>
+      <span class="mini-link-arrow">→</span>
+    </a>
+
+    <a class="mini-link-card" href="mailto:wisanunu26@gmail.com?subject=Support%20Nuteam">
+      <span class="mini-link-title">SUPPORT</span>
+      <span class="mini-link-text">Support Nuteam or collaborate.</span>
+      <span class="mini-link-arrow">→</span>
+    </a>
   </div>
 </div>
-
 <section id="apps" class="app-hub">
   <div class="app-hub-inner">
 
