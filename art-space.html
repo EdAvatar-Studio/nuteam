@@ -584,6 +584,56 @@
     <footer>
       NUTEAM.ORG — Art Space / Image First / Short Caption / Quiet Presence
     </footer>
-  </main>
+ </main>
+
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+  import { getDatabase, ref, get, runTransaction } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyC5iSRx3ABuHCYrJdjL8FyLA_xdm6ZVUtK",
+    authDomain: "nuteam-art-space.firebaseapp.com",
+    databaseURL: "https://nuteam-art-space-default-rtdb.asia-southeast1.firebasedatabase.app",
+    projectId: "nuteam-art-space",
+    storageBucket: "nuteam-art-space.firebasestorage.app",
+    messagingSenderId: "201715602611",
+    appId: "1:201715602611:web:22235d734e53ea8ac38cc6"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getDatabase(app);
+
+  async function loadHeart() {
+    const card = document.querySelector('.post-card[data-post-id="art1"]');
+    if (!card) return;
+
+    const countEl = card.querySelector(".heart-count");
+    if (!countEl) return;
+
+    const snap = await get(ref(db, "likes/art1"));
+    countEl.textContent = snap.exists() ? snap.val() : 0;
+  }
+
+  async function bindHeart() {
+    const card = document.querySelector('.post-card[data-post-id="art1"]');
+    if (!card) return;
+
+    const button = card.querySelector(".heart-btn");
+    const countEl = card.querySelector(".heart-count");
+
+    button.addEventListener("click", async () => {
+      const likeRef = ref(db, "likes/art1");
+      const result = await runTransaction(likeRef, (v) => (v || 0) + 1);
+
+      if (result.committed) {
+        countEl.textContent = result.snapshot.val();
+      }
+    });
+  }
+
+  loadHeart();
+  bindHeart();
+</script>
+
 </body>
 </html>
