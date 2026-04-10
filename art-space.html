@@ -610,6 +610,7 @@
   const db = getDatabase(app);
 
   const ENABLED_POST_IDS = ["art1", "art2", "art3"];
+  
 
   for (const postId of ENABLED_POST_IDS) {
     const card = document.querySelector(`.post-card[data-post-id="${postId}"]`);
