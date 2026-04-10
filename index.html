@@ -298,67 +298,119 @@ body::before{
     flex-wrap: wrap;
   }
 
-  .hero-sidebar {
-    background:
-      linear-gradient(180deg, rgba(255,255,255,0.35), rgba(255,255,255,0.15)),
-      linear-gradient(180deg, var(--panel), var(--panel-3));
-    border: 1px solid rgba(0,0,0,0.08);
-    border-radius: 28px;
-    box-shadow: var(--shadow-2);
-    padding: 28px 24px;
-    display: flex; flex-direction: column; gap: 0;
-    min-height: 470px;
-  }
+  .hero-sidebar{
+  margin:16px 16px 16px 0;
+  padding:20px;
+  border-radius:28px;
+  background:
+    linear-gradient(145deg, rgba(255,255,255,0.52), rgba(255,255,255,0.18)),
+    linear-gradient(145deg, #dadad7, #c9c9c5);
+  border:1px solid rgba(255,255,255,0.45);
+  box-shadow:
+    10px 10px 26px rgba(70,70,70,0.14),
+    -8px -8px 18px rgba(255,255,255,0.60),
+    inset 1px 1px 0 rgba(255,255,255,0.55);
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+  justify-content:flex-start;
+}
 
-  .sidebar-label {
-    font-size: 9px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--gold-dk);
-    margin-bottom: 4px;
-  }
+.gallery-label{
+  font-size:10px;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  color:#8d7a4a;
+  margin:0;
+}
 
-  .sidebar-title {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 22px;
-    letter-spacing: 0.08em;
-    color: var(--steel-dk);
-    margin-bottom: 12px;
-  }
+.gallery-frame{
+  position:relative;
+  width:100%;
+  aspect-ratio: 4 / 5;
+  overflow:hidden;
+  border-radius:22px;
+  cursor:pointer;
+  background:
+    linear-gradient(145deg, rgba(255,255,255,0.35), rgba(255,255,255,0.10)),
+    linear-gradient(145deg, #d7d7d3, #c7c7c2);
+  border:1px solid rgba(255,255,255,0.48);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.55),
+    6px 6px 18px rgba(70,70,70,0.12),
+    -5px -5px 12px rgba(255,255,255,0.45);
+}
 
-  .sidebar-text {
-    font-size: 11px;
-    line-height: 1.7;
-    color: var(--ink-soft);
-    margin-bottom: 28px;
-  }
+.gallery-frame img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+  filter:saturate(0.92) contrast(1.02);
+  transition:opacity 0.9s ease;
+}
 
-  .sidebar-divider {
-    height: 1px;
-    background: rgba(0,0,0,0.08);
-    margin: 0 0 18px;
-  }
+.gallery-meta{
+  padding:4px 2px 0;
+}
 
-  .sidebar-item {
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 12px 0;
-    border-bottom: 1px solid rgba(0,0,0,0.08);
-    cursor: pointer;
-    transition: color 0.2s;
-  }
+.gallery-artist{
+  font-family:'Bebas Neue', sans-serif;
+  font-size:28px;
+  letter-spacing:.10em;
+  color:#22221f;
+  margin:0 0 4px 0;
+  line-height:1;
+}
 
-  .sidebar-item:last-child { border-bottom: none; }
-  .sidebar-item span {
-    font-size: 11px;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--ink-soft);
-    transition: color 0.2s;
-  }
+.gallery-title{
+  font-size:12px;
+  line-height:1.7;
+  color:#5f5f5a;
+  margin:0 0 14px 0;
+}
 
-  .sidebar-item:hover span { color: var(--ink); }
-  .sidebar-item .plus { color: var(--gold-dk); font-size: 16px; }
+.gallery-actions{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+}
 
+.gallery-btn{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:10px 16px;
+  border-radius:999px;
+  text-decoration:none;
+  font-size:10px;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  background:linear-gradient(145deg, #d2b56a, #a78638);
+  color:#1f1b16;
+  border:1px solid rgba(255,255,255,0.35);
+  box-shadow:
+    6px 6px 14px rgba(70,70,70,0.14),
+    -5px -5px 12px rgba(255,255,255,0.65);
+}
+
+.gallery-link{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:10px 16px;
+  border-radius:999px;
+  text-decoration:none;
+  font-size:10px;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  background:linear-gradient(145deg, #e7e7e5, #cdcdca);
+  color:#1f1b16;
+  border:1px solid rgba(255,255,255,0.35);
+  box-shadow:
+    6px 6px 14px rgba(70,70,70,0.12),
+    -5px -5px 12px rgba(255,255,255,0.60);
+}
   .section-rule {
     display: flex; align-items: center; gap: 16px;
     padding: 0 16px;
@@ -907,19 +959,23 @@ Nuteam is where hands-on craft meets future thinking.
     <div class="hero-panel-frame"></div>
   </div>
 
-  <aside class="hero-sidebar">
-    <p class="sidebar-label">Creative Base</p>
-    <p class="sidebar-title">Nuteam Identity</p>
-    <p class="sidebar-text">
-      Nuteam is no longer only a work identity. It is becoming a home for
-      projects, apps, ideas, and future systems in the digital world.
-    </p>
-    <div class="sidebar-divider"></div>
-    <div class="sidebar-item"><span>Art</span><span class="plus">+</span></div>
-    <div class="sidebar-item"><span>Apps</span><span class="plus">+</span></div>
-    <div class="sidebar-item"><span>Ed / Local AI</span><span class="plus">+</span></div>
-    <div class="sidebar-item"><span>Future Exchange</span><span class="plus">+</span></div>
-  </aside>
+ <aside class="hero-sidebar hero-gallery">
+  <p class="gallery-label">CURRENT EXHIBITION</p>
+
+  <div class="gallery-frame" onclick="window.location.href='nu-art.html'">
+    <img id="heroSlide" src="art-1.jpg" alt="Nu Art exhibition" />
+  </div>
+
+  <div class="gallery-meta">
+    <p class="gallery-artist">NU ART</p>
+    <p class="gallery-title">Selected works currently on view.</p>
+
+    <div class="gallery-actions">
+      <a href="nu-art.html" class="gallery-btn">View Artist →</a>
+      <a href="art-space.html" class="gallery-link">Art Space →</a>
+    </div>
+  </div>
+</aside>
 </section>
 
 <div class="section-rule">
@@ -1066,6 +1122,28 @@ build real things that last.
     </div>
   </div>
 </footer>
+<script>
+  const heroSlides = [
+    "art-1.jpg",
+    "art-2.jpg",
+    "art-3.jpg"
+  ];
 
+  let heroSlideIndex = 0;
+  const heroSlideEl = document.getElementById("heroSlide");
+
+  if (heroSlideEl) {
+    setInterval(() => {
+      heroSlideIndex = (heroSlideIndex + 1) % heroSlides.length;
+      heroSlideEl.style.opacity = 0;
+
+      setTimeout(() => {
+        heroSlideEl.src = heroSlides[heroSlideIndex];
+        heroSlideEl.style.opacity = 1;
+      }, 350);
+    }, 5000);
+  }
+</script>
 </body>
 </html>
+
