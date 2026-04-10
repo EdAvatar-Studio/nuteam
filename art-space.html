@@ -595,7 +595,8 @@
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
   import { getDatabase, ref, onValue, runTransaction } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
-
+  
+document.addEventListener("DOMContentLoaded", () => {
   console.log("RUNNING SCRIPT");
   const firebaseConfig = {
     apiKey: "AIzaSyC5iSRx3ABuHCYrJdjL8FyLA_xdm6ZVUtK",
@@ -637,6 +638,7 @@
       }
     });
   }
+  });
 </script>
 </body>
 </html>
