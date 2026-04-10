@@ -594,7 +594,7 @@
 
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-  import { getDatabase, ref, get, runTransaction } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+  import { getDatabase, ref, onValue, runTransaction } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
 
   const firebaseConfig = {
     apiKey: "AIzaSyC5iSRx3ABuHCYrJdjL8FyLA_xdm6ZVUtK",
@@ -611,72 +611,30 @@
 
   const ENABLED_POST_IDS = ["art1", "art2", "art3"];
 
-  async function loadHeartCounts() {
-    for (const postId of ENABLED_POST_IDS) {
-      const card = document.querySelector(.post-card[data-post-id="${postId}"]);
-      if (!card) continue;
+  for (const postId of ENABLED_POST_IDS) {
+    const card = document.querySelector(.post-card[data-post-id="${postId}"]);
+    if (!card) continue;
 
-      const countEl = card.querySelector(".heart-count");
-      const button = card.querySelector(".heart-btn");
-      if (!countEl || !button) continue;
+    const button = card.querySelector(".heart-btn");
+    const countEl = card.querySelector(".heart-count");
+    if (!button || !countEl) continue;
 
+    const likeRef = ref(db, likes/${postId});
+
+    onValue(likeRef, (snapshot) => {
+      countEl.textContent = snapshot.exists() ? snapshot.val() : 0;
+    });
+
+    button.addEventListener("click", async () => {
       try {
-        const snap = await get(ref(db, likes/${postId}));
-        const value = snap.exists() ? snap.val() : 0;
-        countEl.textContent = value;
-
-        const clickedKey = liked_${postId};
-        if (localStorage.getItem(clickedKey) === "1") {
-          button.disabled = true;
-          button.style.opacity = "0.65";
-          button.style.cursor = "default";
-        }
+        await runTransaction(likeRef, (currentValue) => {
+          return (currentValue || 0) + 1;
+        });
       } catch (err) {
-        console.error(loadHeartCounts error for ${postId}:, err);
+        console.error(heart update failed for ${postId}, err);
       }
-    }
+    });
   }
-
-  async function bindHeartButtons() {
-    for (const postId of ENABLED_POST_IDS) {
-      const card = document.querySelector(.post-card[data-post-id="${postId}"]);
-      if (!card) continue;
-
-      const button = card.querySelector(".heart-btn");
-      const countEl = card.querySelector(".heart-count");
-      if (!button || !countEl) continue;
-
-      const clickedKey = liked_${postId};
-
-      button.addEventListener("click", async () => {
-        if (localStorage.getItem(clickedKey) === "1") return;
-
-        button.disabled = true;
-
-        try {
-          const likeRef = ref(db, likes/${postId});
-          const result = await runTransaction(likeRef, (currentValue) => {
-            return (currentValue || 0) + 1;
-          });
-
-          if (result.committed) {
-            countEl.textContent = result.snapshot.val();
-            localStorage.setItem(clickedKey, "1");
-            button.style.opacity = "0.65";
-            button.style.cursor = "default";
-          } else {
-            button.disabled = false;
-          }
-        } catch (err) {
-          console.error(increment error for ${postId}:, err);
-          button.disabled = false;
-        }
-      });
-    }
-  }
-
-  loadHeartCounts();
-  bindHeartButtons();
 </script>
 
 </body>
