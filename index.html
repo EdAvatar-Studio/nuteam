@@ -8,40 +8,72 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet"/>
 <style>
-  :root {
-    --paper:      #e8e2d7;
-    --paper-2:    #ddd5c8;
-    --paper-3:    #cfc6b8;
-    --steel:      #8f887c;
-    --steel-dk:   #5d564d;
-    --ink:        #1e1c18;
-    --ink-soft:   #444039;
-    --gold:       #b8963e;
-    --gold-lt:    #d5b25a;
-    --gold-dk:    #806628;
-    --panel:      #f4efe7;
-    --panel-2:    #ece6dc;
-    --panel-3:    #e2dbd0;
-    --line:       rgba(45,40,34,0.10);
-    --line-2:     rgba(45,40,34,0.16);
-    --shadow:     0 14px 34px rgba(31,27,22,0.08);
-    --shadow-2:   0 10px 24px rgba(31,27,22,0.06);
-    --radius:     24px;
-  }
+ :root{
+  --bg:#d7d7d5;
+  --bg-2:#cfcfcd;
+  --bg-3:#e3e3e1;
+
+  --panel:#dcdcd9;
+  --panel-2:#cfcfcb;
+  --panel-3:#ececea;
+
+  --line:#b8b8b4;
+  --line-soft:#d9d9d5;
+
+  --text:#1f1f1c;
+  --muted:#5f5f5a;
+
+  --silver:#d8d8d6;
+  --silver-hi:#f3f3f1;
+  --silver-mid:#c8c8c4;
+  --silver-low:#a9a9a4;
+
+  --gold:#b89a4a;
+  --gold-2:#9b7f39;
+  --gold-soft:#d2b56a;
+
+  --shadow-soft:
+    10px 10px 26px rgba(70,70,70,0.14),
+    -8px -8px 18px rgba(255,255,255,0.58);
+
+  --shadow-card:
+    14px 14px 34px rgba(70,70,70,0.16),
+    -10px -10px 22px rgba(255,255,255,0.62);
+
+  --shadow-inset:
+    inset 2px 2px 5px rgba(255,255,255,0.45),
+    inset -2px -2px 5px rgba(110,110,110,0.10);
+
+  --radius:24px;
+}
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
 
-  body {
-    background:
-      radial-gradient(circle at top left, rgba(184,150,62,0.08), transparent 26%),
-      linear-gradient(180deg, #e9e3d8 0%, #e3dccf 100%);
-    color: var(--ink);
-    font-family: 'DM Mono', monospace;
-    font-size: 13px;
-    line-height: 1.6;
-    overflow-x: hidden;
-  }
+ body{
+  background:
+    linear-gradient(rgba(255,255,255,0.10), rgba(0,0,0,0.03)),
+    linear-gradient(145deg, #e4e4e2, #cbcbc8);
+  color:var(--text);
+  font-family:'DM Mono',monospace;
+  line-height:1.7;
+  position:relative;
+}
+
+/* texture เบา ๆ */
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  opacity:0.16;
+  background-image:
+    radial-gradient(circle at 20% 20%, rgba(255,255,255,0.45) 0 1px, transparent 1px),
+    radial-gradient(circle at 80% 30%, rgba(0,0,0,0.035) 0 1px, transparent 1px),
+    radial-gradient(circle at 40% 70%, rgba(255,255,255,0.22) 0 1px, transparent 1px);
+  background-size: 18px 18px, 22px 22px, 26px 26px;
+  mix-blend-mode:multiply;
+}
 
   body::before {
     content: '';
@@ -64,15 +96,23 @@
     flex-shrink: 0;
   }
 
-  nav {
-    position: sticky; top: 0; z-index: 100;
-    display: flex; align-items: center; gap: 0;
-    background: rgba(244,239,231,0.88);
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid var(--line);
-    padding: 0 20px;
-    height: 56px;
-  }
+ nav{
+  position:sticky;
+  top:0;
+  z-index:20;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 24px;
+  height:68px;
+  background:
+    linear-gradient(180deg, rgba(246,246,244,0.92), rgba(217,217,214,0.92));
+  backdrop-filter:blur(8px);
+  border-bottom:1px solid rgba(255,255,255,0.45);
+  box-shadow:
+    0 1px 0 rgba(255,255,255,0.55),
+    0 6px 20px rgba(40,40,40,0.08);
+}
 
   .nav-logo {
     font-family: 'Bebas Neue', sans-serif;
@@ -347,8 +387,9 @@
       linear-gradient(180deg, var(--panel), var(--panel-2));
     border: 1px solid rgba(0,0,0,0.08);
     border-radius: 22px;
-    box-shadow: var(--shadow-2);
-    padding: 24px 22px;
+    border-right: 1px solid var(--border);
+    box-shadow: var(--shadow-card), var(--shadow-inset);
+    padding: 28px 24px;
     position: relative;
     cursor: pointer;
     transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
@@ -419,11 +460,11 @@
   border-bottom: 1px solid var(--border);
 }
 
-.app-hub-inner {
+.app-hub-inner{
   max-width: 1000px;
   margin: 0 auto;
-  padding: 40px 36px;
-  border-radius: 26px;
+  box-shadow: var(--shadow-card), var(--shadow-inset);
+}
 
   background:
     linear-gradient(180deg, rgba(255,255,255,0.45), rgba(255,255,255,0.18)),
@@ -589,8 +630,9 @@
       linear-gradient(180deg, var(--panel), var(--panel-2));
     border: 1px solid rgba(0,0,0,0.08);
     border-radius: 24px;
-    box-shadow: var(--shadow-2);
-    padding: 32px 28px;
+    border-right: 1px solid var(--border);
+    box-shadow: var(--shadow-card), var(--shadow-inset);
+    padding: 36px 32px;
     position: relative;
     overflow: hidden;
     min-height: 260px;
