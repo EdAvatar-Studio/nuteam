@@ -9,35 +9,68 @@
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
   <style>
     :root{
-      --bg:#ece9e2;
-      --panel:#f7f4ee;
-      --panel-2:#efebe3;
-      --line:#d8d2c8;
-      --text:#1f1b16;
-      --muted:#6d675f;
-      --gold:#c6a85b;
-      --gold-2:#b6913d;
-      --shadow:0 18px 40px rgba(31,27,22,0.08);
-      --radius:24px;
+      --bg:#d7d7d5;
+      --bg-2:#cfcfcd;
+      --panel:#dcdcd9;
+      --panel-2:#cfcfcb;
+      --line:#b8b8b4;
+      --text:#1f1f1c;
+      --muted:#5f5f5a;
+      --gold:#b89a4a;
+      --gold-2:#9b7f39;
+
+      --shadow-card:
+        14px 14px 34px rgba(70,70,70,0.16),
+        -10px -10px 22px rgba(255,255,255,0.62);
+
+      --shadow-inset:
+        inset 2px 2px 5px rgba(255,255,255,0.45),
+        inset -2px -2px 5px rgba(110,110,110,0.10);
     }
 
     *{box-sizing:border-box;margin:0;padding:0}
     html{scroll-behavior:smooth}
+
     body{
-      background:linear-gradient(180deg,#efebe4,#e7e3db);
+      background:
+        linear-gradient(rgba(255,255,255,0.10), rgba(0,0,0,0.03)),
+        linear-gradient(145deg, #e4e4e2, #cbcbc8);
       color:var(--text);
       font-family:'DM Mono',monospace;
       line-height:1.7;
+      position:relative;
+    }
+
+    body::before{
+      content:"";
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      opacity:0.16;
+      background-image:
+        radial-gradient(circle at 20% 20%, rgba(255,255,255,0.45) 0 1px, transparent 1px),
+        radial-gradient(circle at 80% 30%, rgba(0,0,0,0.035) 0 1px, transparent 1px),
+        radial-gradient(circle at 40% 70%, rgba(255,255,255,0.22) 0 1px, transparent 1px);
+      background-size: 18px 18px, 22px 22px, 26px 26px;
+      mix-blend-mode:multiply;
     }
 
     nav{
-      position:sticky; top:0; z-index:20;
-      display:flex; align-items:center; justify-content:space-between;
+      position:sticky;
+      top:0;
+      z-index:20;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
       padding:0 24px;
       height:68px;
-      background:rgba(247,244,238,0.92);
+      background:
+        linear-gradient(180deg, rgba(246,246,244,0.92), rgba(217,217,214,0.92));
       backdrop-filter:blur(8px);
-      border-bottom:1px solid var(--line);
+      border-bottom:1px solid rgba(255,255,255,0.45);
+      box-shadow:
+        0 1px 0 rgba(255,255,255,0.55),
+        0 6px 20px rgba(40,40,40,0.08);
     }
 
     .logo{
@@ -49,7 +82,8 @@
     }
 
     .nav-links{
-      display:flex; gap:18px; align-items:center;
+      display:flex;
+      gap:18px;
       list-style:none;
     }
 
@@ -61,39 +95,71 @@
       text-transform:uppercase;
     }
 
-    .nav-links a:hover{color:var(--text)}
+    .nav-links a:hover{
+      color:var(--text);
+    }
 
-    .nav-btn{
-      display:inline-flex; align-items:center; gap:8px;
-      background:var(--gold);
-      color:#1c1813;
-      padding:10px 18px;
+    .nav-btn,
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
       border-radius:999px;
+      padding:12px 20px;
       text-decoration:none;
       font-size:11px;
       letter-spacing:.12em;
       text-transform:uppercase;
-      border:1px solid rgba(0,0,0,0.08);
+      border:1px solid rgba(255,255,255,0.35);
+      transition:all .18s ease;
+      box-shadow:
+        6px 6px 14px rgba(70,70,70,0.14),
+        -5px -5px 12px rgba(255,255,255,0.65);
+    }
+
+    .nav-btn,
+    .btn-primary{
+      background:linear-gradient(145deg, #d2b56a, #a78638);
+      color:#1f1b16;
+    }
+
+    .btn-secondary{
+      background:linear-gradient(145deg, #e7e7e5, #cdcdca);
+      color:var(--text);
+    }
+
+    .nav-btn:hover,
+    .btn:hover{
+      transform:translateY(-1px);
+    }
+
+    .nav-btn:active,
+    .btn:active{
+      box-shadow:
+        inset 4px 4px 10px rgba(70,70,70,0.16),
+        inset -4px -4px 10px rgba(255,255,255,0.50);
+      transform:translateY(1px);
     }
 
     .wrap{
-      width:min(1180px, calc(100% - 32px));
+      width:min(1180px, calc(100% - 28px));
       margin:0 auto;
+      position:relative;
+      z-index:1;
     }
 
     .hero{
-      padding:48px 0 28px;
+      padding:30px 0 22px;
     }
 
     .hero-card{
-      background:linear-gradient(180deg,rgba(255,255,255,0.45),rgba(255,255,255,0.12)), var(--panel);
-      border:1px solid var(--line);
-      border-radius:32px;
-      box-shadow:var(--shadow);
-      padding:40px 34px;
-      display:grid;
-      grid-template-columns:1.2fr .8fr;
-      gap:24px;
+      background:
+        linear-gradient(145deg, rgba(255,255,255,0.55), rgba(255,255,255,0.18)),
+        linear-gradient(145deg, var(--panel), var(--panel-2));
+      border:1px solid rgba(255,255,255,0.42);
+      border-radius:28px;
+      box-shadow: var(--shadow-card), var(--shadow-inset);
+      padding:34px 30px;
     }
 
     .eyebrow{
@@ -108,175 +174,235 @@
       font-family:'Bebas Neue',sans-serif;
       line-height:1;
       letter-spacing:.06em;
+      color:#22221f;
+      text-shadow:1px 1px 0 rgba(255,255,255,0.35);
     }
 
     h1{
-      font-size:72px;
+      font-size:68px;
       margin-bottom:8px;
+      color:#20201d;
+      text-shadow:
+        1px 1px 0 rgba(255,255,255,0.45),
+        0 2px 3px rgba(0,0,0,0.08);
     }
 
     .hero-sub{
-      font-size:30px;
+      font-size:26px;
       color:#4b463f;
       margin-bottom:16px;
+      font-family:'Bebas Neue',sans-serif;
+      letter-spacing:.08em;
     }
 
     .hero-text{
+      max-width:760px;
       color:var(--muted);
-      max-width:720px;
       font-size:14px;
     }
 
-    .hero-side{
-      background:linear-gradient(180deg,var(--panel),var(--panel-2));
-      border:1px solid var(--line);
-      border-radius:24px;
-      padding:24px;
-      display:flex;
-      flex-direction:column;
-      justify-content:space-between;
-    }
-
-    .hero-side p{
-      color:var(--muted);
-      font-size:13px;
-    }
-
     .hero-actions{
-      display:flex; gap:12px; flex-wrap:wrap; margin-top:20px;
-    }
-
-    .btn{
-      display:inline-flex; align-items:center; gap:8px;
-      border-radius:999px;
-      padding:12px 20px;
-      text-decoration:none;
-      font-size:11px;
-      letter-spacing:.12em;
-      text-transform:uppercase;
-      border:1px solid rgba(0,0,0,0.08);
-    }
-
-    .btn-primary{
-      background:var(--gold);
-      color:#1f1b16;
-    }
-
-    .btn-secondary{
-      background:#fff8;
-      color:var(--text);
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-top:22px;
     }
 
     .section{
-      padding:18px 0 32px;
+      padding:18px 0 28px;
     }
 
     .section-head{
-      display:flex; align-items:end; justify-content:space-between;
-      margin-bottom:18px;
+      display:flex;
+      align-items:end;
+      justify-content:space-between;
+      gap:16px;
+      margin-bottom:16px;
     }
 
-    .section-head p{
+    .section-note{
       color:var(--muted);
       font-size:12px;
     }
 
-    h2{font-size:42px}
+    h2{
+      font-size:42px;
+    }
 
-    .grid{
+    .feed-grid{
       display:grid;
       grid-template-columns:repeat(3,1fr);
       gap:18px;
     }
 
-    .artist-card{
-      background:linear-gradient(180deg,rgba(255,255,255,0.42),rgba(255,255,255,0.14)), var(--panel);
-      border:1px solid var(--line);
+    .post-card{
+      background:
+        linear-gradient(145deg, rgba(255,255,255,0.50), rgba(255,255,255,0.18)),
+        linear-gradient(145deg, var(--panel), var(--panel-2));
+      border:1px solid rgba(255,255,255,0.42);
       border-radius:24px;
-      box-shadow:var(--shadow);
+      box-shadow: var(--shadow-card), var(--shadow-inset);
+      overflow:hidden;
+      transition:transform .18s ease, box-shadow .18s ease;
+    }
+
+    .post-card:hover{
+      transform:translateY(-2px);
+    }
+
+    .post-image{
+      aspect-ratio: 4 / 5;
+      background:
+        linear-gradient(145deg, rgba(255,255,255,0.35), rgba(255,255,255,0.10)),
+        linear-gradient(145deg, #d7d7d3, #c7c7c2);
+      border-bottom:1px solid rgba(255,255,255,0.42);
       overflow:hidden;
     }
 
-    .artist-image{
-      aspect-ratio: 4 / 3;
-      background:linear-gradient(135deg,#ddd7ce,#f4efe7);
-      border-bottom:1px solid var(--line);
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      color:#8d8579;
-      font-size:13px;
-      letter-spacing:.1em;
+    .post-image img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+    }
+
+    .post-body{
+      padding:18px 18px 16px;
+    }
+
+    .post-artist{
+      font-size:10px;
+      letter-spacing:.18em;
       text-transform:uppercase;
+      color:var(--gold-2);
+      margin-bottom:6px;
     }
 
-    .artist-body{
-      padding:20px;
-    }
-
-    .artist-name{
+    .post-title{
       font-family:'Bebas Neue',sans-serif;
       font-size:28px;
+      letter-spacing:.06em;
+      color:#20201d;
       margin-bottom:8px;
+      line-height:1;
     }
 
-    .artist-text{
+    .post-caption{
+      font-size:12px;
       color:var(--muted);
-      font-size:13px;
+      line-height:1.7;
       margin-bottom:14px;
+      min-height:42px;
+    }
+
+    .post-meta{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      border-top:1px solid rgba(255,255,255,0.38);
+      padding-top:12px;
     }
 
     .artist-link{
       text-decoration:none;
-      color:#2e2a25;
       font-size:11px;
-      letter-spacing:.1em;
+      letter-spacing:.10em;
       text-transform:uppercase;
+      color:#3d3933;
+    }
+
+    .artist-link:hover{
+      color:#1f1b16;
+    }
+
+    .heart-btn{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:8px 12px;
+      border-radius:999px;
+      background:linear-gradient(145deg, #e7e7e5, #cdcdca);
+      border:1px solid rgba(255,255,255,0.35);
+      box-shadow:
+        5px 5px 12px rgba(70,70,70,0.10),
+        -4px -4px 10px rgba(255,255,255,0.55);
+      font-size:11px;
+      color:#3d3933;
+      text-transform:uppercase;
+      letter-spacing:.08em;
+      white-space:nowrap;
     }
 
     .open-call{
       margin-top:18px;
-      background:linear-gradient(180deg,rgba(255,255,255,0.42),rgba(255,255,255,0.14)), var(--panel);
-      border:1px solid var(--line);
+      background:
+        linear-gradient(145deg, rgba(255,255,255,0.50), rgba(255,255,255,0.18)),
+        linear-gradient(145deg, var(--panel), var(--panel-2));
+      border:1px solid rgba(255,255,255,0.42);
       border-radius:28px;
-      box-shadow:var(--shadow);
-      padding:28px;
+      box-shadow: var(--shadow-card), var(--shadow-inset);
+      padding:28px 24px;
       display:grid;
-      grid-template-columns:1.1fr .9fr;
-      gap:24px;
+      grid-template-columns:1.15fr .85fr;
+      gap:22px;
     }
 
     .open-call p{
       color:var(--muted);
-      font-size:14px;
+      font-size:13px;
     }
 
     .bullet{
       margin-top:12px;
-      color:var(--text);
-      font-size:14px;
+      color:#2a2824;
+      font-size:13px;
     }
 
-    .bullet div{margin-bottom:6px}
+    .bullet div{
+      margin-bottom:6px;
+    }
 
     footer{
-      padding:28px 0 48px;
+      padding:26px 0 44px;
       color:var(--muted);
       font-size:12px;
     }
 
-    @media (max-width: 900px){
-      .hero-card,
-      .open-call,
-      .grid{
+    @media (max-width: 980px){
+      .feed-grid{
+        grid-template-columns:1fr 1fr;
+      }
+
+      .open-call{
         grid-template-columns:1fr;
       }
 
-      h1{font-size:52px}
-      .hero-sub{font-size:22px}
-      nav{padding:0 14px}
-      .nav-links{display:none}
-      .wrap{width:min(1180px, calc(100% - 20px))}
+      .nav-links{
+        display:none;
+      }
+    }
+
+    @media (max-width: 720px){
+      .feed-grid{
+        grid-template-columns:1fr;
+      }
+
+      h1{
+        font-size:52px;
+      }
+
+      .hero-sub{
+        font-size:22px;
+      }
+
+      .wrap{
+        width:min(1180px, calc(100% - 20px));
+      }
+
+      nav{
+        padding:0 14px;
+      }
     }
   </style>
 </head>
@@ -285,44 +411,27 @@
     <a class="logo" href="index.html">NUTEAM.ORG</a>
     <ul class="nav-links">
       <li><a href="index.html">Home</a></li>
-      <li><a href="index.html#ed">Ed</a></li>
-      <li><a href="index.html#about">About</a></li>
+      <li><a href="nu-art.html">Nu Art</a></li>
       <li><a href="index.html#contact">Contact</a></li>
     </ul>
-    <a class="nav-btn" href="mailto:wisanunu26@gmail.com">Submit Work →</a>
+    <a class="nav-btn" href="mailto:wisanunu26@gmail.com?subject=Art%20Space%20Submission">Submit Work →</a>
   </nav>
 
   <main class="wrap">
     <section class="hero">
       <div class="hero-card">
-        <div>
-          <p class="eyebrow">Nuteam Art Space</p>
-          <h1>ART SPACE</h1>
-          <div class="hero-sub">A mini social space for real art.</div>
-          <p class="hero-text">
-            A curated digital space for artists to show work, build presence, and connect through visual identity.
-            Not built for noise. Not built for fake hype. Built to let real work be seen clearly.
-          </p>
+        <p class="eyebrow">Nuteam Art Space</p>
+        <h1>ART SPACE</h1>
+        <div class="hero-sub">A visual-first mini social space for art.</div>
+        <p class="hero-text">
+          Art Space is built around the experience of viewing work clearly.
+          Each post is simple: image first, short caption, quiet presence, and a small signal of appreciation.
+          Less noise. More focus. Real work, seen directly.
+        </p>
 
-          <div class="hero-actions">
-            <a class="btn btn-primary" href="mailto:wisanunu26@gmail.com">Submit Your Work →</a>
-            <a class="btn btn-secondary" href="index.html">Back to Nuteam →</a>
-          </div>
-        </div>
-
-        <div class="hero-side">
-          <div>
-            <p class="eyebrow">Current Direction</p>
-            <p>
-              Art Space begins as a curated artist presentation page.
-              It can grow later into a broader social art system for showing,
-              sharing, and exchanging ideas.
-            </p>
-          </div>
-          <div>
-            <p class="eyebrow">Phase 1</p>
-            <p>Selected artists · clear presentation · direct contact</p>
-          </div>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="mailto:wisanunu26@gmail.com?subject=Art%20Space%20Submission">Submit Your Work →</a>
+          <a class="btn btn-secondary" href="index.html">Back to Nuteam →</a>
         </div>
       </div>
     </section>
@@ -330,45 +439,104 @@
     <section class="section">
       <div class="section-head">
         <div>
-          <p class="eyebrow">Early Artist Wall</p>
-          <h2>FEATURED ARTISTS</h2>
+          <p class="eyebrow">Current Feed</p>
+          <h2>ON VIEW</h2>
         </div>
-        <p>Version 1 — curated cards</p>
+        <p class="section-note">Image first · short caption · quiet feedback</p>
       </div>
 
-      <div class="grid">
-        <article class="artist-card">
-          <div class="artist-image">Artist Image</div>
-          <div class="artist-body">
-            <div class="artist-name">NU ART</div>
-            <p class="artist-text">
-              Personal works, sculptural thinking, texture studies, and visual experiments from Nu.
-            </p>
-           <a class="artist-link" href="nu-art.html">View Profile →</a>
+      <div class="feed-grid">
+
+        <article class="post-card">
+          <div class="post-image">
+            <img src="art-1.jpeg" alt="Nu Art post">
+          </div>
+          <div class="post-body">
+            <p class="post-artist">Artist: Nu</p>
+            <h3 class="post-title">Untitled Form</h3>
+            <p class="post-caption">Weight, silence, and form held in a single presence.</p>
+            <div class="post-meta">
+              <a class="artist-link" href="nu-art.html">View Artist →</a>
+              <span class="heart-btn">+ กำลังใจ 128</span>
+            </div>
           </div>
         </article>
 
-        <article class="artist-card">
-          <div class="artist-image">Open Slot</div>
-          <div class="artist-body">
-            <div class="artist-name">YOUR SPACE</div>
-            <p class="artist-text">
-              Reserved for invited artists who want to present their work in a clear and meaningful format.
-            </p>
-            <a class="artist-link" href="mailto:wisanunu26@gmail.com">Apply →</a>
+        <article class="post-card">
+          <div class="post-image">
+            <img src="art-2.jpeg" alt="Nu Art post">
+          </div>
+          <div class="post-body">
+            <p class="post-artist">Artist: Nu</p>
+            <h3 class="post-title">Portrait Study</h3>
+            <p class="post-caption">A study of structure, pressure, and the rhythm of the face.</p>
+            <div class="post-meta">
+              <a class="artist-link" href="nu-art.html">View Artist →</a>
+              <span class="heart-btn">+ กำลังใจ 94</span>
+            </div>
           </div>
         </article>
 
-        <article class="artist-card">
-          <div class="artist-image">Open Slot</div>
-          <div class="artist-body">
-            <div class="artist-name">COMING NEXT</div>
-            <p class="artist-text">
-              More artists, more work, and more visual presence will grow here over time.
-            </p>
-            <a class="artist-link" href="mailto:wisanunu26@gmail.com">Join Art Space →</a>
+        <article class="post-card">
+          <div class="post-image">
+            <img src="art-3.jpeg" alt="Nu Art post">
+          </div>
+          <div class="post-body">
+            <p class="post-artist">Artist: Nu</p>
+            <h3 class="post-title">Creature Presence</h3>
+            <p class="post-caption">An exploration of character through material tension and mood.</p>
+            <div class="post-meta">
+              <a class="artist-link" href="nu-art.html">View Artist →</a>
+              <span class="heart-btn">+ กำลังใจ 76</span>
+            </div>
           </div>
         </article>
+
+        <article class="post-card">
+          <div class="post-image" style="display:flex;align-items:center;justify-content:center;color:#7f796f;font-size:13px;letter-spacing:.12em;text-transform:uppercase;">
+            Open Slot
+          </div>
+          <div class="post-body">
+            <p class="post-artist">Artist: Open Call</p>
+            <h3 class="post-title">Your Work Here</h3>
+            <p class="post-caption">Reserved for an artist invited into the first wave of Art Space.</p>
+            <div class="post-meta">
+              <a class="artist-link" href="mailto:wisanunu26@gmail.com?subject=Art%20Space%20Submission">Apply →</a>
+              <span class="heart-btn">+ กำลังใจ 00</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="post-card">
+          <div class="post-image" style="display:flex;align-items:center;justify-content:center;color:#7f796f;font-size:13px;letter-spacing:.12em;text-transform:uppercase;">
+            Open Slot
+          </div>
+          <div class="post-body">
+            <p class="post-artist">Artist: Future</p>
+            <h3 class="post-title">Coming Next</h3>
+            <p class="post-caption">Another place in the feed waiting for a strong artistic voice.</p>
+            <div class="post-meta">
+              <a class="artist-link" href="mailto:wisanunu26@gmail.com?subject=Art%20Space%20Submission">Join →</a>
+              <span class="heart-btn">+ กำลังใจ 00</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="post-card">
+          <div class="post-image" style="display:flex;align-items:center;justify-content:center;color:#7f796f;font-size:13px;letter-spacing:.12em;text-transform:uppercase;">
+            Open Slot
+          </div>
+          <div class="post-body">
+            <p class="post-artist">Artist: Future</p>
+            <h3 class="post-title">Future Presence</h3>
+            <p class="post-caption">A quiet place reserved for new work entering the Art Space.</p>
+            <div class="post-meta">
+              <a class="artist-link" href="mailto:wisanunu26@gmail.com?subject=Art%20Space%20Submission">Submit →</a>
+              <span class="heart-btn">+ กำลังใจ 00</span>
+            </div>
+          </div>
+        </article>
+
       </div>
 
       <div class="open-call">
@@ -376,33 +544,35 @@
           <p class="eyebrow">Open Call</p>
           <h2>SHOW YOUR WORK</h2>
           <p>
-            Art Space welcomes artists who want to present work with identity,
-            clarity, and seriousness. This is not a marketplace wall.
-            It is a presentation space for real artistic presence.
+            Art Space is not designed for noise, long posts, or clutter.
+            It is made for artists who want to present work clearly through image and short caption.
           </p>
+
           <div class="bullet">
-            <div>— Personal works</div>
-            <div>— Sculpture / texture / material-based art</div>
-            <div>— Drawing / visual experiments</div>
-            <div>— Artists with a clear voice</div>
+            <div>— 1 post = 1 work</div>
+            <div>— short caption only</div>
+            <div>— image first</div>
+            <div>— quiet presentation</div>
+            <div>— real work, clearly seen</div>
           </div>
         </div>
 
         <div>
-          <p class="eyebrow">Contact</p>
+          <p class="eyebrow">Submit</p>
           <p>
-            To be considered for the first wave of artists,
-            send a short introduction and examples of your work.
+            To be considered for the next open slot,
+            send your work, a short caption, and a link to your artist page or profile.
           </p>
-          <div class="hero-actions" style="margin-top:18px">
-            <a class="btn btn-primary" href="mailto:wisanunu26@gmail.com">Submit Your Work →</a>
+
+          <div class="hero-actions" style="margin-top:18px;">
+            <a class="btn btn-primary" href="mailto:wisanunu26@gmail.com?subject=Art%20Space%20Submission">Submit Your Work →</a>
           </div>
         </div>
       </div>
     </section>
 
     <footer>
-      NUTEAM.ORG — Art Space / Curated Artist Presence / Early Stage Platform
+      NUTEAM.ORG — Art Space / Image First / Short Caption / Quiet Presence
     </footer>
   </main>
 </body>
