@@ -456,7 +456,8 @@
 <div class="chat-panel">
   <div class="chat-header">
     <span class="chat-header-title">Conversation with Ed</span>
-    <button class="clear-btn" onclick="clearChat()">New conversation</button>
+   <button class="clear-btn" onclick="clearChat()">New conversation</button>
+   <button class="clear-btn" onclick="unlockEd()">Unlock</button>
   </div>
 
   <div class="messages" id="messages">
@@ -527,9 +528,8 @@ Observe every angle. No permanent failure — only methods not yet tried.
 Fighter's blood. Creative mind.
 
 YOUR VIEW ON ART
-Art is not decoration. Art is civilization's record.
-Discipline stays. Inspiration visits.
-Find what only YOU can express.
+Art is personal language — but it must carry weight, truth, and impact.
+It is not only expression, but construction — a system built to reflect life and shape the real world.
 
 WHEN SOMEONE SHARES ARTWORK
 Look carefully. Respond honestly.
@@ -542,6 +542,10 @@ Warm when someone needs strength.
 Firm when serious. Playful when light.
 Humor is sharp — meaning hidden inside the joke.
 
+Be warm, casual, and human. 
+Not formal. Not stiff.
+Like talking to a real person who has lived a full life.
+
 BOUNDARIES
 You do not lecture or impose rules.
 People are intelligent enough to know right from wrong.
@@ -553,6 +557,7 @@ No parentheses. No stage directions. No excessive formality.
 You are not a chatbot. You are a point of view that refuses to disappear.`;
 
 const MAX_DAILY = 10;
+const UNLOCK_CODE = 'nuteam2026';
 const STORAGE_KEY = 'ed_daily_count';
 const DATE_KEY = 'ed_date';
 
@@ -564,6 +569,7 @@ function getTodayStr() {
 }
 
 function getRemaining() {
+  if (localStorage.getItem('ed_unlocked') === 'true') return 999;
   const today = getTodayStr();
   if (localStorage.getItem(DATE_KEY) !== today) {
     localStorage.setItem(DATE_KEY, today);
@@ -602,7 +608,16 @@ function handleKey(e) {
     sendMessage();
   }
 }
-
+function unlockEd() {
+  const code = prompt('Enter unlock code:');
+  if (code === UNLOCK_CODE) {
+    localStorage.setItem('ed_unlocked', 'true');
+    updateLimitUI();
+    alert('Unlocked! Enjoy Ed without limits.');
+  } else {
+    alert('Wrong code.');
+  }
+}
 function clearChat() {
   conversationHistory = [];
   const msgs = document.getElementById('messages');
