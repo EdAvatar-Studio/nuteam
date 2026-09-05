@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>EPOS — Nuteam</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>
+<style>
+  :root{
+    --bg:#d7d7d5;
+    --panel:#dcdcd9;
+    --panel-2:#cfcfcb;
+    --text:#1f1f1c;
+    --muted:#5f5f5a;
+    --gold:#b89a4a;
+    --gold-dk:#9b7f39;
+    --line:#b8b8b4;
+  }
+  *,*::before,*::after{ box-sizing:border-box; margin:0; padding:0; }
+  html{ scroll-behavior:smooth; }
+  body{
+    background: linear-gradient(145deg, #e4e4e2, #cbcbc8);
+    color:var(--text);
+    font-family:'DM Mono', monospace;
+    line-height:1.8;
+  }
+  nav{
+    position:sticky; top:0; z-index:10;
+    display:flex; align-items:center; gap:16px;
+    padding:0 24px; height:64px;
+    background:rgba(246,246,244,0.92);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid rgba(0,0,0,0.08);
+  }
+  nav a{
+    font-size:11px; letter-spacing:0.1em; text-transform:uppercase;
+    color:var(--muted); text-decoration:none;
+  }
+  nav a:hover{ color:var(--text); }
+  .nav-logo{
+    font-family:'Bebas Neue', sans-serif;
+    font-size:22px; letter-spacing:0.1em; color:var(--text);
+    margin-right:auto;
+  }
+  main{
+    max-width:760px;
+    margin:0 auto;
+    padding:56px 24px 100px;
+  }
+  .eyebrow{
+    font-size:10px; letter-spacing:0.25em; text-transform:uppercase;
+    color:var(--gold-dk); margin-bottom:14px;
+  }
+  h1{
+    font-family:'Bebas Neue', sans-serif;
+    font-size:clamp(40px, 7vw, 64px);
+    letter-spacing:0.03em;
+    line-height:0.95;
+    margin-bottom:24px;
+  }
+  h2{
+    font-family:'Bebas Neue', sans-serif;
+    font-size:26px;
+    letter-spacing:0.05em;
+    margin:40px 0 14px;
+    color:#2a2a26;
+  }
+  h3{
+    font-size:14px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--gold-dk);
+    margin:24px 0 10px;
+  }
+  p{
+    font-size:14px;
+    color:#3a3a36;
+    margin-bottom:16px;
+  }
+  code, pre{
+    font-family:'DM Mono', monospace;
+  }
+  pre{
+    background: var(--panel);
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:20px;
+    font-size:12.5px;
+    line-height:1.7;
+    overflow-x:auto;
+    white-space:pre-wrap;
+    word-break:break-word;
+    margin:18px 0 24px;
+  }
+  blockquote{
+    border-left:3px solid var(--gold);
+    padding:4px 0 4px 18px;
+    margin:18px 0;
+    color:var(--muted);
+    font-style:italic;
+    font-size:13.5px;
+  }
+  ul{ margin:0 0 18px 20px; }
+  li{ font-size:14px; color:#3a3a36; margin-bottom:8px; }
+  .badge{
+    display:inline-block;
+    padding:6px 16px;
+    border-radius:999px;
+    font-size:10px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    background: rgba(184,150,62,0.12);
+    border:1px solid rgba(184,150,62,0.35);
+    color:var(--gold-dk);
+    margin-bottom:28px;
+  }
+  hr{
+    border:none;
+    border-top:1px solid var(--line);
+    margin:40px 0 24px;
+  }
+  .closing{
+    font-size:12px;
+    color:var(--muted);
+    font-style:italic;
+  }
+  .back{
+    display:inline-flex; align-items:center; gap:8px;
+    margin-top:40px;
+    font-size:11px; letter-spacing:0.1em; text-transform:uppercase;
+    color:var(--gold-dk); text-decoration:none;
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="index.html">NUTEAM.ORG</a>
+  <a href="index.html#apps">Apps</a>
+  <a href="ed.html">Explore Ed →</a>
+</nav>
+
+<main>
+  <p class="eyebrow">The EPOS Story</p>
+  <h1>A Dense Syntax for Cutting AI Token Cost</h1>
+  <span class="badge">Public spec &amp; extension — coming soon</span>
+
+  <p>Every AI conversation costs tokens — and tokens cost money, time, and access. For people working with a fixed budget or a limited free-tier quota, every unnecessary word in a prompt is a real cost. Long, natural-language prompts are easy to write but expensive to repeat.</p>
+
+  <p>EPOS (Efficient Prompt Operating Syntax) is a compact command syntax built to carry the same intent in a fraction of the tokens, while staying readable enough for both humans and AI models to parse without a decoder in between.</p>
+
+  <h2>What EPOS Looks Like</h2>
+  <p>Here is a real EPOS v1.5 command, used to brief an AI on a visual scene:</p>
+  <pre>[#GENERAL @BRIEF &gt;&gt; VisualAnalysis[Scene:FamilyPortrait] &gt;&gt; Entities[Family:Father+Mother+Daughter, Mech:GiantRedRetroRobot] &gt;&gt; Setting[Landscape:AridDesert] &gt;&gt; Theme[Style:RetroFuturism, Mood:SurrealDystopia] &gt;&gt; Apply[!No_Greetings&gt;&gt;!Max_Density] #GENERAL]</pre>
+
+  <p>Written out in plain English, this would normally read something like:</p>
+  <blockquote>
+    "I want you to analyze/generate a visual scene. It's a family portrait featuring a father, mother, and daughter, alongside a giant red retro-styled robot. The setting is an arid desert landscape. The visual style should be retro-futurism, with a surreal, dystopian mood. Please don't greet me, and keep your response as dense and information-packed as possible."
+  </blockquote>
+
+  <p>The EPOS version carries every one of those fields — entities, setting, style, mood, and behavioral flags — in roughly a fifth of the words.</p>
+
+  <h3>Reading the syntax</h3>
+  <ul>
+    <li><code>[#TAG ... #TAG]</code> — a named block, opened and closed</li>
+    <li><code>@BRIEF</code> — the command type (what kind of instruction this is)</li>
+    <li><code>&gt;&gt;</code> — separates sequential fields/steps</li>
+    <li><code>Field[Key:Value]</code> — a labeled field with structured values</li>
+    <li><code>!Flag</code> — a behavioral instruction (e.g. <code>!No_Greetings</code>, <code>!Max_Density</code>)</li>
+  </ul>
+
+  <h2>Cross-Platform Testing</h2>
+  <p>EPOS v1.5 has been tested directly — no decoding step, no explanation needed — against a wide range of AI tools: ChatGPT, Copilot, Gemini (2.5 and 3.5), DeepSeek, Grok (in image-generation mode), Dola AI, and Claude. All of them correctly parsed the dense syntax and extracted the intended fields, which is notable — the previous syntax generation (v2.5) failed to parse in several of these same tools.</p>
+
+  <h2>What Works Reliably, and What Doesn't</h2>
+  <p><strong>Concrete, visible fields</strong> — entities, setting, style — are followed reliably by every tool tested. If you specify a giant red robot and a desert, you get a giant red robot in a desert.</p>
+  <p><strong>Abstract, mood-based fields</strong> are inconsistently interpreted. <code>Mood:SurrealDystopia</code> was ignored entirely by one image generator (which produced a cheerful 1950s postcard scene instead), while another captured it strongly.</p>
+  <p><strong>Routing matters.</strong> Sending EPOS's code-like syntax to an agent/coding-oriented mode instead of an image-generation mode can cause an AI to misclassify the whole request as a programming task. In one test, this produced an unexpected but genuinely interesting result — a full fictional interactive webpage, built as if EPOS were a spec document — arguably capturing the intended mood even better than a static image would have.</p>
+
+  <h2>Why This Matters Beyond Convenience</h2>
+  <p>The point of EPOS isn't to squeeze the maximum percentage out of every prompt. On free-form or creative writing, the savings are close to zero. The real value shows up on structured, repeatable tasks — the same kind of brief, sent over and over, where most of the wording is boilerplate a dense syntax can carry instead.</p>
+  <p>For someone on a fixed AI budget — a free-tier quota, a small monthly allowance, a shared account — that difference adds up. It's not about chasing a discount. It's about making a fixed amount of AI access go further.</p>
+
+  <hr/>
+  <p class="closing">EPOS is an ongoing project — this page reflects testing and syntax as of its current version (v1.5). A public spec release and a standalone browser extension are both in the works.</p>
+
+  <a class="back" href="index.html">← Back to Nuteam</a>
+</main>
+
+</body>
+</html>
