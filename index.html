@@ -520,6 +520,14 @@ body::before{
     font-size: 28px;
     color: var(--steel-dk);
     box-shadow: inset 0 1px 0 rgba(255,255,255,0.38), 0 6px 14px rgba(0,0,0,0.08);
+    overflow: hidden;
+  }
+
+  .app-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
   }
 
   .app-name {
@@ -976,42 +984,42 @@ Simple. Direct. Built from real use.
     <div class="apps-grid">
 
       <div class="app-card">
-        <div class="app-icon">📖</div>
+        <div class="app-icon"><img src="icons/edreader.jpeg" alt="Ed Reader"></div>
         <h4 class="app-name">Ed Reader</h4>
         <p class="app-tagline">Minimalist, ad-free PDF reader built for focus.</p>
         <span class="app-status active">Available</span>
       </div>
 
       <div class="app-card">
-        <div class="app-icon">🎵</div>
+        <div class="app-icon"><img src="icons/nuamp.jpeg" alt="NuAmp Classic"></div>
         <h4 class="app-name">NuAmp Classic</h4>
         <p class="app-tagline">Vintage-inspired music player for distraction-free personal listening.</p>
         <span class="app-status active">Available</span>
       </div>
 
       <div class="app-card">
-        <div class="app-icon">✍️</div>
+        <div class="app-icon"><img src="icons/edprompttool.jpeg" alt="Ed Prompt Tool"></div>
         <h4 class="app-name">Ed Prompt Tool</h4>
         <p class="app-tagline">Helps craft clearer, stronger image-generation prompts.</p>
         <span class="app-status future">Coming Soon</span>
       </div>
 
       <div class="app-card">
-        <div class="app-icon">📝</div>
+        <div class="app-icon"><img src="icons/ednote.jpeg" alt="EdNote"></div>
         <h4 class="app-name">EdNote</h4>
         <p class="app-tagline">A simple everyday note app for thoughts, plans, and small moments.</p>
         <span class="app-status active">Available</span>
       </div>
 
       <div class="app-card">
-        <div class="app-icon">🔲</div>
+        <div class="app-icon"><img src="icons/eddotsoul.jpeg" alt="EdDotSoul"></div>
         <h4 class="app-name">EdDotSoul</h4>
         <p class="app-tagline">Half-tone editing with QR Art — turn artwork into scannable images.</p>
         <span class="app-status active">Available</span>
       </div>
 
       <div class="app-card">
-        <div class="app-icon">📷</div>
+        <div class="app-icon"><img src="icons/edhalftone.jpeg" alt="EdHalfToneCamera"></div>
         <h4 class="app-name">EdHalfToneCamera</h4>
         <p class="app-tagline">Experimental black-and-white halftone camera, live preview.</p>
         <span class="app-status active">Available</span>
