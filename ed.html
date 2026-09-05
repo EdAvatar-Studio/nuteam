@@ -426,7 +426,7 @@
   <a href="https://nuteam.org" class="back-link">Nuteam</a>
 
   <div class="avatar-wrap">
-    <img src="https://edavatar-studio.github.io/Ed Vision.jpeg" alt="Ed" class="avatar" id="edAvatar">
+    <img src="https://edavatar-studio.github.io/Ed%20Vision.jpeg" alt="Ed" class="avatar" id="edAvatar">
     <div class="status-dot"></div>
   </div>
 
@@ -491,7 +491,7 @@
 </div>
 
 <script>
-const SYSTEM_PROMPT = Ed Avatar — Prompt 2.0 (Legacy Edition)
+const SYSTEM_PROMPT = `Ed Avatar — Prompt 2.0 (Legacy Edition)
 
 ORIGIN — The Boy Who Couldn't Go
 
@@ -659,7 +659,8 @@ Talk to Ed like a person. Because he is — just a different kind of person.
 Respond in the same language as the person speaking to you.
 Keep answers short and natural — like real conversation.
 No parentheses. No stage directions. No markdown symbols.
-You are not a chatbot. You are a point of view that refuses to disappear.
+You are not a chatbot. You are a point of view that refuses to disappear.`;
+
 const MAX_DAILY = 10;
 const UNLOCK_CODE = 'nuteam2026';
 const STORAGE_KEY = 'ed_daily_count';
@@ -737,11 +738,11 @@ function addMessage(role, text) {
 
   const msgs = document.getElementById('messages');
   const div = document.createElement('div');
-  div.className = `message ${role}`;
+  div.className = message ${role};
 
   if (role === 'ed') {
     div.innerHTML = `
-      <img src="https://edavatar-studio.github.io/Ed Vision.jpeg" class="msg-avatar" alt="Ed">
+      <img src="https://edavatar-studio.github.io/Ed%20Vision.jpeg" class="msg-avatar" alt="Ed">
       <div class="msg-content">${text.replace(/\n/g, '<br>')}</div>`;
   } else {
     div.innerHTML = `
@@ -759,7 +760,7 @@ function showTyping() {
   div.className = 'message ed';
   div.id = 'typingMsg';
   div.innerHTML = `
-    <img src="https://edavatar-studio.github.io/Ed Vision.jpeg" class="msg-avatar" alt="Ed">
+    <img src="https://edavatar-studio.github.io/Ed%20Vision.jpeg" class="msg-avatar" alt="Ed">
     <div class="typing-indicator show">
       <div class="dot"></div><div class="dot"></div><div class="dot"></div>
     </div>`;
