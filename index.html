@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>NUTEAM.ORG — Creative Digital Base</title>
+<title>NUTEAM.ORG — App Universe</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet"/>
@@ -172,10 +172,10 @@ body::before{
 
   .hero {
     position: relative;
-    min-height: 520px;
+    min-height: 460px;
     overflow: hidden;
     display: grid;
-    grid-template-columns: 1fr 320px;
+    grid-template-columns: 1fr;
     gap: 18px;
     padding: 16px;
   }
@@ -196,7 +196,7 @@ body::before{
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  min-height: 470px;
+  min-height: 420px;
   overflow: hidden;
 }
   .hero-panel::before,
@@ -249,7 +249,7 @@ body::before{
     font-size: 12px;
     line-height: 1.78;
     color: var(--ink-soft);
-    max-width: 520px;
+    max-width: 560px;
     margin-bottom: 30px;
   }
 
@@ -298,120 +298,6 @@ body::before{
     flex-wrap: wrap;
   }
 
-  .hero-sidebar{
-  margin:16px 16px 16px 0;
-  padding:20px;
-  border-radius:28px;
-  background:
-    linear-gradient(145deg, rgba(255,255,255,0.52), rgba(255,255,255,0.18)),
-    linear-gradient(145deg, #dadad7, #c9c9c5);
-  border:1px solid rgba(255,255,255,0.45);
-  box-shadow:
-    10px 10px 26px rgba(70,70,70,0.14),
-    -8px -8px 18px rgba(255,255,255,0.60),
-    inset 1px 1px 0 rgba(255,255,255,0.55);
-  display:flex;
-  flex-direction:column;
-  gap:14px;
-  justify-content:flex-start;
-}
-
-.gallery-label{
-  font-size:10px;
-  letter-spacing:.22em;
-  text-transform:uppercase;
-  color:#8d7a4a;
-  margin:0;
-}
-
-.gallery-frame{
-  position:relative;
-  width:100%;
-  aspect-ratio: 4 / 5;
-  overflow:hidden;
-  border-radius:22px;
-  cursor:pointer;
-  background:
-    linear-gradient(145deg, rgba(255,255,255,0.35), rgba(255,255,255,0.10)),
-    linear-gradient(145deg, #d7d7d3, #c7c7c2);
-  border:1px solid rgba(255,255,255,0.48);
-  box-shadow:
-    inset 0 1px 0 rgba(255,255,255,0.55),
-    6px 6px 18px rgba(70,70,70,0.12),
-    -5px -5px 12px rgba(255,255,255,0.45);
-}
-
-.gallery-frame img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  display:block;
-  border-radius:16px;
-  filter:saturate(0.92) contrast(1.02);
-  transition:opacity 0.6s ease;
-}
-
-.gallery-meta{
-  padding:4px 2px 0;
-}
-
-.gallery-artist{
-  font-family:'Bebas Neue', sans-serif;
-  font-size:28px;
-  letter-spacing:.10em;
-  color:#22221f;
-  margin:0 0 4px 0;
-  line-height:1;
-}
-
-.gallery-title{
-  font-size:12px;
-  line-height:1.7;
-  color:#5f5f5a;
-  margin:0 0 14px 0;
-}
-
-.gallery-actions{
-  display:flex;
-  gap:10px;
-  flex-wrap:wrap;
-}
-
-.gallery-btn{
-  display:inline-flex;
-  align-items:center;
-  gap:8px;
-  padding:10px 16px;
-  border-radius:999px;
-  text-decoration:none;
-  font-size:10px;
-  letter-spacing:.14em;
-  text-transform:uppercase;
-  background:linear-gradient(145deg, #d2b56a, #a78638);
-  color:#1f1b16;
-  border:1px solid rgba(255,255,255,0.35);
-  box-shadow:
-    6px 6px 14px rgba(70,70,70,0.14),
-    -5px -5px 12px rgba(255,255,255,0.65);
-}
-
-.gallery-link{
-  display:inline-flex;
-  align-items:center;
-  gap:8px;
-  padding:10px 16px;
-  border-radius:999px;
-  text-decoration:none;
-  font-size:10px;
-  letter-spacing:.14em;
-  text-transform:uppercase;
-  background:linear-gradient(145deg, #e7e7e5, #cdcdca);
-  color:#1f1b16;
-  border:1px solid rgba(255,255,255,0.35);
-  box-shadow:
-    6px 6px 14px rgba(70,70,70,0.12),
-    -5px -5px 12px rgba(255,255,255,0.60);
-}
   .section-rule {
     display: flex; align-items: center; gap: 16px;
     padding: 0 16px;
@@ -429,7 +315,7 @@ body::before{
 
   .pillars {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 18px;
     padding: 0 16px 16px;
   }
@@ -514,7 +400,7 @@ body::before{
 }
 
 .app-hub-inner{
-  max-width: 980px;
+  max-width: 1180px;
   margin: 0 auto;
   text-align: center;
   padding: 56px 40px;
@@ -529,20 +415,6 @@ body::before{
 .app-hub-text{
   max-width: 760px;
   margin: 0 auto;
-  text-align: center;
-}
-
-  background:
-    linear-gradient(180deg, rgba(255,255,255,0.45), rgba(255,255,255,0.18)),
-    linear-gradient(180deg, #f3ede4, #e4dccf);
-
-  border: 1px solid rgba(0,0,0,0.08);
-
-  box-shadow:
-    0 20px 40px rgba(31,27,22,0.10),
-    0 6px 14px rgba(31,27,22,0.05),
-    inset 0 1px 0 rgba(255,255,255,0.6);
-
   text-align: center;
 }
 
@@ -614,9 +486,10 @@ body::before{
 
   .apps-grid {
     display: grid;
-    grid-template-columns: repeat(6, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 18px;
-    padding: 0 16px 16px;
+    padding: 36px 0 0;
+    text-align: left;
   }
 
   .app-card {
@@ -627,7 +500,7 @@ body::before{
     border-radius: 22px;
     box-shadow: var(--shadow-2);
     padding: 22px 18px;
-    cursor: pointer;
+    cursor: default;
     transition: transform 0.2s, box-shadow 0.2s;
     display: flex; flex-direction: column;
   }
@@ -896,10 +769,8 @@ body::before{
   ::-webkit-scrollbar-thumb { background: rgba(93,86,77,0.22); border-radius: 4px; }
 
   @media (max-width: 900px) {
-    .hero { grid-template-columns: 1fr; }
-    .hero-sidebar { display: none; }
-    .pillars { grid-template-columns: repeat(2, 1fr); }
-    .apps-grid { grid-template-columns: repeat(3, 1fr); }
+    .pillars { grid-template-columns: 1fr; }
+    .apps-grid { grid-template-columns: repeat(2, 1fr); }
     .bottom-grid { grid-template-columns: 1fr; }
     footer { grid-template-columns: 1fr; }
     .nav-links { display: none; }
@@ -911,13 +782,8 @@ body::before{
     .hero-sub { font-size: 22px; }
     .pillars, .apps-grid { grid-template-columns: 1fr; }
   }
- .art-caption{
-  font-size:11px;
-  color:var(--muted);
-  margin:8px 0 0 2px;
-  letter-spacing:0.08em;
-}
- .pillar-links{
+
+.pillar-links{
   display:block;
 }
 
@@ -993,8 +859,7 @@ body::before{
   <ul class="nav-links">
     <li><a href="#">Home</a></li>
     <li><a href="#apps">Apps</a></li>
-    <li><a href="nuteam-gallery.html">Nuteam Gallery</a></li>
-    <li><a href="ed.html">Explore Ed →</a>
+    <li><a href="ed.html">Explore Ed →</a></li>
     <li><a href="#about">About</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
@@ -1007,13 +872,14 @@ body::before{
     <div>
       <p class="hero-eyebrow">Built in Reality</p>
       <h1 class="hero-title">NUTEAM</h1>
-      <p class="hero-sub">Expanding into Digital.</p>
+      <p class="hero-sub">The App Universe.</p>
      <p class="hero-desc">
-A creative base built from real-world making — 
-from sculpture, texture, and physical construction 
-to digital systems, independent tools, and evolving AI.
+An independent base for building offline-first AI tools and
+practical apps — no cloud dependency, no ongoing API cost,
+just software made for real everyday use.
 <br><br>
-Nuteam is where hands-on craft meets future thinking.
+Nuteam is where each app is its own small world, and all of
+them share one mindset: build things that actually work.
 </p>
       <div class="hero-actions">
         <a href="#apps" class="btn-primary">Explore Apps →</a>
@@ -1031,70 +897,52 @@ Nuteam is where hands-on craft meets future thinking.
     </div>
     <div class="hero-panel-frame"></div>
   </div>
-
- <aside class="hero-sidebar hero-gallery">
-  <p class="gallery-label">CURRENT EXHIBITION</p>
-
-  <div class="gallery-frame" onclick="window.location.href='nu-art.html'">
-    <img id="heroSlide" src="art-1.jpeg" alt="Nu Art exhibition" />
-  </div>
-<p class="art-caption">Artist: Nu — Sculpture Series</p>
-  
-  <div class="gallery-meta">
-    <p class="gallery-artist">NU ART</p>
-    <p class="gallery-title">Selected works currently on view.</p>
-   
-    <div class="gallery-actions">
-      <a href="nu-art.html" class="gallery-btn">View Artist →</a>
-      <a href="nuteam-gallery.html" class="gallery-link">Nuteam Gallery →</a>
-    </div>
-  </div>
-</aside>
 </section>
 
 <div class="section-rule">
   <div class="rivet" style="width:12px;height:12px"></div>
-  <span class="section-rule-label">Four Pillars</span>
+  <span class="section-rule-label">App Universe</span>
   <div class="section-rule-line"></div>
   <div class="rivet" style="width:12px;height:12px"></div>
 </div>
 
-<div class="pillar" onclick="window.location.href='nuteam-gallery.html'">
+<div class="pillars">
+
+<div class="pillar" onclick="window.location.href='ed.html'">
   <p class="pillar-num">01</p>
-  <h3 class="pillar-title">Nuteam Gallery</h3>
+  <h3 class="pillar-title">THE ED SERIES</h3>
   <div class="pillar-icon">✦</div>
  <p class="pillar-desc">
-A shared space for artists and creators —
-to show work, exchange ideas, and grow together
-in a more open digital environment.
+A family of offline, private AI apps — EdAvatar, EdNote, EdDotSoul
+and more — all built around one idea: local AI that runs
+on-device, with no server and no ongoing cost.
 </p>
   <span class="pillar-arr">→</span>
 </div>
- 
+
 <div class="pillar pillar-links">
   <p class="pillar-num">02</p>
-  <h3 class="pillar-title">CURATED LINKS</h3>
+  <h3 class="pillar-title">QUICK LINKS</h3>
   <p class="pillar-desc">
-    A curated set of entry points connecting artist highlights, participation,
-    and future support around Nuteam.
+    Everything you need to find, download, and follow the Nuteam app universe.
   </p>
 
   <div class="mini-links-grid">
-    <a class="mini-link-card" href="nu-art.html">
-      <span class="mini-link-title">FEATURED ARTIST</span>
-      <span class="mini-link-text">This month’s selected artist.</span>
+    <a class="mini-link-card" href="https://edavatar-studio.github.io" target="_blank" rel="noopener">
+      <span class="mini-link-title">APP HUB</span>
+      <span class="mini-link-text">Browse and download every app in the Ed Series.</span>
       <span class="mini-link-arrow">→</span>
     </a>
 
-    <a class="mini-link-card" href="nuteam-gallery.html">
-      <span class="mini-link-title">NUTEAM</span>
-      <span class="mini-link-text">Enter the curated digital exhibition space.</span>
+    <a class="mini-link-card" href="#epos">
+      <span class="mini-link-title">EPOS OPTIMIZER</span>
+      <span class="mini-link-text">Compress AI prompts to save tokens.</span>
       <span class="mini-link-arrow">→</span>
     </a>
 
-    <a class="mini-link-card" href="mailto:wisanunu26@gmail.com?subject=Open%20Call%20Submission">
-      <span class="mini-link-title">OPEN CALL</span>
-      <span class="mini-link-text">Submit your work to be featured.</span>
+    <a class="mini-link-card" href="mailto:wisanunu26@gmail.com?subject=Nuteam%20Feedback">
+      <span class="mini-link-title">FEEDBACK</span>
+      <span class="mini-link-text">Tell us what to build or fix next.</span>
       <span class="mini-link-arrow">→</span>
     </a>
 
@@ -1105,6 +953,8 @@ in a more open digital environment.
     </a>
   </div>
 </div>
+</div>
+
 <section id="apps" class="app-hub">
   <div class="app-hub-inner">
 
@@ -1123,20 +973,67 @@ Simple. Direct. Built from real use.
       </a>
     </div>
 
+    <div class="apps-grid">
+
+      <div class="app-card">
+        <div class="app-icon">📖</div>
+        <h4 class="app-name">Ed Reader</h4>
+        <p class="app-tagline">Minimalist, ad-free PDF reader built for focus.</p>
+        <span class="app-status active">Available</span>
+      </div>
+
+      <div class="app-card">
+        <div class="app-icon">🎵</div>
+        <h4 class="app-name">NuAmp Classic</h4>
+        <p class="app-tagline">Vintage-inspired music player for distraction-free personal listening.</p>
+        <span class="app-status active">Available</span>
+      </div>
+
+      <div class="app-card">
+        <div class="app-icon">✍️</div>
+        <h4 class="app-name">Ed Prompt Tool</h4>
+        <p class="app-tagline">Helps craft clearer, stronger image-generation prompts.</p>
+        <span class="app-status future">Coming Soon</span>
+      </div>
+
+      <div class="app-card">
+        <div class="app-icon">📝</div>
+        <h4 class="app-name">EdNote</h4>
+        <p class="app-tagline">A simple everyday note app for thoughts, plans, and small moments.</p>
+        <span class="app-status active">Available</span>
+      </div>
+
+      <div class="app-card">
+        <div class="app-icon">🔲</div>
+        <h4 class="app-name">EdDotSoul</h4>
+        <p class="app-tagline">Half-tone editing with QR Art — turn artwork into scannable images.</p>
+        <span class="app-status active">Available</span>
+      </div>
+
+      <div class="app-card">
+        <div class="app-icon">📷</div>
+        <h4 class="app-name">EdHalfToneCamera</h4>
+        <p class="app-tagline">Experimental black-and-white halftone camera, live preview.</p>
+        <span class="app-status active">Available</span>
+      </div>
+
+    </div>
+
   </div>
 </section>
   
 <div class="bottom-grid">
-<section id="nuart" class="bottom-section" onclick="window.open('https://pin.it/210UZE6aG','_blank')">
-  <p class="bottom-label">Nu Art</p>
-  <h3 class="bottom-title">Nu Art</h3>
+
+<section id="epos" class="bottom-section">
+  <p class="bottom-label">Token Optimizer</p>
+  <h3 class="bottom-title">EPOS Optimizer</h3>
   <p class="bottom-text">
-    A space for Nu’s own art direction — personal works, visual experiments, sculptural ideas, and selected pieces from the Nuteam world.
+    Compress text, images, and PDFs into an ultra-efficient format
+    before sending to any AI — cut token cost without losing content.
+    Built for real, everyday AI use.
   </p>
   <div class="bottom-links">
-    <span class="bottom-link">View selected works <span class="arr2">›</span></span>
-    <span class="bottom-link">See visual experiments <span class="arr2">›</span></span>
-    <span class="bottom-link">Follow future pieces <span class="arr2">›</span></span>
+    <span class="bottom-link">Download link coming soon <span class="arr2">›</span></span>
   </div>
 </section>
 
@@ -1154,31 +1051,26 @@ Not a distant system, but a close companion.
     rel="noopener">Explore Ed →</a>
   </section>
 
-<section id="about" class="bottom-section"
-onclick="window.open('https://www.linkedin.com/in/wisanu-saengwirun-70b27410a?utm_source=share_via&utm_content=profile&utm_medium=member_android','_blank')">
+<section id="about" class="bottom-section">
     <p class="bottom-label">Founder</p>
     <h3 class="bottom-title">About Nu</h3>
    <p class="bottom-text">
-Founder of Nuteam.
-Rooted in international art construction —
-from sculpture and texture work
-to large-scale physical environments.
+Founder of Nuteam. Self-taught developer building an ecosystem
+of offline-first AI tools and independent apps — designed to
+run on-device, respect privacy, and stay free of ongoing cost.
 <br><br>
-Now expanding into digital systems,
-while keeping the same mindset:
-build real things that last.
+Same mindset from day one: build real things that last.
 </p>
-   <a href="https://www.linkedin.com/in/wisanu-saengwirun-70b27410a?utm_source=share_via&utm_content=profile&utm_medium=member_android"
+   <a href="mailto:wisanunu26@gmail.com"
    class="btn-secondary"
-   target="_blank"
-   rel="noopener">Read More →</a>
+   rel="noopener">Get in Touch →</a>
   </section>
 </div>
 
 <footer id="contact">
   <div class="footer-col">
     <span class="footer-logo">NUTEAM.ORG</span>
-   <p class="footer-tagline">Art / Local AI / Independent Tools / Future Exchange</p>
+   <p class="footer-tagline">Local AI / Independent Apps / Offline Tools</p>
     <p class="footer-copy">© 2026 Nuteam. All rights reserved.</p>
   </div>
 
@@ -1188,14 +1080,12 @@ build real things that last.
   <a href="mailto:wisanunu26@gmail.com" class="social-link">Email</a>
   <a href="https://www.facebook.com/share/1Hdo5468WM/" class="social-link" target="_blank" rel="noopener">Facebook</a>
   <a href="https://edavatar-studio.github.io" class="social-link" target="_blank" rel="noopener">GitHub</a>
-  <a href="https://pin.it/210UZE6aG" class="social-link" target="_blank" rel="noopener">Pinterest</a>
 </div>
 
 <div class="social-icons">
   <a href="mailto:wisanunu26@gmail.com" class="sicon" title="Email">📧</a>
   <a href="https://www.facebook.com/share/1Hdo5468WM/" class="sicon" title="Facebook" target="_blank">F</a>
   <a href="https://edavatar-studio.github.io" class="sicon" title="GitHub" target="_blank">G</a>
-  <a href="https://pin.it/210UZE6aG" class="sicon" title="Pinterest" target="_blank">P</a>
 </div>
   </div>
 
@@ -1208,28 +1098,6 @@ build real things that last.
     </div>
   </div>
 </footer>
-<script>
-  const heroSlides = [
-    "art-1.jpeg",
-    "art-2.jpeg",
-    "art-3.jpeg"
-  ];
 
-  let heroSlideIndex = 0;
-  const heroSlideEl = document.getElementById("heroSlide");
-
-  if (heroSlideEl) {
-    setInterval(() => {
-      heroSlideIndex = (heroSlideIndex + 1) % heroSlides.length;
-      heroSlideEl.style.opacity = 0;
-
-      setTimeout(() => {
-        heroSlideEl.src = heroSlides[heroSlideIndex];
-        heroSlideEl.style.opacity = 1;
-      }, 350);
-    }, 5000);
-  }
-</script>
 </body>
 </html>
-
