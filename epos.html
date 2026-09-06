@@ -18,7 +18,7 @@
     --gold-dk:#9b7f39;
     --line:#b8b8b4;
   }
-  *,*::before,*::after{ box-sizing:border-box; margin:0; padding:0; }
+  ,::before,*::after{ box-sizing:border-box; margin:0; padding:0; }
   html{ scroll-behavior:smooth; }
   body{
     background: linear-gradient(145deg, #e4e4e2, #cbcbc8);
@@ -185,6 +185,24 @@
     color:var(--muted);
     margin-top:10px;
   }
+  .tool-stats{
+    display:none;
+    margin-top:14px;
+    padding:12px 14px;
+    background:rgba(184,150,62,0.10);
+    border:1px solid rgba(184,150,62,0.30);
+    border-radius:8px;
+    font-size:12.5px;
+    color:#5c4f2a;
+  }
+  .tool-stats strong{ color:var(--gold-dk); }
+  .tool-stats .stats-caveat{
+    display:block;
+    margin-top:6px;
+    font-size:10.5px;
+    color:var(--muted);
+    font-style:italic;
+  }
 </style>
 </head>
 <body>
@@ -244,6 +262,7 @@
     <textarea id="eposInput" placeholder="Describe what you want the AI to do, in plain language..."></textarea>
     <button class="tool-btn" id="eposBtn" onclick="convertEpos()">Convert to EPOS →</button>
     <div class="tool-output" id="eposOutput" style="display:none;"></div>
+    <div class="tool-stats" id="eposStats"></div>
     <p class="tool-note">Access is currently limited while EPOS Optimizer is being tested. A public paid-access option is planned.</p>
   </div>
 
@@ -258,11 +277,13 @@ async function convertEpos() {
   const code = document.getElementById('eposCode').value.trim();
   const text = document.getElementById('eposInput').value.trim();
   const output = document.getElementById('eposOutput');
+  const stats = document.getElementById('eposStats');
   const btn = document.getElementById('eposBtn');
 
   if (!code || !text) {
     output.style.display = 'block';
     output.textContent = 'Please enter both an access code and some text.';
+    stats.style.display = 'none';
     return;
   }
 
@@ -270,6 +291,7 @@ async function convertEpos() {
   btn.textContent = 'Converting...';
   output.style.display = 'block';
   output.textContent = '';
+  stats.style.display = 'none';
 
   try {
     const response = await fetch('https://epos-web-optimizer.wisanunu26.workers.dev', {
@@ -284,6 +306,14 @@ async function convertEpos() {
       output.textContent = data.error;
     } else {
       output.textContent = data.result;
+      if (typeof data.est_original_tokens === 'number') {
+        stats.style.display = 'block';
+        stats.innerHTML =
+          'Original: <strong>~' + data.est_original_tokens + ' tokens</strong> &nbsp;→&nbsp; ' +
+          'EPOS: <strong>~' + data.est_epos_tokens + ' tokens</strong> &nbsp;(<strong>' +
+          data.est_savings_percent + '% saved</strong>)' +
+          '<span class="stats-caveat">Estimated (~4 characters per token) — not an exact count from any specific model\'s tokenizer.</span>';
+      }
     }
   } catch (err) {
     output.textContent = 'Something went wrong. Please try again.';
@@ -295,4 +325,3 @@ async function convertEpos() {
 </script>
 </body>
 </html>
-
