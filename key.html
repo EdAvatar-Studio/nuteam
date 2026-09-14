@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Key — Nuteam</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>
+<style>
+  :root{
+    --bg:#d7d7d5;
+    --panel:#dcdcd9;
+    --panel-2:#cfcfcb;
+    --text:#1f1f1c;
+    --muted:#5f5f5a;
+    --gold:#b89a4a;
+    --gold-dk:#9b7f39;
+    --line:#b8b8b4;
+  }
+  *,*::before,*::after{ box-sizing:border-box; margin:0; padding:0; }
+  html{ scroll-behavior:smooth; }
+  body{
+    background: linear-gradient(145deg, #e4e4e2, #cbcbc8);
+    color:var(--text);
+    font-family:'DM Mono', monospace;
+    line-height:1.8;
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+  }
+  nav{
+    position:sticky; top:0; z-index:10;
+    display:flex; align-items:center; gap:16px;
+    padding:0 24px; height:64px;
+    background:rgba(246,246,244,0.92);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid rgba(0,0,0,0.08);
+  }
+  nav a{
+    font-size:11px; letter-spacing:0.1em; text-transform:uppercase;
+    color:var(--muted); text-decoration:none;
+  }
+  nav a:hover{ color:var(--text); }
+  .nav-logo{
+    font-family:'Bebas Neue', sans-serif;
+    font-size:22px; letter-spacing:0.1em; color:var(--text);
+    margin-right:auto;
+  }
+  main{
+    max-width:560px;
+    margin:0 auto;
+    padding:48px 24px 80px;
+    flex:1;
+    width:100%;
+  }
+  .eyebrow{
+    font-size:10px; letter-spacing:0.25em; text-transform:uppercase;
+    color:var(--gold-dk); margin-bottom:14px;
+  }
+  h1{
+    font-family:'Bebas Neue', sans-serif;
+    font-size:clamp(34px, 7vw, 48px);
+    letter-spacing:0.03em;
+    line-height:0.98;
+    margin-bottom:16px;
+  }
+  p{
+    font-size:14px;
+    color:#3a3a36;
+    margin-bottom:16px;
+  }
+
+  /* tool-box pattern, reused from epos.html */
+  .tool-box{
+    background: var(--panel);
+    border:1px solid var(--line);
+    border-radius:18px;
+    padding:28px;
+    margin:24px 0;
+  }
+  .tool-label{
+    font-size:10px; letter-spacing:0.2em; text-transform:uppercase;
+    color:var(--gold-dk); margin-bottom:14px;
+  }
+  .tool-box input, .tool-box textarea{
+    width:100%;
+    font-family:'DM Mono', monospace;
+    font-size:13px;
+    padding:10px 12px;
+    border-radius:8px;
+    border:1px solid var(--line);
+    background:#f2f2f0;
+    color:var(--text);
+    margin-bottom:12px;
+    resize:vertical;
+  }
+  .tool-box textarea{ min-height:90px; }
+  .tool-btn{
+    display:inline-block;
+    padding:10px 22px;
+    border-radius:999px;
+    background:var(--gold);
+    color:#1a1814;
+    border:none;
+    font-size:11px;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    cursor:pointer;
+  }
+  .tool-btn:disabled{ opacity:0.5; cursor:not-allowed; }
+  .tool-btn-secondary{
+    background:transparent;
+    border:1px solid var(--gold-dk);
+    color:var(--gold-dk);
+  }
+  .tool-btn-secondary:hover{ background:rgba(184,150,62,0.08); }
+  .tool-output{
+    margin-top:16px;
+    padding:14px;
+    background:#f2f2f0;
+    border:1px solid var(--line);
+    border-radius:8px;
+    font-size:12.5px;
+    white-space:pre-wrap;
+    word-break:break-word;
+    min-height:20px;
+  }
+  .tool-note{
+    font-size:11px;
+    color:var(--muted);
+    margin-top:10px;
+  }
+  .tool-error{
+    margin-top:14px;
+    padding:12px 14px;
+    background:rgba(163,61,44,0.08);
+    border:1px solid rgba(163,61,44,0.35);
+    border-radius:8px;
+    font-size:12.5px;
+    color:#a33d2c;
+  }
+
+  /* key.html specific */
+  .btn-row{
+    display:flex;
+    gap:12px;
+    flex-wrap:wrap;
+  }
+  .btn-row .tool-btn{ flex:1; min-width:180px; }
+
+  .waiting-box{
+    text-align:center;
+    padding:48px 24px;
+  }
+  .waiting-dot{
+    display:inline-block;
+    width:8px; height:8px;
+    border-radius:50%;
+    background:var(--gold);
+    margin-right:6px;
+    animation:pulse 1.2s ease-in-out infinite;
+  }
+  .waiting-dot:nth-child(2){ animation-delay:0.2s; }
+  .waiting-dot:nth-child(3){ animation-delay:0.4s; }
+  @keyframes pulse{
+    0%,80%,100%{ opacity:0.25; }
+    40%{ opacity:1; }
+  }
+  .waiting-text{
+    font-size:13px;
+    color:var(--muted);
+    margin-top:16px;
+  }
+
+  .key-code{
+    font-family:'DM Mono', monospace;
+    font-size:22px;
+    letter-spacing:0.05em;
+    color:var(--text);
+    background:#f2f2f0;
+    border:1px solid var(--line);
+    border-radius:8px;
+    padding:16px;
+    word-break:break-all;
+    user-select:all;
+    text-align:center;
+  }
+  .key-result{ border-color:rgba(184,150,62,0.45); }
+  .key-actions{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-top:14px;
+  }
+
+  footer{
+    background: rgba(244,239,231,0.76);
+    border-top:1px solid var(--line);
+    padding:28px 24px;
+    text-align:center;
+  }
+  .footer-logo{
+    font-family:'Bebas Neue', sans-serif;
+    font-size:20px;
+    letter-spacing:0.12em;
+    color:var(--text);
+    margin-bottom:6px;
+    display:block;
+  }
+  .footer-copy{
+    font-size:9px;
+    color:var(--muted);
+    letter-spacing:0.06em;
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="index.html">NUTEAM.ORG</a>
+  <a href="index.html#apps">Apps</a>
+  <a href="ed.html">Explore Ed →</a>
+</nav>
+
+<main>
+  <p class="eyebrow">Unlock Key</p>
+  <h1>ปลดล็อกการใช้งานเพิ่ม</h1>
+  <p>เมื่อใช้งานฟรีครบโควตาแล้ว รับกุญแจปลดล็อกเพิ่มเติมได้ที่นี่</p>
+
+  <div id="waitingState" class="tool-box waiting-box">
+    <div>
+      <span class="waiting-dot"></span><span class="waiting-dot"></span><span class="waiting-dot"></span>
+    </div>
+    <p class="waiting-text">รอข้อมูลจากแอป...</p>
+  </div>
+
+  <div id="toolUI" style="display:none;">
+    <div class="tool-box">
+      <p class="tool-label">เลือกวิธีรับกุญแจ</p>
+      <div class="btn-row">
+        <button class="tool-btn" id="followBtn" onclick="claimFollow()">รับกุญแจฟรี (Follow)</button>
+        <button class="tool-btn tool-btn-secondary" id="buyBtn" onclick="showBuyPlaceholder()">ซื้อกุญแจถาวร</button>
+      </div>
+      <div id="followError" class="tool-error" style="display:none;"></div>
+      <p id="buyMsg" class="tool-note" style="display:none;">เร็วๆ นี้</p>
+    </div>
+
+    <div id="keyResult" class="tool-box key-result" style="display:none;">
+      <p class="tool-label">กุญแจของคุณ</p>
+      <div class="key-code" id="keyCodeText"></div>
+      <div class="key-actions">
+        <button class="tool-btn" onclick="copyKeyCode()">Copy</button>
+        <span id="copyFeedback" class="tool-note" style="margin-top:0;"></span>
+      </div>
+      <p class="tool-note" id="usesGrantedNote"></p>
+    </div>
+  </div>
+
+  <div id="devTest" class="tool-box" style="display:none;">
+    <p class="tool-label">Dev Test — Simulate receiveClaimData()</p>
+    <input type="text" id="devApp" placeholder="app (e.g. EdPromptPro)"/>
+    <input type="text" id="devFingerprint" placeholder="fingerprint"/>
+    <input type="text" id="devChainHash" placeholder="chainHash"/>
+    <input type="number" id="devUseCount" placeholder="useCount"/>
+    <input type="number" id="devTimestamp" placeholder="timestamp (epoch ms)"/>
+    <input type="text" id="devPublicKey" placeholder="publicKeyBase64"/>
+    <input type="text" id="devSignature" placeholder="signature"/>
+    <button class="tool-btn" onclick="simulateReceive()">Simulate receiveClaimData()</button>
+  </div>
+</main>
+
+<footer>
+  <span class="footer-logo">NUTEAM.ORG</span>
+  <p class="footer-copy">© 2026 Nuteam. All rights reserved.</p>
+</footer>
+
+<script>
+let claimData = null;
+
+window.receiveClaimData = function(app, fingerprint, chainHash, useCount, timestamp, publicKeyBase64, signature) {
+  claimData = { app, fingerprint, chainHash, useCount, timestamp, publicKeyBase64, signature };
+  document.getElementById('waitingState').style.display = 'none';
+  document.getElementById('toolUI').style.display = 'block';
+
+  // New claim data means a fresh attempt — clear out any leftover result/error
+  // and re-arm the Follow button, in case it was left disabled by a previous
+  // successful claim (e.g. the app calling receiveClaimData again, or the dev
+  // panel simulating a new device/chain state without a page reload).
+  clearFollowError();
+  document.getElementById('keyResult').style.display = 'none';
+  const followBtn = document.getElementById('followBtn');
+  followBtn.disabled = false;
+  followBtn.textContent = 'รับกุญแจฟรี (Follow)';
+};
+
+function setFollowError(msg) {
+  const el = document.getElementById('followError');
+  el.style.display = 'block';
+  el.textContent = msg;
+}
+
+function clearFollowError() {
+  const el = document.getElementById('followError');
+  el.style.display = 'none';
+  el.textContent = '';
+}
+
+function errorMessageFor(code) {
+  switch (code) {
+    case 'already_claimed':
+      return 'อุปกรณ์นี้เคยรับกุญแจไปแล้ว';
+    case 'invalid_signature':
+      return 'ข้อมูลยืนยันไม่ถูกต้อง กรุณาเปิดหน้านี้ใหม่จากแอป';
+    default:
+      return code || 'เกิดข้อผิดพลาด กรุณาลองใหม่อีกครั้ง';
+  }
+}
+
+async function claimFollow() {
+  if (!claimData) return;
+  const btn = document.getElementById('followBtn');
+
+  clearFollowError();
+  document.getElementById('keyResult').style.display = 'none';
+  btn.disabled = true;
+  btn.textContent = 'กำลังขอกุญแจ...';
+
+  try {
+    const response = await fetch('https://nuteam-key-issuer.wisanunu26.workers.dev/claim/follow', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(claimData)
+    });
+
+    const data = await response.json();
+
+    if (data.success) {
+      showKeyResult(data.code, data.usesGranted);
+      btn.textContent = 'รับกุญแจแล้ว';
+
+      if (typeof window.onKeyClaimed === 'function') {
+        window.onKeyClaimed(data.code);
+      }
+    } else {
+      btn.disabled = false;
+      btn.textContent = 'รับกุญแจฟรี (Follow)';
+      setFollowError(errorMessageFor(data.error));
+    }
+  } catch (err) {
+    btn.disabled = false;
+    btn.textContent = 'รับกุญแจฟรี (Follow)';
+    setFollowError('ตรวจสอบการเชื่อมต่ออินเทอร์เน็ต');
+  }
+}
+
+function showKeyResult(code, usesGranted) {
+  document.getElementById('keyCodeText').textContent = code;
+  document.getElementById('usesGrantedNote').textContent =
+    usesGranted ? ('ปลดล็อกการใช้งานเพิ่ม ' + usesGranted + ' ครั้ง') : '';
+  document.getElementById('copyFeedback').textContent = '';
+  document.getElementById('keyResult').style.display = 'block';
+}
+
+function copyKeyCode() {
+  const code = document.getElementById('keyCodeText').textContent;
+  if (!code) return;
+  navigator.clipboard.writeText(code).then(() => {
+    document.getElementById('copyFeedback').textContent = 'คัดลอกแล้ว';
+  }).catch(() => {
+    document.getElementById('copyFeedback').textContent = 'คัดลอกไม่สำเร็จ';
+  });
+}
+
+function showBuyPlaceholder() {
+  document.getElementById('buyMsg').style.display = 'block';
+}
+
+function simulateReceive() {
+  const app = document.getElementById('devApp').value;
+  const fingerprint = document.getElementById('devFingerprint').value;
+  const chainHash = document.getElementById('devChainHash').value;
+  const useCount = Number(document.getElementById('devUseCount').value);
+  const timestamp = Number(document.getElementById('devTimestamp').value);
+  const publicKeyBase64 = document.getElementById('devPublicKey').value;
+  const signature = document.getElementById('devSignature').value;
+  window.receiveClaimData(app, fingerprint, chainHash, useCount, timestamp, publicKeyBase64, signature);
+}
+
+if (new URLSearchParams(window.location.search).get('dev') === '1') {
+  document.getElementById('devTest').style.display = 'block';
+}
+</script>
+
+</body>
+</html>

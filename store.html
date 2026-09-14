@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Nuteam Store — Nuteam</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>
+<style>
+  :root{
+    --bg:#d7d7d5;
+    --panel:#dcdcd9;
+    --panel-2:#cfcfcb;
+    --text:#1f1f1c;
+    --muted:#5f5f5a;
+    --gold:#b89a4a;
+    --gold-dk:#9b7f39;
+    --line:#b8b8b4;
+  }
+  *,*::before,*::after{ box-sizing:border-box; margin:0; padding:0; }
+  html{ scroll-behavior:smooth; }
+  body{
+    background: linear-gradient(145deg, #e4e4e2, #cbcbc8);
+    color:var(--text);
+    font-family:'DM Mono', monospace;
+    line-height:1.8;
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+  }
+  nav{
+    position:sticky; top:0; z-index:10;
+    display:flex; align-items:center; gap:16px;
+    padding:0 24px; height:64px;
+    background:rgba(246,246,244,0.92);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid rgba(0,0,0,0.08);
+  }
+  nav a{
+    font-size:11px; letter-spacing:0.1em; text-transform:uppercase;
+    color:var(--muted); text-decoration:none;
+  }
+  nav a:hover{ color:var(--text); }
+  .nav-logo{
+    font-family:'Bebas Neue', sans-serif;
+    font-size:22px; letter-spacing:0.1em; color:var(--text);
+    margin-right:auto;
+  }
+
+  main{
+    max-width:1100px;
+    margin:0 auto;
+    padding:48px 24px 80px;
+    flex:1;
+    width:100%;
+  }
+
+  .eyebrow{
+    font-size:10px; letter-spacing:0.25em; text-transform:uppercase;
+    color:var(--gold-dk); margin-bottom:14px;
+  }
+  h1{
+    font-family:'Bebas Neue', sans-serif;
+    font-size:clamp(36px, 6vw, 52px);
+    letter-spacing:0.03em;
+    line-height:0.98;
+    margin-bottom:16px;
+  }
+  h2{
+    font-family:'Bebas Neue', sans-serif;
+    font-size:26px;
+    letter-spacing:0.05em;
+    color:#2a2a26;
+  }
+  p{
+    font-size:14px;
+    color:#3a3a36;
+  }
+
+  /* ---------- Trust section ---------- */
+  .trust-card{
+    background: var(--panel);
+    border:1px solid var(--line);
+    border-radius:18px;
+    padding:32px;
+    margin:24px 0 48px;
+  }
+  .trust-card p{ margin-bottom:12px; }
+  .trust-card p:last-of-type{ margin-bottom:0; }
+  .trust-badge{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    margin-top:18px;
+    padding:8px 16px;
+    border-radius:999px;
+    font-size:10.5px;
+    letter-spacing:0.1em;
+    background: rgba(184,150,62,0.12);
+    border:1px solid rgba(184,150,62,0.35);
+    color:var(--gold-dk);
+  }
+
+  /* ---------- App list ---------- */
+  .section-heading{
+    display:flex;
+    align-items:baseline;
+    justify-content:space-between;
+    margin-bottom:20px;
+  }
+  .section-heading p{ color:var(--muted); font-size:11px; }
+
+  .apps-grid{
+    display:grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap:18px;
+  }
+
+  .app-card{
+    background:
+      linear-gradient(180deg, rgba(255,255,255,0.34), rgba(255,255,255,0.10)),
+      linear-gradient(180deg, var(--panel), var(--panel-2));
+    border:1px solid var(--line);
+    border-radius:22px;
+    padding:24px 22px;
+    display:flex;
+    flex-direction:column;
+  }
+
+  .app-icon{
+    width:56px; height:56px;
+    background: linear-gradient(180deg, #d7cfc3, #bbb1a3);
+    border:1px solid var(--line);
+    border-radius:12px;
+    margin-bottom:16px;
+    display:flex; align-items:center; justify-content:center;
+    font-size:24px;
+    color:var(--text);
+  }
+
+  .app-name{
+    font-family:'Bebas Neue', sans-serif;
+    font-size:22px;
+    letter-spacing:0.06em;
+    color:#20201d;
+    margin-bottom:6px;
+  }
+
+  .app-tagline{
+    font-size:11.5px;
+    color:var(--muted);
+    line-height:1.6;
+    margin-bottom:18px;
+    flex:1;
+  }
+
+  .app-download{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    padding:10px 20px;
+    border-radius:999px;
+    background:var(--gold);
+    color:#1a1814;
+    font-size:11px;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    text-decoration:none;
+    border:none;
+    cursor:pointer;
+    margin-bottom:14px;
+  }
+  .app-download:hover{ background:var(--gold-dk); }
+
+  .hash-details{
+    font-size:11px;
+    color:var(--muted);
+    border-top:1px solid var(--line);
+    padding-top:12px;
+  }
+  .hash-details summary{
+    cursor:pointer;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    font-size:10px;
+    color:var(--gold-dk);
+    list-style:none;
+  }
+  .hash-details summary::-webkit-details-marker{ display:none; }
+  .hash-details summary::before{
+    content:'▸ ';
+  }
+  .hash-details[open] summary::before{
+    content:'▾ ';
+  }
+  .hash-value{
+    margin-top:10px;
+    padding:10px 12px;
+    background:#f2f2f0;
+    border:1px solid var(--line);
+    border-radius:8px;
+    font-size:11px;
+    word-break:break-all;
+    user-select:all;
+  }
+  .hash-note{
+    margin-top:8px;
+    font-size:10.5px;
+    color:var(--muted);
+    line-height:1.6;
+  }
+
+  @media (max-width: 900px){
+    .apps-grid{ grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 640px){
+    .apps-grid{ grid-template-columns: 1fr; }
+  }
+
+  /* ---------- Footer ---------- */
+  footer{
+    background: rgba(244,239,231,0.76);
+    border-top:1px solid var(--line);
+    display:grid;
+    grid-template-columns:1fr 1fr 1fr;
+    gap:0;
+  }
+  .footer-col{
+    padding:28px 24px;
+    border-right:1px solid rgba(0,0,0,0.06);
+  }
+  .footer-col:last-child{ border-right:none; }
+  .footer-logo{
+    font-family:'Bebas Neue', sans-serif;
+    font-size:22px;
+    letter-spacing:0.12em;
+    color:var(--text);
+    margin-bottom:8px;
+    display:block;
+  }
+  .footer-tagline{
+    font-size:10px;
+    color:var(--muted);
+    margin-bottom:16px;
+    line-height:1.6;
+  }
+  .footer-copy{
+    font-size:9px;
+    color:var(--muted);
+    letter-spacing:0.06em;
+    border-top:1px solid var(--line);
+    padding-top:12px;
+    margin-top:12px;
+  }
+  .footer-heading{
+    font-size:9px;
+    letter-spacing:0.2em;
+    text-transform:uppercase;
+    color:var(--gold-dk);
+    margin-bottom:14px;
+  }
+  .footer-links{ list-style:none; display:flex; flex-direction:column; gap:10px; }
+  .footer-links a{
+    font-size:11px;
+    color:var(--muted);
+    text-decoration:none;
+  }
+  .footer-links a:hover{ color:var(--text); }
+
+  @media (max-width: 900px){
+    footer{ grid-template-columns:1fr; }
+    .footer-col{ border-right:none; border-bottom:1px solid rgba(0,0,0,0.06); }
+    .footer-col:last-child{ border-bottom:none; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="index.html">NUTEAM.ORG</a>
+  <a href="index.html#apps">Apps</a>
+  <a href="ed.html">Explore Ed →</a>
+</nav>
+
+<main>
+  <p class="eyebrow">Nuteam Store</p>
+  <h1>ร้านแอปจาก Nuteam</h1>
+
+  <!-- Trust section: establishes a real person behind the apps, not a faceless
+       storefront. Copy below is placeholder — edit freely. -->
+  <div class="trust-card">
+    <p>
+      Nuteam ไม่ใช่บริษัทใหญ่ แต่เป็นงานของคนคนเดียว — อดีตประติมากรสายนานาชาติ
+      ที่ผันตัวมาออกแบบและเขียนโค้ดแอปด้วยตัวเอง ทุกแอปที่เห็นในหน้านี้ผ่านมือ
+      คนคนเดียวกันตั้งแต่ไอเดียแรกจนถึงวันที่ปล่อยให้ดาวน์โหลด
+    </p>
+    <p>
+      ไม่มีทีมใหญ่ ไม่มีการจ้างเอาต์ซอร์ส — แค่คนคนหนึ่งที่ตั้งใจสร้างของที่ใช้งานได้จริง
+      และพร้อมรับผิดชอบในสิ่งที่ตัวเองสร้าง
+    </p>
+    <span class="trust-badge">🔑 ทุกแอปเซ็นด้วยกุญแจเดียวกันของ Nuteam</span>
+  </div>
+
+  <div class="section-heading">
+    <h2>App List</h2>
+    <p>อัปเดตล่าสุด</p>
+  </div>
+
+  <div class="apps-grid">
+
+    <!-- ============================================================
+         APP CARD TEMPLATE
+         To add a new app: duplicate this entire <div class="app-card">
+         ... </div> block below (before the closing </div> of .apps-grid)
+         and edit:
+           - app-icon emoji/letter
+           - app-name
+           - app-tagline
+           - the download link's href (currently "#" — no APK host yet)
+           - the SHA-256 value inside .hash-value
+         ============================================================ -->
+    <div class="app-card">
+      <div class="app-icon">✦</div>
+      <h3 class="app-name">Ed Prompt Pro</h3>
+      <p class="app-tagline">
+        ผู้ช่วยสร้างพรอมต์ AI ที่ใช้งานง่าย ช่วยให้คำสั่งของคุณชัดเจนและได้ผลลัพธ์ที่ต้องการเร็วขึ้น
+      </p>
+
+      <a href="https://github.com/EdAvatar-Studio/EdPromptPro-releases/releases/download/v1.0/app-arm64-v8a-release.apk" class="app-download">ดาวน์โหลด APK →</a>
+
+      <details class="hash-details">
+        <summary>ตรวจสอบไฟล์ (SHA-256)</summary>
+        <div class="hash-value">01834a800ca5e82d267908fef9e0da6888317444c6878e549548ed1aa302d81c</div>
+        <p class="hash-note">
+          เทียบค่านี้กับไฟล์ที่ดาวน์โหลดมาเพื่อยืนยันว่าไม่ถูกแก้ไข
+        </p>
+      </details>
+    </div>
+    <!-- END APP CARD TEMPLATE — add the next app card here -->
+
+  </div>
+</main>
+
+<footer>
+  <div class="footer-col">
+    <span class="footer-logo">NUTEAM.ORG</span>
+    <p class="footer-tagline">Local AI / Independent Apps / Offline Tools</p>
+    <p class="footer-copy">© 2026 Nuteam. All rights reserved.</p>
+  </div>
+
+  <div class="footer-col">
+    <p class="footer-heading">Explore</p>
+    <ul class="footer-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="ed.html">Ed</a></li>
+      <li><a href="epos.html">EPOS Optimizer</a></li>
+    </ul>
+  </div>
+
+  <div class="footer-col">
+    <p class="footer-heading">Connect</p>
+    <ul class="footer-links">
+      <li><a href="mailto:wisanunu26@gmail.com">Email</a></li>
+    </ul>
+  </div>
+</footer>
+
+</body>
+</html>
