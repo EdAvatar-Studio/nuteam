@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>About — Nuteam</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>
+<style>
+  :root{
+    --bg:#d7d7d5;
+    --panel:#dcdcd9;
+    --panel-2:#cfcfcb;
+    --text:#1f1f1c;
+    --muted:#5f5f5a;
+    --gold:#b89a4a;
+    --gold-dk:#9b7f39;
+    --line:#b8b8b4;
+  }
+  *,*::before,*::after{ box-sizing:border-box; margin:0; padding:0; }
+  html{ scroll-behavior:smooth; }
+  body{
+    background: linear-gradient(145deg, #e4e4e2, #cbcbc8);
+    color:var(--text);
+    font-family:'DM Mono', monospace;
+    line-height:1.8;
+  }
+  nav{
+    position:sticky; top:0; z-index:10;
+    display:flex; align-items:center; gap:16px;
+    padding:0 24px; height:64px;
+    background:rgba(246,246,244,0.92);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid rgba(0,0,0,0.08);
+  }
+  nav a{
+    font-size:11px; letter-spacing:0.1em; text-transform:uppercase;
+    color:var(--muted); text-decoration:none;
+  }
+  nav a:hover{ color:var(--text); }
+  .nav-logo{
+    font-family:'Bebas Neue', sans-serif;
+    font-size:22px; letter-spacing:0.1em; color:var(--text);
+    margin-right:auto;
+  }
+
+  /* ---------- Mobile nav (hamburger) ---------- */
+  .nav-links-inline{ display:flex; align-items:center; gap:16px; }
+
+  .nav-toggle{
+    display:none;
+    width:40px; height:40px;
+    flex-direction:column; align-items:center; justify-content:center; gap:4px;
+    border-radius:10px;
+    border:1px solid rgba(0,0,0,0.12);
+    background:linear-gradient(180deg,#e8e8e6,#d2d2cf);
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,0.55),
+      inset 0 -2px 3px rgba(0,0,0,0.08),
+      0 3px 8px rgba(40,40,40,0.12);
+    cursor:pointer;
+    margin-left:auto;
+  }
+  .nav-toggle-bar{
+    width:18px; height:2px; border-radius:2px;
+    background:var(--gold-dk);
+    transition:transform .25s ease, opacity .2s ease;
+  }
+  .nav-toggle[aria-expanded="true"] .nav-toggle-bar:nth-child(1){ transform:translateY(6px) rotate(45deg); }
+  .nav-toggle[aria-expanded="true"] .nav-toggle-bar:nth-child(2){ opacity:0; }
+  .nav-toggle[aria-expanded="true"] .nav-toggle-bar:nth-child(3){ transform:translateY(-6px) rotate(-45deg); }
+
+  .nav-overlay{
+    position:fixed; inset:0; z-index:29;
+    background:rgba(20,18,14,0.45);
+    opacity:0; pointer-events:none;
+    transition:opacity .25s ease;
+  }
+  .nav-overlay.is-open{ opacity:1; pointer-events:auto; }
+
+  .mobile-nav{
+    position:fixed; top:0; right:0; bottom:0; z-index:30;
+    width:min(320px, 86vw);
+    transform:translateX(100%);
+    transition:transform .3s ease;
+  }
+  .mobile-nav.is-open{ transform:translateX(0); }
+
+  .mobile-nav-panel{
+    height:100%; padding:28px 22px;
+    display:flex; flex-direction:column;
+    background:
+      linear-gradient(145deg, rgba(255,255,255,0.55), rgba(255,255,255,0.15)),
+      linear-gradient(180deg, var(--panel), var(--panel-2));
+    border-left:1px solid rgba(0,0,0,0.10);
+    box-shadow:-20px 0 40px rgba(31,27,22,0.18);
+  }
+
+  .mobile-nav-rivets{ display:flex; justify-content:space-between; padding:0 2px; }
+  .mobile-nav-rivets .rivet{
+    width:16px; height:16px;
+    background: radial-gradient(circle at 35% 35%, #c9c1b4, #8d8478);
+    border-radius:50%;
+    border:1px solid rgba(0,0,0,0.12);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.35), 0 1px 2px rgba(0,0,0,0.10);
+  }
+
+  .mobile-nav-links{ list-style:none; display:flex; flex-direction:column; gap:4px; margin-top:32px; }
+  .mobile-nav-links a{
+    display:block; padding:16px 4px;
+    font-family:'Bebas Neue', sans-serif;
+    font-size:22px; letter-spacing:0.05em;
+    color:var(--text);
+    text-decoration:none;
+    border-bottom:1px solid rgba(0,0,0,0.08);
+    transition:color 0.2s;
+  }
+  .mobile-nav-links a:hover, .mobile-nav-links a:active{ color:var(--gold-dk); }
+
+  @media (max-width: 900px) {
+    .nav-links-inline{ display:none; }
+    .nav-toggle{ display:flex; }
+  }
+
+  /* ---------- Page content ---------- */
+  main{
+    max-width:760px;
+    margin:0 auto;
+    padding:56px 24px 100px;
+  }
+  .eyebrow{
+    font-size:10px; letter-spacing:0.25em; text-transform:uppercase;
+    color:var(--gold-dk); margin-bottom:14px;
+  }
+  h1{
+    font-family:'Bebas Neue', sans-serif;
+    font-size:clamp(40px, 7vw, 60px);
+    letter-spacing:0.03em;
+    line-height:0.98;
+    margin-bottom:20px;
+  }
+  h2{
+    font-family:'Bebas Neue', sans-serif;
+    font-size:30px;
+    letter-spacing:0.05em;
+    margin-bottom:12px;
+    color:#2a2a26;
+  }
+  p{
+    font-size:14px;
+    color:#3a3a36;
+    margin-bottom:16px;
+  }
+  .intro{
+    font-size:15px;
+    color:#3a3a36;
+    margin-bottom:44px;
+    max-width:640px;
+  }
+
+  section.about-block{
+    background: var(--panel);
+    border:1px solid var(--line);
+    border-radius:18px;
+    padding:32px;
+    margin-bottom:28px;
+  }
+
+  .meta-row{
+    display:flex; flex-wrap:wrap; gap:10px;
+    margin:18px 0 22px;
+  }
+  .meta-pill{
+    padding:7px 14px;
+    border-radius:999px;
+    background:rgba(255,255,255,0.5);
+    border:1px solid var(--line);
+    font-size:10.5px;
+    letter-spacing:0.05em;
+    color:var(--muted);
+  }
+
+  .statement{
+    border-left:3px solid var(--gold);
+    padding:4px 0 4px 18px;
+    margin:20px 0 22px;
+    color:var(--muted);
+    font-style:italic;
+    font-size:13.5px;
+  }
+
+  .about-link, .btn-secondary{
+    display:inline-flex; align-items:center; gap:8px;
+    font-size:11px; letter-spacing:0.1em; text-transform:uppercase;
+    color:var(--gold-dk); text-decoration:none;
+    margin-top:6px;
+  }
+  .about-link:hover, .btn-secondary:hover{ color:var(--text); }
+
+  .cv-block{
+    display:flex; align-items:center; justify-content:space-between;
+    flex-wrap:wrap; gap:16px;
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:18px;
+    padding:24px 28px;
+    margin-bottom:28px;
+  }
+  .cv-block p{ margin-bottom:0; font-size:13px; color:var(--muted); }
+  .btn-gold{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:11px 22px;
+    border-radius:999px;
+    background:var(--gold);
+    color:#1a1814;
+    font-size:11px; letter-spacing:0.12em; text-transform:uppercase;
+    text-decoration:none;
+    white-space:nowrap;
+  }
+  .btn-gold:hover{ background:var(--gold-dk); }
+
+  .gallery-cta{
+    text-align:center;
+    background:
+      linear-gradient(145deg, rgba(255,255,255,0.45), rgba(255,255,255,0.12)),
+      var(--panel);
+    border:1px solid rgba(184,150,62,0.35);
+    border-radius:22px;
+    padding:40px 28px;
+  }
+  .gallery-cta .eyebrow{ justify-content:center; }
+  .gallery-cta h2{ margin-bottom:10px; }
+  .gallery-cta p{ max-width:480px; margin:0 auto 22px; }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="index.html">NUTEAM.ORG</a>
+  <div class="nav-links-inline">
+    <a href="index.html#apps">Apps</a>
+    <a href="ed.html">Explore Ed →</a>
+  </div>
+  <button class="nav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false"
+          aria-controls="mobileNav" onclick="toggleNav()">
+    <span class="nav-toggle-bar"></span>
+    <span class="nav-toggle-bar"></span>
+    <span class="nav-toggle-bar"></span>
+  </button>
+</nav>
+
+<div class="nav-overlay" id="navOverlay" onclick="closeNav()"></div>
+
+<aside id="mobileNav" class="mobile-nav" aria-hidden="true">
+  <div class="mobile-nav-panel">
+    <div class="mobile-nav-rivets"><span class="rivet"></span><span class="rivet"></span></div>
+    <ul class="mobile-nav-links">
+      <li><a href="index.html#apps">Apps</a></li>
+      <li><a href="ed.html">Explore Ed →</a></li>
+    </ul>
+  </div>
+</aside>
+
+<script>
+function toggleNav(){
+  const open = document.getElementById('navToggle').getAttribute('aria-expanded') === 'true';
+  open ? closeNav() : openNav();
+}
+function openNav(){
+  document.getElementById('navToggle').setAttribute('aria-expanded','true');
+  document.getElementById('mobileNav').classList.add('is-open');
+  document.getElementById('mobileNav').setAttribute('aria-hidden','false');
+  document.getElementById('navOverlay').classList.add('is-open');
+}
+function closeNav(){
+  document.getElementById('navToggle').setAttribute('aria-expanded','false');
+  document.getElementById('mobileNav').classList.remove('is-open');
+  document.getElementById('mobileNav').setAttribute('aria-hidden','true');
+  document.getElementById('navOverlay').classList.remove('is-open');
+}
+document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeNav(); });
+</script>
+
+<main>
+  <p class="eyebrow">About</p>
+  <h1>One Person, Two Sides</h1>
+  <p class="intro">
+    Before Nuteam was a set of apps, it was one person working with their hands —
+    sculpture, texture, large-scale material work, built through real projects,
+    not just a studio. The same mindset that shaped stone and surface now shapes
+    software: build real things yourself, and make sure they actually work.
+  </p>
+
+  <section class="about-block">
+    <p class="eyebrow">Sculptor</p>
+    <h2>Nu Art</h2>
+    <p>
+      Nu Art is the personal visual direction of Wisanu Saengwirun — rooted in
+      sculpture, texture, carving, and large-scale physical construction, shaped
+      through real-world and international projects rather than a studio alone.
+    </p>
+    <div class="meta-row">
+      <span class="meta-pill">Sculpture</span>
+      <span class="meta-pill">Texture</span>
+      <span class="meta-pill">Carving</span>
+      <span class="meta-pill">Material Thinking</span>
+      <span class="meta-pill">Visual Experiments</span>
+    </div>
+    <p class="statement">
+      "The artistic mindset wasn't built only in studios, but through construction
+      sites, international projects, and material problem-solving."
+    </p>
+    <a class="about-link" href="nu-art.html">Full Artist Profile →</a>
+  </section>
+
+  <section class="about-block">
+    <p class="eyebrow">Founder</p>
+    <h2>About Nu</h2>
+    <p>
+      Founder of Nuteam. Self-taught developer building an ecosystem
+      of offline-first AI tools and independent apps — designed to
+      run on-device, respect privacy, and stay free of ongoing cost.
+      <br><br>
+      Same mindset from day one: build real things that last.
+    </p>
+    <a class="about-link" href="mailto:wisanunu26@gmail.com" rel="noopener">Get in Touch →</a>
+  </section>
+
+  <div class="cv-block">
+    <p>For the fuller professional history — education, work history, and international projects.</p>
+    <a class="btn-gold" href="Wisanu_CV.pdf" target="_blank" rel="noopener">Download CV →</a>
+  </div>
+
+  <section class="gallery-cta">
+    <p class="eyebrow">Visual Portfolio</p>
+    <h2>See the Full Gallery</h2>
+    <p>Sculpture, texture studies, and ongoing visual work — presented as a running exhibition.</p>
+    <a class="btn-gold" href="nuteam-gallery.html">View Nuteam Gallery →</a>
+  </section>
+</main>
+
+</body>
+</html>
