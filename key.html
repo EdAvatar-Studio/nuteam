@@ -47,6 +47,85 @@
     font-size:22px; letter-spacing:0.1em; color:var(--text);
     margin-right:auto;
   }
+
+  /* ---------- Mobile nav (hamburger) ---------- */
+  .nav-links-inline{ display:flex; align-items:center; gap:16px; }
+
+  .nav-toggle{
+    display:none;
+    width:40px; height:40px;
+    flex-direction:column; align-items:center; justify-content:center; gap:4px;
+    border-radius:10px;
+    border:1px solid rgba(0,0,0,0.12);
+    background:linear-gradient(180deg,#e8e8e6,#d2d2cf);
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,0.55),
+      inset 0 -2px 3px rgba(0,0,0,0.08),
+      0 3px 8px rgba(40,40,40,0.12);
+    cursor:pointer;
+    margin-left:auto;
+  }
+  .nav-toggle-bar{
+    width:18px; height:2px; border-radius:2px;
+    background:var(--gold-dk);
+    transition:transform .25s ease, opacity .2s ease;
+  }
+  .nav-toggle[aria-expanded="true"] .nav-toggle-bar:nth-child(1){ transform:translateY(6px) rotate(45deg); }
+  .nav-toggle[aria-expanded="true"] .nav-toggle-bar:nth-child(2){ opacity:0; }
+  .nav-toggle[aria-expanded="true"] .nav-toggle-bar:nth-child(3){ transform:translateY(-6px) rotate(-45deg); }
+
+  .nav-overlay{
+    position:fixed; inset:0; z-index:29;
+    background:rgba(20,18,14,0.45);
+    opacity:0; pointer-events:none;
+    transition:opacity .25s ease;
+  }
+  .nav-overlay.is-open{ opacity:1; pointer-events:auto; }
+
+  .mobile-nav{
+    position:fixed; top:0; right:0; bottom:0; z-index:30;
+    width:min(320px, 86vw);
+    transform:translateX(100%);
+    transition:transform .3s ease;
+  }
+  .mobile-nav.is-open{ transform:translateX(0); }
+
+  .mobile-nav-panel{
+    height:100%; padding:28px 22px;
+    display:flex; flex-direction:column;
+    background:
+      linear-gradient(145deg, rgba(255,255,255,0.55), rgba(255,255,255,0.15)),
+      linear-gradient(180deg, var(--panel), var(--panel-2));
+    border-left:1px solid rgba(0,0,0,0.10);
+    box-shadow:-20px 0 40px rgba(31,27,22,0.18);
+  }
+
+  .mobile-nav-rivets{ display:flex; justify-content:space-between; padding:0 2px; }
+  .mobile-nav-rivets .rivet{
+    width:16px; height:16px;
+    background: radial-gradient(circle at 35% 35%, #c9c1b4, #8d8478);
+    border-radius:50%;
+    border:1px solid rgba(0,0,0,0.12);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.35), 0 1px 2px rgba(0,0,0,0.10);
+  }
+
+  .mobile-nav-links{ list-style:none; display:flex; flex-direction:column; gap:4px; margin-top:32px; }
+  .mobile-nav-links a{
+    display:block; padding:16px 4px;
+    font-family:'Bebas Neue', sans-serif;
+    font-size:22px; letter-spacing:0.05em;
+    color:var(--text);
+    text-decoration:none;
+    border-bottom:1px solid rgba(0,0,0,0.08);
+    transition:color 0.2s;
+  }
+  .mobile-nav-links a:hover, .mobile-nav-links a:active{ color:var(--gold-dk); }
+
+  @media (max-width: 900px) {
+    .nav-links-inline{ display:none; }
+    .nav-toggle{ display:flex; }
+  }
+
   main{
     max-width:560px;
     margin:0 auto;
@@ -219,9 +298,49 @@
 
 <nav>
   <a class="nav-logo" href="index.html">NUTEAM.ORG</a>
-  <a href="index.html#apps">Apps</a>
-  <a href="ed.html">Explore Ed →</a>
+  <div class="nav-links-inline">
+    <a href="index.html#apps">Apps</a>
+    <a href="ed.html">Explore Ed →</a>
+  </div>
+  <button class="nav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false"
+          aria-controls="mobileNav" onclick="toggleNav()">
+    <span class="nav-toggle-bar"></span>
+    <span class="nav-toggle-bar"></span>
+    <span class="nav-toggle-bar"></span>
+  </button>
 </nav>
+
+<div class="nav-overlay" id="navOverlay" onclick="closeNav()"></div>
+
+<aside id="mobileNav" class="mobile-nav" aria-hidden="true">
+  <div class="mobile-nav-panel">
+    <div class="mobile-nav-rivets"><span class="rivet"></span><span class="rivet"></span></div>
+    <ul class="mobile-nav-links">
+      <li><a href="index.html#apps">Apps</a></li>
+      <li><a href="ed.html">Explore Ed →</a></li>
+    </ul>
+  </div>
+</aside>
+
+<script>
+function toggleNav(){
+  const open = document.getElementById('navToggle').getAttribute('aria-expanded') === 'true';
+  open ? closeNav() : openNav();
+}
+function openNav(){
+  document.getElementById('navToggle').setAttribute('aria-expanded','true');
+  document.getElementById('mobileNav').classList.add('is-open');
+  document.getElementById('mobileNav').setAttribute('aria-hidden','false');
+  document.getElementById('navOverlay').classList.add('is-open');
+}
+function closeNav(){
+  document.getElementById('navToggle').setAttribute('aria-expanded','false');
+  document.getElementById('mobileNav').classList.remove('is-open');
+  document.getElementById('mobileNav').setAttribute('aria-hidden','true');
+  document.getElementById('navOverlay').classList.remove('is-open');
+}
+document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeNav(); });
+</script>
 
 <main>
   <p class="eyebrow">Unlock Key</p>
