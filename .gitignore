@@ -1,0 +1,21 @@
+# Ebook build project — source + tooling, not website content.
+# Output files that belong on the live site are copied into library/ instead.
+nuteam-epos-ebook/
+
+# OS files
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Editor/IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Logs
+*.log

@@ -486,11 +486,11 @@
   }
   .duo-card.experimental .duo-btn:hover{ color: var(--text); background: rgba(255,255,255,0.4); }
 
-  /* ---------- Library placeholder (warm, isolated) ---------- */
+  /* ---------- The Library (warm, isolated) ---------- */
   .library-note{
     margin: 22px 16px 0;
     background: var(--lib-bg);
-    border: 1px dashed var(--lib-border);
+    border: 1px solid var(--lib-border);
     border-radius: var(--radius);
     padding: 26px 28px;
     box-shadow: 0 4px 12px rgba(58,51,36,0.06);
@@ -514,7 +514,19 @@
     color: var(--lib-text);
     opacity: 0.75;
     max-width: 560px;
+    margin-bottom: 14px;
   }
+  .library-link{
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    color: #8a7a4f;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .library-link:hover{ color: var(--lib-text); }
 
   /* ---------- App Universe (secondary zone) ---------- */
   .zone{
@@ -837,6 +849,7 @@
     <li><a href="store.html">Store</a></li>
     <li><a href="ed.html">Explore Ed →</a></li>
     <li><a href="about.html">About</a></li>
+    <li><a href="library.html">Library</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
   <a href="#apps" class="btn-explore">Explore <span class="arr">→</span></a>
@@ -860,6 +873,7 @@
       <li><a href="store.html">Store</a></li>
       <li><a href="ed.html">Explore Ed →</a></li>
       <li><a href="about.html">About</a></li>
+      <li><a href="library.html">Library</a></li>
       <li><a href="#contact" onclick="closeNav()">Contact</a></li>
     </ul>
   </div>
@@ -970,18 +984,18 @@ them share one mindset: build things that actually work.
 </div>
 
 <!-- ============================================================
-     Weighted section 3 of 4: Library placeholder — warm palette,
-     deliberately separate from the cool app-universe zones since
-     it's content, not tooling. No page exists yet; this is only
-     a placeholder note, nothing fabricated beyond that.
+     Weighted section 3 of 4: The Library — warm palette, deliberately
+     separate from the cool app-universe zones since it's content,
+     not tooling. Links out to the real library.html page.
      ============================================================ -->
 <div class="library-note">
-  <p class="library-label">Coming Later</p>
+  <p class="library-label">Read</p>
   <h3 class="library-title">The Library</h3>
   <p class="library-text">
-    A reading space for Nuteam's own writing and references is planned
-    for this spot. Not built yet — this is a placeholder, not a live section.
+    Nuteam's own writing — notes on AI, EPOS, and building things
+    thoughtfully. Starting with "น้อยแต่มาก," the story of how EPOS came to be.
   </p>
+  <a href="library.html" class="library-link">Visit the Library →</a>
 </div>
 
 <!-- ============================================================
