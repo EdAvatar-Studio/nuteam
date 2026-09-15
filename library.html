@@ -226,21 +226,6 @@
   }
   .book-btn:hover{ background:var(--accent-deep); }
 
-  .book-card.upcoming{
-    border-style:dashed;
-    background: var(--card-bg-inactive);
-    box-shadow: 0 1px 1px rgba(58,51,36,0.05), 0 3px 8px rgba(58,51,36,0.06);
-  }
-  .book-card.upcoming .book-cover{
-    display:flex; align-items:center; justify-content:center;
-    color:var(--text-mute);
-    font-size:11px;
-    letter-spacing:0.1em;
-    text-transform:uppercase;
-    border-style:dashed;
-  }
-  .book-card.upcoming .book-title{ color:var(--text-soft); }
-
   @media (max-width: 640px){
     .book-card{ grid-template-columns:1fr; }
     .book-cover{ max-width:200px; }
@@ -348,14 +333,25 @@ document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeN
     </div>
   </div>
 
-  <div class="book-card upcoming">
-    <div class="book-cover">Coming Soon</div>
+  <div class="book-card">
+    <div class="book-cover">
+      <img src="library/noi-tae-mak-2-cover.png" alt="น้อยแต่มาก #2 cover"/>
+    </div>
     <div>
       <p class="book-volume">Volume 2</p>
       <h2 class="book-title">น้อยแต่มาก #2</h2>
+      <p class="book-subtitle">พิมพ์น้อย เข้าใจไว ได้ผลตรงใจ</p>
       <p class="book-desc">
-        The next volume in the series — not yet written. No details to share yet.
+        The practical follow-up to Volume 1 — why long prompts still produce weak
+        answers, how EPOS works as a shared language across seven different AI
+        models, real cases from everyday app use, and a closing look at who
+        actually gets to access AI and at what cost. Includes an appendix laying
+        out EPOS's core principles for practical use.
       </p>
+      <div class="book-actions">
+        <a class="book-btn" href="library/noi-tae-mak-2.epub" download="noi-tae-mak-2.epub">Download EPUB →</a>
+        <a class="book-btn" href="library/noi-tae-mak-2.pdf" download="noi-tae-mak-2.pdf">Download PDF →</a>
+      </div>
     </div>
   </div>
 </main>
