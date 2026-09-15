@@ -6,96 +6,56 @@
 <title>NUTEAM.ORG — App Universe</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>
 <style>
  :root{
-  --bg:#d7d7d5;
-  --bg-2:#cfcfcd;
-  --bg-3:#e3e3e1;
+  /* cool cement gray identity */
+  --hero-bg:#D6D8D6;
+  --zone-bg:#E6E7E4;
 
-  --panel:#dcdcd9;
-  --panel-2:#cfcfcb;
-  --panel-3:#ececea;
+  --text:#2B2E2D;
+  --text-soft:#4C4F4D;
+  --text-mute:#5F625F;
 
-  --line:#b8b8b4;
-  --line-soft:#d9d9d5;
+  --accent:#5A7680;
+  --accent-deep:#41565D;
 
-  --text:#1f1f1c;
-  --muted:#5f5f5a;
-  --ink:var(--text);
-  --ink-soft:var(--muted);
+  --card-bg:#DEE0DC;
+  --card-bg-inactive:rgba(210,212,208,0.75);
 
-  --silver:#d8d8d6;
-  --silver-hi:#f3f3f1;
-  --silver-mid:#c8c8c4;
-  --silver-low:#a9a9a4;
+  --line:rgba(43,46,45,0.16);
+  --line-soft:rgba(43,46,45,0.09);
 
-  --gold:#b89a4a;
-  --gold-2:#9b7f39;
-  --gold-soft:#d2b56a;
-  --gold-lt:#c9ac66;
+  --shadow-near:0 1px 2px rgba(43,46,45,0.06);
+  --shadow-far:0 6px 16px rgba(43,46,45,0.14);
+  --shadow-far-strong:0 16px 34px rgba(43,46,45,0.20);
+  --shadow-far-faint:0 4px 10px rgba(43,46,45,0.07);
 
-  --shadow-soft:
-    10px 10px 26px rgba(70,70,70,0.14),
-    -8px -8px 18px rgba(255,255,255,0.58);
+  --radius:20px;
 
-  --shadow-card:
-    14px 14px 34px rgba(70,70,70,0.16),
-    -10px -10px 22px rgba(255,255,255,0.62);
-
-  --shadow-inset:
-    inset 2px 2px 5px rgba(255,255,255,0.45),
-    inset -2px -2px 5px rgba(110,110,110,0.10);
-
-  --radius:24px;
-}
+  /* library zone — warm, isolated from the cool app-universe palette */
+  --lib-bg:#F1ECE0;
+  --lib-text:#3A3324;
+  --lib-border:#DCD3BF;
+ }
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
 
  body{
-  background:
-    linear-gradient(rgba(255,255,255,0.10), rgba(0,0,0,0.03)),
-    linear-gradient(145deg, #e4e4e2, #cbcbc8);
+  background: var(--hero-bg);
   color:var(--text);
   font-family:'DM Mono',monospace;
   line-height:1.7;
   position:relative;
-}
-
-/* texture เบา ๆ */
-body::before{
-  content:"";
-  position:fixed;
-  inset:0;
-  pointer-events:none;
-  opacity:0.16;
-  background-image:
-    radial-gradient(circle at 20% 20%, rgba(255,255,255,0.45) 0 1px, transparent 1px),
-    radial-gradient(circle at 80% 30%, rgba(0,0,0,0.035) 0 1px, transparent 1px),
-    radial-gradient(circle at 40% 70%, rgba(255,255,255,0.22) 0 1px, transparent 1px);
-  background-size: 18px 18px, 22px 22px, 26px 26px;
-  mix-blend-mode:multiply;
-}
-
-  body::before {
-    content: '';
-    position: fixed; inset: 0;
-    background-image:
-      linear-gradient(rgba(0,0,0,0.018) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(0,0,0,0.018) 1px, transparent 1px);
-    background-size: 96px 96px;
-    pointer-events: none;
-    z-index: 0;
-    opacity: 0.45;
-  }
+ }
 
   .rivet {
     width: 16px; height: 16px;
-    background: radial-gradient(circle at 35% 35%, #c9c1b4, #8d8478);
+    background: radial-gradient(circle at 35% 35%, #cfd1cd, #8f938f);
     border-radius: 50%;
-    border: 1px solid rgba(0,0,0,0.12);
-    box-shadow: inset 0 1px 0 rgba(255,255,255,0.35), 0 1px 2px rgba(0,0,0,0.10);
+    border: 1px solid rgba(0,0,0,0.14);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.30), 0 1px 2px rgba(0,0,0,0.12);
     flex-shrink: 0;
   }
 
@@ -108,20 +68,17 @@ body::before{
   justify-content:space-between;
   padding:0 24px;
   height:68px;
-  background:
-    linear-gradient(180deg, rgba(246,246,244,0.92), rgba(217,217,214,0.92));
+  background: rgba(214,216,214,0.92);
   backdrop-filter:blur(8px);
-  border-bottom:1px solid rgba(255,255,255,0.45);
-  box-shadow:
-    0 1px 0 rgba(255,255,255,0.55),
-    0 6px 20px rgba(40,40,40,0.08);
-}
+  border-bottom:1px solid rgba(255,255,255,0.4);
+  box-shadow: 0 1px 0 rgba(255,255,255,0.4), 0 6px 20px rgba(43,46,45,0.08);
+ }
 
   .nav-logo {
     font-family: 'Bebas Neue', sans-serif;
     font-size: 24px;
     letter-spacing: 0.12em;
-    color: var(--ink);
+    color: var(--text);
     margin-right: 32px;
     text-decoration: none;
   }
@@ -139,21 +96,21 @@ body::before{
     font-size: 11px;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: var(--ink-soft);
+    color: var(--text-soft);
     text-decoration: none;
-    border-right: 1px solid rgba(0,0,0,0.05);
+    border-right: 1px solid var(--line-soft);
     transition: color 0.2s, background 0.2s;
   }
 
-  .nav-links a:first-child { border-left: 1px solid rgba(0,0,0,0.05); }
-  .nav-links a:hover { color: var(--ink); background: rgba(255,255,255,0.35); }
+  .nav-links a:first-child { border-left: 1px solid var(--line-soft); }
+  .nav-links a:hover { color: var(--text); background: rgba(255,255,255,0.35); }
 
   .btn-explore {
     margin-left: auto;
     display: flex; align-items: center; gap: 8px;
     padding: 8px 20px;
-    background: var(--gold);
-    color: #171511;
+    background: var(--accent);
+    color: #F2F4F2;
     font-size: 11px;
     letter-spacing: 0.12em;
     text-transform: uppercase;
@@ -161,11 +118,11 @@ body::before{
     text-decoration: none;
     font-weight: 500;
     border-radius: 999px;
-    box-shadow: 0 6px 16px rgba(184,150,62,0.18);
+    box-shadow: 0 6px 16px rgba(90,118,128,0.28);
     transition: background 0.2s, transform 0.2s;
   }
 
-  .btn-explore:hover { background: var(--gold-lt); transform: translateY(-1px); }
+  .btn-explore:hover { background: var(--accent-deep); transform: translateY(-1px); }
   .btn-explore .arr { font-size: 14px; }
 
   .nav-corner {
@@ -179,17 +136,17 @@ body::before{
     width:44px; height:44px;
     flex-direction:column; align-items:center; justify-content:center; gap:4px;
     border-radius:10px;
-    border:1px solid rgba(0,0,0,0.12);
-    background:linear-gradient(180deg,#e8e8e6,#d2d2cf);
+    border:1px solid var(--line);
+    background:linear-gradient(180deg,#e9eae8,#cfd1cd);
     box-shadow:
-      inset 0 1px 0 rgba(255,255,255,0.55),
-      inset 0 -2px 3px rgba(0,0,0,0.08),
-      0 3px 8px rgba(40,40,40,0.12);
+      inset 0 1px 0 rgba(255,255,255,0.5),
+      inset 0 -2px 3px rgba(0,0,0,0.06),
+      0 3px 8px rgba(43,46,45,0.12);
     cursor:pointer;
   }
   .nav-toggle-bar{
     width:20px; height:2px; border-radius:2px;
-    background:var(--gold-2);
+    background:var(--accent-deep);
     transition:transform .25s ease, opacity .2s ease;
   }
   .nav-toggle[aria-expanded="true"] .nav-toggle-bar:nth-child(1){ transform:translateY(6px) rotate(45deg); }
@@ -198,7 +155,7 @@ body::before{
 
   .nav-overlay{
     position:fixed; inset:0; z-index:29;
-    background:rgba(20,18,14,0.45);
+    background:rgba(20,22,21,0.45);
     opacity:0; pointer-events:none;
     transition:opacity .25s ease;
   }
@@ -215,11 +172,9 @@ body::before{
   .mobile-nav-panel{
     height:100%; padding:28px 22px;
     display:flex; flex-direction:column;
-    background:
-      linear-gradient(145deg, rgba(255,255,255,0.55), rgba(255,255,255,0.15)),
-      linear-gradient(180deg, var(--panel), var(--panel-2));
-    border-left:1px solid rgba(0,0,0,0.10);
-    box-shadow:-20px 0 40px rgba(31,27,22,0.18);
+    background: linear-gradient(180deg, var(--card-bg), var(--zone-bg));
+    border-left:1px solid var(--line);
+    box-shadow:-20px 0 40px rgba(43,46,45,0.18);
   }
 
   .mobile-nav-rivets{ display:flex; justify-content:space-between; padding:0 2px; }
@@ -229,73 +184,75 @@ body::before{
     display:block; padding:16px 4px;
     font-family:'Bebas Neue', sans-serif;
     font-size:22px; letter-spacing:0.05em;
-    color:var(--ink);
+    color:var(--text);
     text-decoration:none;
-    border-bottom:1px solid rgba(0,0,0,0.08);
+    border-bottom:1px solid var(--line-soft);
     transition:color 0.2s;
   }
-  .mobile-nav-links a:hover, .mobile-nav-links a:active{ color:var(--gold-2); }
+  .mobile-nav-links a:hover, .mobile-nav-links a:active{ color:var(--accent-deep); }
 
   @media (max-width: 900px) {
     .nav-links, .btn-explore { display:none; }
     .nav-toggle { display:flex; }
   }
 
+  /* ---------- Hero ---------- */
   .hero {
     position: relative;
     min-height: 460px;
-    overflow: hidden;
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 18px;
-    padding: 16px;
+    overflow: visible;
+    padding: 16px 16px 44px;
   }
 
-.hero-panel {
-  background:
-    linear-gradient(145deg, rgba(255,255,255,0.62), rgba(255,255,255,0.18)),
-    linear-gradient(180deg, #f3ede4 0%, #e4dccf 100%);
-  border: 1px solid rgba(0,0,0,0.10);
-  border-radius: 28px;
-  box-shadow:
-    0 20px 40px rgba(31,27,22,0.10),
-    0 6px 14px rgba(31,27,22,0.05),
-    inset 0 1px 0 rgba(255,255,255,0.72),
-    inset 0 -2px 0 rgba(0,0,0,0.04);
-  padding: 40px 42px;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  min-height: 420px;
-  overflow: hidden;
-}
-  .hero-panel::before,
+  .hero-panel {
+    position: relative;
+    background: var(--hero-bg);
+    border: 1px solid var(--line);
+    border-top: 0.5px solid rgba(255,255,255,0.55);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-near), var(--shadow-far-strong);
+    padding: 44px 42px 56px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 420px;
+    overflow: hidden;
+    isolation: isolate;
+  }
+  .hero-panel::before{
+    content:'';
+    position:absolute; inset:0;
+    filter:url(#concreteNoise);
+    opacity:0.5;
+    pointer-events:none;
+    z-index:0;
+  }
+  .hero-panel > *{ position:relative; z-index:1; }
+
   .hero-panel::after {
     content: '';
     position: absolute;
-    width: 10px; height: 10px;
-    background: radial-gradient(circle at 35% 35%, #c9c1b4, #8d8478);
-    border-radius: 50%;
-    border: 1px solid rgba(0,0,0,0.16);
+    inset: 14px;
+    border: 1px solid rgba(43,46,45,0.07);
+    border-radius: calc(var(--radius) - 6px);
+    pointer-events: none;
+    z-index: 1;
   }
 
-  .hero-panel::before { top: 10px; left: 10px; }
-  .hero-panel::after  { top: 10px; right: 10px; }
-  
-  .hero-panel-frame {
-  position: absolute;
-  inset: 14px;
-  border: 1px solid rgba(0,0,0,0.06);
-  border-radius: 20px;
-  pointer-events: none;
-}
-  
+  .hero-jagged-edge{
+    position:absolute;
+    left:16px; right:16px; bottom:0;
+    height:42px;
+    line-height:0;
+    z-index:2;
+    pointer-events:none;
+  }
+  .hero-jagged-edge svg{ display:block; width:100%; height:100%; }
+
   .hero-eyebrow {
     font-size: 10px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--gold-dk);
+    letter-spacing: 0.18em;
+    color: var(--accent-deep);
     margin-bottom: 14px;
   }
 
@@ -303,7 +260,7 @@ body::before{
     font-family: 'Bebas Neue', sans-serif;
     font-size: clamp(64px, 10vw, 112px);
     line-height: 0.92;
-    color: var(--steel-dk);
+    color: var(--text);
     letter-spacing: 0.04em;
     margin-bottom: 8px;
   }
@@ -311,7 +268,7 @@ body::before{
   .hero-sub {
     font-family: 'Bebas Neue', sans-serif;
     font-size: clamp(22px, 3vw, 34px);
-    color: var(--steel);
+    color: var(--text-soft);
     letter-spacing: 0.10em;
     margin-bottom: 22px;
   }
@@ -319,7 +276,7 @@ body::before{
   .hero-desc {
     font-size: 12px;
     line-height: 1.78;
-    color: var(--ink-soft);
+    color: var(--text-soft);
     max-width: 560px;
     margin-bottom: 30px;
   }
@@ -339,49 +296,231 @@ body::before{
   }
 
   .btn-primary {
-    background: var(--gold);
-    color: #171511;
-    border: 1px solid var(--gold);
-    box-shadow: 0 6px 16px rgba(184,150,62,0.18);
+    background: var(--accent);
+    color: #F2F4F2;
+    border: 1px solid var(--accent);
+    box-shadow: 0 6px 16px rgba(90,118,128,0.24);
   }
-
-  .btn-primary:hover { background: var(--gold-lt); transform: translateY(-1px); }
+  .btn-primary:hover { background: var(--accent-deep); transform: translateY(-1px); }
 
   .btn-secondary {
-    background: rgba(255,255,255,0.30);
-    border: 1px solid rgba(0,0,0,0.10);
-    color: var(--ink-soft);
+    background: rgba(255,255,255,0.35);
+    border: 1px solid var(--line);
+    color: var(--text-soft);
   }
-
-  .btn-secondary:hover {
-    background: rgba(255,255,255,0.55);
-    color: var(--ink);
-  }
+  .btn-secondary:hover { background: rgba(255,255,255,0.6); color: var(--text); }
 
   .hero-locations {
     display: flex; gap: 20px;
     font-size: 10px;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: var(--ink-soft);
+    color: var(--text-mute);
     padding-top: 24px;
-    border-top: 1px solid rgba(0,0,0,0.08);
+    border-top: 1px solid var(--line-soft);
     flex-wrap: wrap;
   }
 
+  /* ---------- Section rule ---------- */
   .section-rule {
     display: flex; align-items: center; gap: 16px;
     padding: 0 16px;
     height: 40px;
+    margin-top: 10px;
+  }
+  .section-rule .rivet { width: 12px; height: 12px; }
+  .section-rule-line { flex: 1; height: 1px; background: var(--line); }
+  .section-rule-label {
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    color: var(--text-mute);
   }
 
-  .section-rule .rivet { width: 12px; height: 12px; }
-  .section-rule-line { flex: 1; height: 1px; background: rgba(0,0,0,0.10); }
-  .section-rule-label {
-    font-size: 9px;
-    letter-spacing: 0.2em;
+  /* ---------- Card elevation system ---------- */
+  .card-elev-strong{
+    box-shadow: var(--shadow-near), var(--shadow-far-strong);
+    border-top: 0.5px solid rgba(255,255,255,0.55);
+  }
+  .card-elev-medium{
+    box-shadow: var(--shadow-near), var(--shadow-far);
+    border-top: 0.5px solid rgba(255,255,255,0.5);
+  }
+  .card-elev-light{
+    box-shadow: var(--shadow-near), var(--shadow-far-faint);
+    border-top: 0.5px solid rgba(255,255,255,0.4);
+  }
+  .card-elev-faint{
+    box-shadow: 0 1px 1px rgba(43,46,45,0.05), 0 3px 8px rgba(43,46,45,0.06);
+    border-top: 0.5px solid rgba(255,255,255,0.28);
+  }
+
+  /* ---------- EPOS flagship (full-width, dark) ---------- */
+  .flagship-wrap{ padding: 26px 16px 0; }
+  .flagship{
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    background: var(--accent-deep);
+    border-radius: var(--radius);
+    padding: 56px 42px;
+    box-shadow: var(--shadow-near), var(--shadow-far-strong);
+  }
+  .flagship::before{
+    content:'';
+    position:absolute; inset:0;
+    filter:url(#concreteNoise);
+    opacity:0.35;
+    mix-blend-mode:overlay;
+    pointer-events:none;
+    z-index:0;
+  }
+  .flagship-inner{ position:relative; z-index:1; max-width: 640px; }
+  .flagship-label{
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    color: rgba(242,244,242,0.65);
+    margin-bottom: 14px;
+  }
+  .flagship-title{
+    font-family:'Bebas Neue', sans-serif;
+    font-size: clamp(34px, 5vw, 48px);
+    letter-spacing: 0.05em;
+    color: #F2F4F2;
+    margin-bottom: 16px;
+    line-height: 1;
+  }
+  .flagship-text{
+    font-size: 13px;
+    line-height: 1.8;
+    color: rgba(242,244,242,0.78);
+    margin-bottom: 24px;
+  }
+  .flagship-status{
+    display:inline-block;
+    padding: 5px 12px;
+    font-size: 9.5px;
+    letter-spacing: 0.1em;
+    border: 1px solid rgba(242,244,242,0.35);
+    border-radius: 999px;
+    color: rgba(242,244,242,0.85);
+    margin-bottom: 20px;
+  }
+  .flagship-btn{
+    display:inline-flex; align-items:center; gap:8px;
+    padding: 11px 24px;
+    border-radius: 999px;
+    background: var(--card-bg);
+    color: var(--text);
+    font-size: 11px;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: var(--steel);
+    text-decoration: none;
+    transition: background 0.2s, transform 0.2s;
+  }
+  .flagship-btn:hover{ background:#F2F4F2; transform: translateY(-1px); }
+
+  /* ---------- Store + Studio, 2-col ---------- */
+  .duo-grid{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+    padding: 22px 16px 0;
+  }
+
+  .duo-card{
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    padding: 32px 30px;
+    display: flex;
+    flex-direction: column;
+    min-height: 230px;
+  }
+  .duo-card.stable{
+    border: 1px solid var(--line);
+  }
+  .duo-card.experimental{
+    border: 1px dashed var(--line);
+    background: var(--card-bg-inactive);
+  }
+
+  .duo-label{
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    color: var(--accent-deep);
+    margin-bottom: 10px;
+  }
+  .duo-title{
+    font-family:'Bebas Neue', sans-serif;
+    font-size: 30px;
+    letter-spacing: 0.06em;
+    color: var(--text);
+    margin-bottom: 12px;
+  }
+  .duo-text{
+    font-size: 12px;
+    line-height: 1.75;
+    color: var(--text-soft);
+    flex: 1;
+    margin-bottom: 20px;
+  }
+  .duo-btn{
+    display: inline-flex; align-items: center; gap: 8px;
+    align-self: flex-start;
+    padding: 10px 20px;
+    border-radius: 999px;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: background 0.2s, color 0.2s, transform 0.2s;
+  }
+  .duo-card.stable .duo-btn{
+    background: var(--accent);
+    color: #F2F4F2;
+  }
+  .duo-card.stable .duo-btn:hover{ background: var(--accent-deep); transform: translateY(-1px); }
+  .duo-card.experimental .duo-btn{
+    background: transparent;
+    border: 1px solid var(--line);
+    color: var(--text-soft);
+  }
+  .duo-card.experimental .duo-btn:hover{ color: var(--text); background: rgba(255,255,255,0.4); }
+
+  /* ---------- Library placeholder (warm, isolated) ---------- */
+  .library-note{
+    margin: 22px 16px 0;
+    background: var(--lib-bg);
+    border: 1px dashed var(--lib-border);
+    border-radius: var(--radius);
+    padding: 26px 28px;
+    box-shadow: 0 4px 12px rgba(58,51,36,0.06);
+  }
+  .library-label{
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    color: #8a7a4f;
+    margin-bottom: 8px;
+  }
+  .library-title{
+    font-family:'Bebas Neue', sans-serif;
+    font-size: 24px;
+    letter-spacing: 0.05em;
+    color: var(--lib-text);
+    margin-bottom: 8px;
+  }
+  .library-text{
+    font-size: 11.5px;
+    line-height: 1.7;
+    color: var(--lib-text);
+    opacity: 0.75;
+    max-width: 560px;
+  }
+
+  /* ---------- App Universe (secondary zone) ---------- */
+  .zone{
+    background: var(--zone-bg);
+    margin-top: 40px;
+    padding: 40px 0 8px;
   }
 
   .pillars {
@@ -392,226 +531,122 @@ body::before{
   }
 
   .pillar {
-    background:
-      linear-gradient(180deg, rgba(255,255,255,0.32), rgba(255,255,255,0.10)),
-      linear-gradient(180deg, var(--panel), var(--panel-2));
-    border: 1px solid rgba(0,0,0,0.08);
-    border-radius: 22px;
-    border-right: 1px solid var(--border);
-    box-shadow: var(--shadow-card), var(--shadow-inset);
+    background: var(--card-bg);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
     padding: 28px 24px;
     position: relative;
     cursor: pointer;
-    transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
-    min-height: 220px;
+    transition: transform 0.2s, box-shadow 0.2s;
+    min-height: 200px;
     display: flex; flex-direction: column;
   }
-
-  .pillar:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 14px 28px rgba(31,27,22,0.10);
-  }
-
-  .pillar-num {
-    font-size: 10px;
-    color: var(--gold-dk);
-    letter-spacing: 0.08em;
-    margin-bottom: 6px;
-  }
+  .pillar:hover { transform: translateY(-3px); box-shadow: var(--shadow-far); }
 
   .pillar-title {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 28px;
-    letter-spacing: 0.08em;
-    color: var(--steel-dk);
+    font-size: 26px;
+    letter-spacing: 0.06em;
+    color: var(--text);
     margin-bottom: 12px;
   }
 
   .pillar-desc {
     font-size: 11px;
     line-height: 1.68;
-    color: var(--ink-soft);
+    color: var(--text-soft);
     flex: 1;
   }
 
   .pillar-arr {
     margin-top: 16px;
-    color: var(--gold-dk);
+    color: var(--accent-deep);
     font-size: 16px;
     display: inline-block;
     transition: transform 0.2s;
   }
-
   .pillar:hover .pillar-arr { transform: translateX(4px); }
 
-  .pillar-icon {
-    position: absolute; right: 16px; top: 20px;
-    width: 58px; height: 58px;
-    background: linear-gradient(180deg, #d8d0c4, #b7aea0);
-    border-radius: 10px;
-    border: 1px solid rgba(0,0,0,0.08);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 24px;
-    opacity: 0.95;
-    box-shadow: inset 0 1px 0 rgba(255,255,255,0.38), 0 6px 14px rgba(0,0,0,0.08);
+  .mini-links-grid{
+    display:grid;
+    grid-template-columns:repeat(2, 1fr);
+    gap:14px;
+    margin-top:18px;
   }
 
-  #apps {
-    background: transparent;
+  .mini-link-card{
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+    min-height:112px;
+    padding:16px 16px 14px;
+    text-decoration:none;
+    border-radius:16px;
+    background: var(--card-bg);
+    border: 1px solid var(--line);
+    box-shadow: var(--shadow-near), var(--shadow-far-faint);
+    border-top: 0.5px solid rgba(255,255,255,0.5);
+    transition:transform .18s ease, box-shadow .18s ease;
   }
+  .mini-link-card:hover{ transform:translateY(-2px); box-shadow: var(--shadow-near), var(--shadow-far); }
 
-  .apps-header {
-    display: flex; align-items: baseline; justify-content: space-between;
-    padding: 28px 24px 20px;
+  .mini-link-title{
+    font-family:'Bebas Neue', sans-serif;
+    font-size:20px;
+    letter-spacing:.05em;
+    color:var(--text);
+    line-height:1;
+    margin-bottom:8px;
   }
-.app-hub {
-  padding: 60px 24px;
-  background: var(--bg2);
-  border-bottom: 1px solid var(--border);
-}
+  .mini-link-text{ font-size:11px; line-height:1.6; color:var(--text-mute); }
+  .mini-link-arrow{ margin-top:12px; font-size:14px; color:var(--accent-deep); align-self:flex-start; }
 
-.app-hub-inner{
-  max-width: 1180px;
-  margin: 0 auto;
-  text-align: center;
-  padding: 56px 40px;
-  border-radius: 28px;
-  background:
-    linear-gradient(145deg, rgba(255,255,255,0.50), rgba(255,255,255,0.18)),
-    linear-gradient(145deg, var(--panel), var(--panel-2));
-  border: 1px solid rgba(255,255,255,0.42);
-  box-shadow: var(--shadow-card), var(--shadow-inset);
-}
-
-.app-hub-text{
-  max-width: 760px;
-  margin: 0 auto;
-  text-align: center;
-}
-
-.app-hub-label {
-  font-size: 10px;
-  letter-spacing: 0.25em;
-  color: var(--gold-dk);
-  margin-bottom: 10px;
-}
-
-.app-hub-title {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 46px;
-  letter-spacing: 0.12em;
-  color: #1f1b16;
-  margin-bottom: 14px;
-}
-
-.app-hub-desc {
-  font-size: 13px;
-  color: #5c564d;
-  margin-bottom: 26px;
-  line-height: 1.7;
-}
-
-.app-hub-btn {
-  display: inline-block;
-  padding: 12px 28px;
-  border-radius: 30px;
-
-  background: var(--gold);
-  color: #1a1814;
-
-  font-size: 11px;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-
-  text-decoration: none;
-  transition: 0.2s;
-}
-
-.app-hub-btn:hover {
-  background: var(--gold-lt);
-}
-  .apps-title {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 28px;
-    letter-spacing: 0.1em;
-    color: var(--steel-dk);
-  }
-
-  .apps-subtitle {
-    font-size: 11px;
-    color: var(--ink-soft);
-    margin-left: 16px;
-  }
-
-  .view-all {
-    display: flex; align-items: center; gap: 8px;
-    font-size: 10px;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--gold-dk);
-    text-decoration: none;
-    transition: color 0.2s;
-  }
-
-  .view-all:hover { color: var(--gold); }
+  #apps { background: transparent; padding-top: 4px; }
 
   .apps-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 18px;
-    padding: 36px 0 0;
+    padding: 0 16px 16px;
     text-align: left;
   }
 
   .app-card {
-    background:
-      linear-gradient(180deg, rgba(255,255,255,0.34), rgba(255,255,255,0.10)),
-      linear-gradient(180deg, var(--panel), var(--panel-2));
-    border: 1px solid rgba(0,0,0,0.08);
-    border-radius: 22px;
-    box-shadow: var(--shadow-2);
+    background: var(--card-bg);
+    border: 1px solid var(--line);
+    border-radius: 18px;
     padding: 22px 18px;
     cursor: default;
     transition: transform 0.2s, box-shadow 0.2s;
     display: flex; flex-direction: column;
   }
-
-  .app-card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 14px 28px rgba(31,27,22,0.10);
-  }
+  .app-card.card-elev-faint{ background: var(--card-bg-inactive); border-style: dashed; }
+  .app-card:hover { transform: translateY(-3px); }
 
   .app-icon {
-    width: 64px; height: 64px;
-    background: linear-gradient(180deg, #d7cfc3, #bbb1a3);
-    border: 1px solid rgba(0,0,0,0.08);
+    width: 60px; height: 60px;
+    background: linear-gradient(180deg, #cfd1cd, #b6b9b4);
+    border: 1px solid var(--line);
     border-radius: 12px;
     margin-bottom: 16px;
     display: flex; align-items: center; justify-content: center;
-    font-size: 28px;
-    color: var(--steel-dk);
-    box-shadow: inset 0 1px 0 rgba(255,255,255,0.38), 0 6px 14px rgba(0,0,0,0.08);
+    font-size: 26px;
+    color: var(--text);
     overflow: hidden;
   }
-
-  .app-icon img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 10px;
-  }
+  .app-icon img { width: 100%; height: 100%; object-fit: cover; border-radius: 10px; }
 
   .app-name {
     font-family: 'Bebas Neue', sans-serif;
     font-size: 18px;
-    letter-spacing: 0.08em;
-    color: var(--steel-dk);
+    letter-spacing: 0.06em;
+    color: var(--text);
     margin-bottom: 4px;
   }
 
   .app-tagline {
     font-size: 10px;
-    color: var(--ink-soft);
+    color: var(--text-mute);
     line-height: 1.5;
     margin-bottom: 14px;
     flex: 1;
@@ -619,222 +654,137 @@ body::before{
 
   .app-status {
     display: inline-block;
-    padding: 4px 8px;
+    padding: 4px 9px;
     font-size: 9px;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
+    letter-spacing: 0.08em;
     border: 1px solid;
     border-radius: 999px;
     width: fit-content;
   }
-
-  .app-status.active   { color: var(--gold-dk); border-color: rgba(184,150,62,0.35); background: rgba(184,150,62,0.08); }
-  .app-status.testing  { color: #547d95; border-color: rgba(84,125,149,0.25); background: rgba(84,125,149,0.08); }
-  .app-status.working  { color: #5f7b47; border-color: rgba(95,123,71,0.25); background: rgba(95,123,71,0.08); }
-  .app-status.progress { color: var(--steel); border-color: rgba(93,86,77,0.18); background: rgba(93,86,77,0.06); }
-  .app-status.growing  { color: #8c5c45; border-color: rgba(140,92,69,0.22); background: rgba(140,92,69,0.08); }
-  .app-status.future   { color: var(--ink-soft); border-color: rgba(68,64,57,0.16); background: rgba(68,64,57,0.05); }
+  .app-status.active   { color: var(--accent-deep); border-color: rgba(90,118,128,0.35); background: rgba(90,118,128,0.08); }
+  .app-status.future   { color: var(--text-mute); border-color: var(--line); background: rgba(43,46,45,0.04); }
 
   .bottom-grid {
     display: grid;
-    grid-template-columns: 1fr 1.8fr 1fr;
+    grid-template-columns: 1fr 1fr;
     gap: 18px;
-    padding: 0 16px 16px;
+    padding: 26px 16px 16px;
   }
 
   .bottom-section {
-    background:
-      linear-gradient(180deg, rgba(255,255,255,0.34), rgba(255,255,255,0.10)),
-      linear-gradient(180deg, var(--panel), var(--panel-2));
-    border: 1px solid rgba(0,0,0,0.08);
-    border-radius: 24px;
-    border-right: 1px solid var(--border);
-    box-shadow: var(--shadow-card), var(--shadow-inset);
-    padding: 36px 32px;
+    background: var(--card-bg);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 32px 30px;
     position: relative;
     overflow: hidden;
-    min-height: 260px;
+    min-height: 220px;
   }
-.ed-focus {
-  border: 1px solid rgba(184,150,62,0.45);
 
-  background:
-    linear-gradient(180deg, rgba(255,255,255,0.55), rgba(255,255,255,0.25));
-
-  box-shadow:
-    0 30px 60px rgba(184,150,62,0.18),
-    0 10px 20px rgba(31,27,22,0.12),
-    inset 0 1px 0 rgba(255,255,255,0.6);
-}
   .bottom-label {
-    font-size: 9px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--gold-dk);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    color: var(--accent-deep);
     margin-bottom: 8px;
   }
-
   .bottom-title {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 28px;
-    letter-spacing: 0.1em;
-    color: var(--steel-dk);
+    font-size: 26px;
+    letter-spacing: 0.06em;
+    color: var(--text);
     margin-bottom: 14px;
     line-height: 1;
   }
-
   .bottom-text {
     font-size: 11px;
     line-height: 1.75;
-    color: var(--ink-soft);
+    color: var(--text-soft);
     margin-bottom: 22px;
   }
 
-  .bottom-links { display: flex; flex-direction: column; gap: 10px; }
-
-  .bottom-link {
-    display: flex; align-items: center; justify-content: space-between;
-    font-size: 11px;
-    color: var(--ink-soft);
-    text-decoration: none;
-    cursor: pointer;
-    padding: 4px 0;
-    border-bottom: 1px solid rgba(0,0,0,0.08);
-    transition: color 0.2s;
-  }
-
-  .bottom-link:hover { color: var(--ink); }
-  .bottom-link .arr2 { color: var(--gold-dk); }
-
   footer {
-    background: rgba(244,239,231,0.76);
+    background: rgba(222,224,220,0.8);
     backdrop-filter: blur(8px);
-    border-top: 1px solid rgba(0,0,0,0.08);
+    border-top: 1px solid var(--line);
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 0;
-    margin-top: 8px;
+    margin-top: 40px;
   }
 
-  .footer-col {
-    padding: 28px 24px;
-    border-right: 1px solid rgba(0,0,0,0.06);
-  }
-
+  .footer-col { padding: 28px 24px; border-right: 1px solid var(--line-soft); }
   .footer-col:last-child { border-right: none; }
 
   .footer-logo {
     font-family: 'Bebas Neue', sans-serif;
     font-size: 24px;
     letter-spacing: 0.12em;
-    color: var(--steel-dk);
+    color: var(--text);
     margin-bottom: 8px;
     display: block;
   }
-
-  .footer-tagline {
-    font-size: 10px;
-    color: var(--ink-soft);
-    margin-bottom: 16px;
-    line-height: 1.6;
-  }
-
+  .footer-tagline { font-size: 10px; color: var(--text-mute); margin-bottom: 16px; line-height: 1.6; }
   .footer-copy {
-    font-size: 9px;
-    color: var(--ink-soft);
-    letter-spacing: 0.06em;
-    border-top: 1px solid rgba(0,0,0,0.08);
-    padding-top: 12px;
-    margin-top: 12px;
+    font-size: 9px; color: var(--text-mute); letter-spacing: 0.05em;
+    border-top: 1px solid var(--line-soft); padding-top: 12px; margin-top: 12px;
   }
 
-  .footer-heading,
-  .footer-stay {
-    font-size: 9px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--gold-dk);
+  .footer-heading, .footer-stay {
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    color: var(--accent-deep);
     margin-bottom: 14px;
   }
 
-  .social-row {
-    display: flex; gap: 12px; margin-bottom: 14px; flex-wrap: wrap;
-  }
-
-  .social-link {
-    font-size: 10px;
-    letter-spacing: 0.06em;
-    color: var(--ink-soft);
-    text-decoration: none;
-    transition: color 0.2s;
-  }
-
-  .social-link:hover { color: var(--ink); }
+  .social-row { display: flex; gap: 12px; margin-bottom: 14px; flex-wrap: wrap; }
+  .social-link { font-size: 10px; letter-spacing: 0.05em; color: var(--text-mute); text-decoration: none; transition: color 0.2s; }
+  .social-link:hover { color: var(--text); }
 
   .social-icons { display: flex; gap: 12px; margin-top: 4px; }
-
   .sicon {
     width: 32px; height: 32px;
-    border: 1px solid rgba(0,0,0,0.10);
-    background: rgba(255,255,255,0.32);
+    border: 1px solid var(--line);
+    background: rgba(255,255,255,0.3);
     display: flex; align-items: center; justify-content: center;
-    color: var(--ink-soft);
+    color: var(--text-mute);
     font-size: 14px;
     text-decoration: none; cursor: pointer;
     border-radius: 10px;
     transition: border-color 0.2s, color 0.2s, background 0.2s;
   }
+  .sicon:hover { border-color: var(--accent); color: var(--accent-deep); background: rgba(255,255,255,0.5); }
 
-  .sicon:hover {
-    border-color: rgba(184,150,62,0.26);
-    color: var(--gold-dk);
-    background: rgba(255,255,255,0.52);
-  }
-
-  .footer-stay-sub {
-    font-size: 11px;
-    color: var(--ink-soft);
-    margin-bottom: 14px;
-  }
-
-  .email-row {
-    display: flex;
-    margin-top: 16px;
-  }
-
+  .footer-stay-sub { font-size: 11px; color: var(--text-mute); margin-bottom: 14px; }
+  .email-row { display: flex; margin-top: 16px; }
   .email-input {
     flex: 1;
-    background: rgba(255,255,255,0.42);
-    border: 1px solid rgba(0,0,0,0.10);
+    background: rgba(255,255,255,0.4);
+    border: 1px solid var(--line);
     border-right: none;
-    color: var(--ink);
+    color: var(--text);
     padding: 9px 12px;
     font-family: 'DM Mono', monospace;
     font-size: 11px;
     outline: none;
     border-radius: 10px 0 0 10px;
   }
-
-  .email-input::placeholder { color: var(--ink-soft); }
-
+  .email-input::placeholder { color: var(--text-mute); }
   .email-btn {
     padding: 9px 14px;
-    background: var(--gold);
-    border: 1px solid var(--gold);
-    color: #171511;
+    background: var(--accent);
+    border: 1px solid var(--accent);
+    color: #F2F4F2;
     cursor: pointer;
     font-size: 14px;
     border-radius: 0 10px 10px 0;
     transition: background 0.2s;
   }
-
-  .email-btn:hover { background: var(--gold-lt); }
+  .email-btn:hover { background: var(--accent-deep); }
 
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(18px); }
     to   { opacity: 1; transform: translateY(0); }
   }
-
   .hero-panel > * { animation: fadeUp 0.6s ease both; }
   .hero-eyebrow   { animation-delay: 0.05s; }
   .hero-title     { animation-delay: 0.15s; }
@@ -844,92 +794,39 @@ body::before{
   .hero-locations { animation-delay: 0.40s; }
 
   ::-webkit-scrollbar { width: 7px; }
-  ::-webkit-scrollbar-track { background: #ddd6ca; }
-  ::-webkit-scrollbar-thumb { background: rgba(93,86,77,0.22); border-radius: 4px; }
+  ::-webkit-scrollbar-track { background: var(--zone-bg); }
+  ::-webkit-scrollbar-thumb { background: rgba(43,46,45,0.22); border-radius: 4px; }
 
   @media (max-width: 900px) {
     .pillars { grid-template-columns: 1fr; }
     .apps-grid { grid-template-columns: repeat(2, 1fr); }
-    .bottom-grid { grid-template-columns: 1fr; }
+    .bottom-grid, .duo-grid { grid-template-columns: 1fr; }
     footer { grid-template-columns: 1fr; }
+    .mini-links-grid { grid-template-columns: 1fr; }
   }
 
   @media (max-width: 640px) {
-    .hero-panel { padding: 28px 24px; }
+    .hero-panel { padding: 32px 24px 48px; }
     .hero-title { font-size: 68px; }
     .hero-sub { font-size: 22px; }
     .pillars, .apps-grid { grid-template-columns: 1fr; }
+    .flagship { padding: 40px 26px; }
   }
-
-.pillar-links{
-  display:block;
-}
-
-.mini-links-grid{
-  display:grid;
-  grid-template-columns:repeat(2, 1fr);
-  gap:14px;
-  margin-top:18px;
-}
-
-.mini-link-card{
-  display:flex;
-  flex-direction:column;
-  justify-content:space-between;
-  min-height:120px;
-  padding:16px 16px 14px;
-  text-decoration:none;
-  border-radius:18px;
-
-  background:
-    linear-gradient(145deg, rgba(255,255,255,0.48), rgba(255,255,255,0.16)),
-    linear-gradient(145deg, var(--panel), var(--panel-2));
-  border:1px solid rgba(255,255,255,0.42);
-  box-shadow:
-    8px 8px 18px rgba(70,70,70,0.10),
-    -6px -6px 12px rgba(255,255,255,0.50),
-    inset 1px 1px 0 rgba(255,255,255,0.50);
-  transition:transform .18s ease, box-shadow .18s ease;
-}
-
-.mini-link-card:hover{
-  transform:translateY(-2px);
-  box-shadow:
-    10px 10px 22px rgba(70,70,70,0.12),
-    -7px -7px 14px rgba(255,255,255,0.56),
-    inset 1px 1px 0 rgba(255,255,255,0.55);
-}
-
-.mini-link-title{
-  font-family:'Bebas Neue', sans-serif;
-  font-size:22px;
-  letter-spacing:.08em;
-  color:#20201d;
-  line-height:1;
-  margin-bottom:8px;
-}
-
-.mini-link-text{
-  font-size:11px;
-  line-height:1.6;
-  color:var(--muted);
-}
-
-.mini-link-arrow{
-  margin-top:12px;
-  font-size:14px;
-  color:#8d7a4a;
-  align-self:flex-start;
-}
-
-@media (max-width: 900px){
-  .mini-links-grid{
-    grid-template-columns:1fr;
-  }
-}
 </style>
 </head>
 <body>
+
+<!-- Concrete-noise filter, referenced by .hero-panel::before and .flagship::before -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <filter id="concreteNoise" color-interpolation-filters="sRGB" x="-20%" y="-20%" width="140%" height="140%">
+    <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="3" seed="7" result="noise"/>
+    <feColorMatrix in="noise" type="matrix" values="
+      0 0 0 0 0.30
+      0 0 0 0 0.31
+      0 0 0 0 0.30
+      0.34 0.33 0.33 0 0"/>
+  </filter>
+</svg>
 
 <nav>
   <div class="rivet"></div>
@@ -1016,175 +913,207 @@ them share one mindset: build things that actually work.
       <span>Interface</span>
       <span>Legacy</span>
     </div>
-    <div class="hero-panel-frame"></div>
+    <div class="hero-jagged-edge">
+      <svg viewBox="0 0 1440 42" preserveAspectRatio="none">
+        <path d="M0,0 L0,3 L70,3 L100,24 L130,24 L150,9 L220,9 L240,30 L255,17 L310,17 L330,4 L400,4 L420,28 L460,28 L480,13 L540,13 L565,36 L580,20 L630,20 L650,6 L710,6 L730,26 L760,26 L780,11 L840,11 L860,32 L875,18 L920,18 L940,3 L1000,3 L1020,24 L1050,24 L1070,9 L1130,9 L1150,29 L1165,14 L1220,14 L1240,2 L1300,2 L1320,22 L1440,22 L1440,42 L0,42 Z" fill="var(--hero-bg)"/>
+      </svg>
+    </div>
   </div>
 </section>
 
-<div class="section-rule">
-  <div class="rivet" style="width:12px;height:12px"></div>
-  <span class="section-rule-label">App Universe</span>
-  <div class="section-rule-line"></div>
-  <div class="rivet" style="width:12px;height:12px"></div>
+<!-- ============================================================
+     Weighted section 1 of 4: EPOS Optimizer, flagship treatment
+     ============================================================ -->
+<div class="flagship-wrap">
+  <section id="epos" class="flagship">
+    <div class="flagship-inner">
+      <p class="flagship-label">Token Optimizer</p>
+      <h2 class="flagship-title">EPOS Optimizer</h2>
+      <span class="flagship-status">Coming Soon</span>
+      <p class="flagship-text">
+        Compress text, images, and PDFs into an ultra-efficient format
+        before sending to any AI — cut token cost without losing content.
+        Built for real, everyday AI use.
+      </p>
+      <a href="epos.html" class="flagship-btn">Read the Story →</a>
+    </div>
+  </section>
 </div>
 
-<div class="pillars">
+<!-- ============================================================
+     Weighted section 2 of 4: Nuteam Store + EdAvatar Studio, 2-col
+     Store = stable/shipped (solid border, full shadow)
+     Studio = experimental/in-progress (dashed border, lighter shadow)
+     ============================================================ -->
+<div class="duo-grid" id="apps">
+  <div class="duo-card stable">
+    <p class="duo-label">Storefront</p>
+    <h3 class="duo-title">Nuteam Store</h3>
+    <p class="duo-text">
+      A trust-first storefront for every Nuteam app — real developer
+      identity up front, APK downloads, and a SHA-256 hash on each
+      release so you can verify what you installed.
+    </p>
+    <a href="store.html" class="duo-btn">Visit the Store →</a>
+  </div>
 
-<div class="pillar" onclick="window.location.href='ed.html'">
-  <p class="pillar-num">01</p>
-  <h3 class="pillar-title">THE ED SERIES</h3>
-  <div class="pillar-icon">✦</div>
- <p class="pillar-desc">
+  <div class="duo-card experimental">
+    <p class="duo-label">App Hub</p>
+    <h3 class="duo-title">EdAvatar Studio</h3>
+    <p class="duo-text">
+      The home of Nuteam's applications —
+      APK tools, experimental systems, and local AI projects.
+      Simple. Direct. Built from real use.
+    </p>
+    <a href="https://edavatar-studio.github.io" class="duo-btn" target="_blank" rel="noopener">Enter Studio →</a>
+  </div>
+</div>
+
+<!-- ============================================================
+     Weighted section 3 of 4: Library placeholder — warm palette,
+     deliberately separate from the cool app-universe zones since
+     it's content, not tooling. No page exists yet; this is only
+     a placeholder note, nothing fabricated beyond that.
+     ============================================================ -->
+<div class="library-note">
+  <p class="library-label">Coming Later</p>
+  <h3 class="library-title">The Library</h3>
+  <p class="library-text">
+    A reading space for Nuteam's own writing and references is planned
+    for this spot. Not built yet — this is a placeholder, not a live section.
+  </p>
+</div>
+
+<!-- ============================================================
+     Weighted section 4 of 4 / secondary zone: everything else that
+     existed on the homepage before this re-theme, restyled to the
+     new palette but with its copy kept exactly as it was.
+     ============================================================ -->
+<div class="zone">
+
+  <div class="section-rule">
+    <div class="rivet" style="width:12px;height:12px"></div>
+    <span class="section-rule-label">App Universe</span>
+    <div class="section-rule-line"></div>
+    <div class="rivet" style="width:12px;height:12px"></div>
+  </div>
+
+  <div class="pillars">
+
+    <div class="pillar" onclick="window.location.href='ed.html'">
+      <h3 class="pillar-title">The Ed Series</h3>
+      <p class="pillar-desc">
 A family of offline, private AI apps — EdAvatar, EdNote, EdDotSoul
 and more — all built around one idea: local AI that runs
 on-device, with no server and no ongoing cost.
 </p>
-  <span class="pillar-arr">→</span>
-</div>
-
-<div class="pillar pillar-links">
-  <p class="pillar-num">02</p>
-  <h3 class="pillar-title">QUICK LINKS</h3>
-  <p class="pillar-desc">
-    Everything you need to find, download, and follow the Nuteam app universe.
-  </p>
-
-  <div class="mini-links-grid">
-    <a class="mini-link-card" href="https://edavatar-studio.github.io" target="_blank" rel="noopener">
-      <span class="mini-link-title">APP HUB</span>
-      <span class="mini-link-text">Browse and download every app in the Ed Series.</span>
-      <span class="mini-link-arrow">→</span>
-    </a>
-
-    <a class="mini-link-card" href="#epos">
-      <span class="mini-link-title">EPOS OPTIMIZER</span>
-      <span class="mini-link-text">Compress AI prompts to save tokens.</span>
-      <span class="mini-link-arrow">→</span>
-    </a>
-
-    <a class="mini-link-card" href="mailto:wisanunu26@gmail.com?subject=Nuteam%20Feedback">
-      <span class="mini-link-title">FEEDBACK</span>
-      <span class="mini-link-text">Tell us what to build or fix next.</span>
-      <span class="mini-link-arrow">→</span>
-    </a>
-
-    <a class="mini-link-card" href="mailto:wisanunu26@gmail.com?subject=Support%20Nuteam">
-      <span class="mini-link-title">SUPPORT</span>
-      <span class="mini-link-text">Support Nuteam or collaborate.</span>
-      <span class="mini-link-arrow">→</span>
-    </a>
-  </div>
-</div>
-</div>
-
-<section id="apps" class="app-hub">
-  <div class="app-hub-inner">
-
-    <div class="app-hub-text">
-      <p class="app-hub-label">APP HUB</p>
-      <h2 class="app-hub-title">EDAVATAR STUDIO</h2>
-     <p class="app-hub-desc">
-The home of Nuteam’s applications —
-APK tools, experimental systems, and local AI projects.
-<br><br>
-Simple. Direct. Built from real use.
-</p>
-
-      <a href="https://edavatar-studio.github.io" class="app-hub-btn" target="_blank">
-        ENTER STUDIO →
-      </a>
+      <span class="pillar-arr">→</span>
     </div>
 
-    <div class="apps-grid">
+    <div class="pillar pillar-links">
+      <h3 class="pillar-title">Quick Links</h3>
+      <p class="pillar-desc">
+        Everything you need to find, download, and follow the Nuteam app universe.
+      </p>
 
-      <div class="app-card">
-        <div class="app-icon"><img src="icon/edreader.jpeg" alt="Ed Reader"></div>
-        <h4 class="app-name">Ed Reader</h4>
-        <p class="app-tagline">Minimalist, ad-free PDF reader built for focus.</p>
-        <span class="app-status active">Available</span>
+      <div class="mini-links-grid">
+        <a class="mini-link-card" href="https://edavatar-studio.github.io" target="_blank" rel="noopener">
+          <span class="mini-link-title">App Hub</span>
+          <span class="mini-link-text">Browse and download every app in the Ed Series.</span>
+          <span class="mini-link-arrow">→</span>
+        </a>
+
+        <a class="mini-link-card" href="#epos">
+          <span class="mini-link-title">EPOS Optimizer</span>
+          <span class="mini-link-text">Compress AI prompts to save tokens.</span>
+          <span class="mini-link-arrow">→</span>
+        </a>
+
+        <a class="mini-link-card" href="mailto:wisanunu26@gmail.com?subject=Nuteam%20Feedback">
+          <span class="mini-link-title">Feedback</span>
+          <span class="mini-link-text">Tell us what to build or fix next.</span>
+          <span class="mini-link-arrow">→</span>
+        </a>
+
+        <a class="mini-link-card" href="mailto:wisanunu26@gmail.com?subject=Support%20Nuteam">
+          <span class="mini-link-title">Support</span>
+          <span class="mini-link-text">Support Nuteam or collaborate.</span>
+          <span class="mini-link-arrow">→</span>
+        </a>
       </div>
+    </div>
+  </div>
 
-      <div class="app-card">
-        <div class="app-icon"><img src="icon/nuamp.jpeg" alt="NuAmp Classic"></div>
-        <h4 class="app-name">NuAmp Classic</h4>
-        <p class="app-tagline">Vintage-inspired music player for distraction-free personal listening.</p>
-        <span class="app-status active">Available</span>
-      </div>
+  <div class="apps-grid">
 
-      <div class="app-card">
-        <div class="app-icon"><img src="icon/edprompttool.jpeg" alt="Ed Prompt Tool"></div>
-        <h4 class="app-name">Ed Prompt Tool</h4>
-        <p class="app-tagline">Helps craft clearer, stronger image-generation prompts.</p>
-        <span class="app-status future">Coming Soon</span>
-      </div>
+    <div class="app-card card-elev-medium">
+      <div class="app-icon"><img src="icon/edreader.jpeg" alt="Ed Reader"></div>
+      <h4 class="app-name">Ed Reader</h4>
+      <p class="app-tagline">Minimalist, ad-free PDF reader built for focus.</p>
+      <span class="app-status active">Available</span>
+    </div>
 
-      <div class="app-card">
-        <div class="app-icon"><img src="icon/ednote.jpeg" alt="EdNote"></div>
-        <h4 class="app-name">EdNote</h4>
-        <p class="app-tagline">A simple everyday note app for thoughts, plans, and small moments.</p>
-        <span class="app-status active">Available</span>
-      </div>
+    <div class="app-card card-elev-medium">
+      <div class="app-icon"><img src="icon/nuamp.jpeg" alt="NuAmp Classic"></div>
+      <h4 class="app-name">NuAmp Classic</h4>
+      <p class="app-tagline">Vintage-inspired music player for distraction-free personal listening.</p>
+      <span class="app-status active">Available</span>
+    </div>
 
-      <div class="app-card">
-        <div class="app-icon"><img src="icon/eddotsoul.jpeg" alt="EdDotSoul"></div>
-        <h4 class="app-name">EdDotSoul</h4>
-        <p class="app-tagline">Half-tone editing with QR Art — turn artwork into scannable images.</p>
-        <span class="app-status active">Available</span>
-      </div>
+    <div class="app-card card-elev-faint">
+      <div class="app-icon"><img src="icon/edprompttool.jpeg" alt="Ed Prompt Tool"></div>
+      <h4 class="app-name">Ed Prompt Tool</h4>
+      <p class="app-tagline">Helps craft clearer, stronger image-generation prompts.</p>
+      <span class="app-status future">Coming Soon</span>
+    </div>
 
-      <div class="app-card">
-        <div class="app-icon"><img src="icon/edhalftone.jpeg" alt="EdHalfToneCamera"></div>
-        <h4 class="app-name">EdHalfToneCamera</h4>
-        <p class="app-tagline">Experimental black-and-white halftone camera, live preview.</p>
-        <span class="app-status active">Available</span>
-      </div>
+    <div class="app-card card-elev-medium">
+      <div class="app-icon"><img src="icon/ednote.jpeg" alt="EdNote"></div>
+      <h4 class="app-name">EdNote</h4>
+      <p class="app-tagline">A simple everyday note app for thoughts, plans, and small moments.</p>
+      <span class="app-status active">Available</span>
+    </div>
 
+    <div class="app-card card-elev-medium">
+      <div class="app-icon"><img src="icon/eddotsoul.jpeg" alt="EdDotSoul"></div>
+      <h4 class="app-name">EdDotSoul</h4>
+      <p class="app-tagline">Half-tone editing with QR Art — turn artwork into scannable images.</p>
+      <span class="app-status active">Available</span>
+    </div>
+
+    <div class="app-card card-elev-medium">
+      <div class="app-icon"><img src="icon/edhalftone.jpeg" alt="EdHalfToneCamera"></div>
+      <h4 class="app-name">EdHalfToneCamera</h4>
+      <p class="app-tagline">Experimental black-and-white halftone camera, live preview.</p>
+      <span class="app-status active">Available</span>
     </div>
 
   </div>
-</section>
-  
-<div class="bottom-grid">
 
-<section id="epos" class="bottom-section">
-  <p class="bottom-label">Token Optimizer</p>
-  <h3 class="bottom-title">EPOS Optimizer</h3>
-  <p class="bottom-text">
-    Compress text, images, and PDFs into an ultra-efficient format
-    before sending to any AI — cut token cost without losing content.
-    Built for real, everyday AI use.
-  </p>
-  <div class="bottom-links">
-    <span class="app-status future" style="margin-bottom: 10px;">Coming Soon</span>
-  </div>
-  <a href="epos.html" class="btn-secondary" style="margin-top: 8px;">Read the Story →</a>
-</section>
-
-<section id="ed" class="bottom-section ed-focus">
-    <p class="bottom-label">Local AI</p>
-    <h3 class="bottom-title">Ed is Growing Here</h3>
-   <p class="bottom-text">
+  <div class="bottom-grid">
+    <section id="ed" class="bottom-section card-elev-medium">
+      <p class="bottom-label">Local AI</p>
+      <h3 class="bottom-title">Ed is Growing Here</h3>
+      <p class="bottom-text">
 EdAvatar marks the beginning of a local AI direction —
 built to assist, adapt, and grow alongside real users.
 Not a distant system, but a close companion.
 </p>
-    <a href="ed.html"
-    class="btn-secondary"
-    target="_blank"
-    rel="noopener">Explore Ed →</a>
-  </section>
+      <a href="ed.html" class="btn-secondary" target="_blank" rel="noopener">Explore Ed →</a>
+    </section>
 
-<section id="about" class="bottom-section">
-    <p class="bottom-label">Founder</p>
-    <h3 class="bottom-title">About Nu</h3>
-   <p class="bottom-text">
+    <section id="about" class="bottom-section card-elev-medium">
+      <p class="bottom-label">Founder</p>
+      <h3 class="bottom-title">About Nu</h3>
+      <p class="bottom-text">
 Sculptor turned self-taught developer — the same hands-on mindset
 that shaped stone and surface now shapes offline-first AI tools
 and independent apps.
 </p>
-   <a href="about.html"
-   class="btn-secondary"
-   rel="noopener">Full Story →</a>
-  </section>
+      <a href="about.html" class="btn-secondary" rel="noopener">Full Story →</a>
+    </section>
+  </div>
+
 </div>
 
 <footer id="contact">

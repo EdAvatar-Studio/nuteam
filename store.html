@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="th">
+<html lang="en">
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -9,19 +9,27 @@
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>
 <style>
   :root{
-    --bg:#d7d7d5;
-    --panel:#dcdcd9;
-    --panel-2:#cfcfcb;
-    --text:#1f1f1c;
-    --muted:#5f5f5a;
-    --gold:#b89a4a;
-    --gold-dk:#9b7f39;
-    --line:#b8b8b4;
+    --hero-bg:#D6D8D6;
+    --zone-bg:#E6E7E4;
+    --text:#2B2E2D;
+    --text-soft:#4C4F4D;
+    --text-mute:#5F625F;
+    --accent:#5A7680;
+    --accent-deep:#41565D;
+    --card-bg:#DEE0DC;
+    --card-bg-inactive:rgba(210,212,208,0.75);
+    --line:rgba(43,46,45,0.16);
+    --line-soft:rgba(43,46,45,0.09);
+    --shadow-near:0 1px 2px rgba(43,46,45,0.06);
+    --shadow-far:0 6px 16px rgba(43,46,45,0.14);
+    --shadow-far-strong:0 16px 34px rgba(43,46,45,0.20);
+    --shadow-far-faint:0 4px 10px rgba(43,46,45,0.07);
+    --radius:18px;
   }
   *,*::before,*::after{ box-sizing:border-box; margin:0; padding:0; }
   html{ scroll-behavior:smooth; }
   body{
-    background: linear-gradient(145deg, #e4e4e2, #cbcbc8);
+    background: var(--hero-bg);
     color:var(--text);
     font-family:'DM Mono', monospace;
     line-height:1.8;
@@ -33,13 +41,13 @@
     position:sticky; top:0; z-index:10;
     display:flex; align-items:center; gap:16px;
     padding:0 24px; height:64px;
-    background:rgba(246,246,244,0.92);
+    background: rgba(214,216,214,0.92);
     backdrop-filter:blur(8px);
-    border-bottom:1px solid rgba(0,0,0,0.08);
+    border-bottom:1px solid var(--line-soft);
   }
   nav a{
     font-size:11px; letter-spacing:0.1em; text-transform:uppercase;
-    color:var(--muted); text-decoration:none;
+    color:var(--text-soft); text-decoration:none;
   }
   nav a:hover{ color:var(--text); }
   .nav-logo{
@@ -56,18 +64,18 @@
     width:40px; height:40px;
     flex-direction:column; align-items:center; justify-content:center; gap:4px;
     border-radius:10px;
-    border:1px solid rgba(0,0,0,0.12);
-    background:linear-gradient(180deg,#e8e8e6,#d2d2cf);
+    border:1px solid var(--line);
+    background:linear-gradient(180deg,#e9eae8,#cfd1cd);
     box-shadow:
-      inset 0 1px 0 rgba(255,255,255,0.55),
-      inset 0 -2px 3px rgba(0,0,0,0.08),
-      0 3px 8px rgba(40,40,40,0.12);
+      inset 0 1px 0 rgba(255,255,255,0.5),
+      inset 0 -2px 3px rgba(0,0,0,0.06),
+      0 3px 8px rgba(43,46,45,0.12);
     cursor:pointer;
     margin-left:auto;
   }
   .nav-toggle-bar{
     width:18px; height:2px; border-radius:2px;
-    background:var(--gold-dk);
+    background:var(--accent-deep);
     transition:transform .25s ease, opacity .2s ease;
   }
   .nav-toggle[aria-expanded="true"] .nav-toggle-bar:nth-child(1){ transform:translateY(6px) rotate(45deg); }
@@ -76,7 +84,7 @@
 
   .nav-overlay{
     position:fixed; inset:0; z-index:29;
-    background:rgba(20,18,14,0.45);
+    background:rgba(20,22,21,0.45);
     opacity:0; pointer-events:none;
     transition:opacity .25s ease;
   }
@@ -93,20 +101,18 @@
   .mobile-nav-panel{
     height:100%; padding:28px 22px;
     display:flex; flex-direction:column;
-    background:
-      linear-gradient(145deg, rgba(255,255,255,0.55), rgba(255,255,255,0.15)),
-      linear-gradient(180deg, var(--panel), var(--panel-2));
-    border-left:1px solid rgba(0,0,0,0.10);
-    box-shadow:-20px 0 40px rgba(31,27,22,0.18);
+    background: linear-gradient(180deg, var(--card-bg), var(--zone-bg));
+    border-left:1px solid var(--line);
+    box-shadow:-20px 0 40px rgba(43,46,45,0.18);
   }
 
   .mobile-nav-rivets{ display:flex; justify-content:space-between; padding:0 2px; }
   .mobile-nav-rivets .rivet{
     width:16px; height:16px;
-    background: radial-gradient(circle at 35% 35%, #c9c1b4, #8d8478);
+    background: radial-gradient(circle at 35% 35%, #cfd1cd, #8f938f);
     border-radius:50%;
     border:1px solid rgba(0,0,0,0.12);
-    box-shadow: inset 0 1px 0 rgba(255,255,255,0.35), 0 1px 2px rgba(0,0,0,0.10);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.3), 0 1px 2px rgba(0,0,0,0.12);
   }
 
   .mobile-nav-links{ list-style:none; display:flex; flex-direction:column; gap:4px; margin-top:32px; }
@@ -116,10 +122,10 @@
     font-size:22px; letter-spacing:0.05em;
     color:var(--text);
     text-decoration:none;
-    border-bottom:1px solid rgba(0,0,0,0.08);
+    border-bottom:1px solid var(--line-soft);
     transition:color 0.2s;
   }
-  .mobile-nav-links a:hover, .mobile-nav-links a:active{ color:var(--gold-dk); }
+  .mobile-nav-links a:hover, .mobile-nav-links a:active{ color:var(--accent-deep); }
 
   @media (max-width: 900px) {
     .nav-links-inline{ display:none; }
@@ -135,8 +141,8 @@
   }
 
   .eyebrow{
-    font-size:10px; letter-spacing:0.25em; text-transform:uppercase;
-    color:var(--gold-dk); margin-bottom:14px;
+    font-size:10px; letter-spacing:0.2em;
+    color:var(--accent-deep); margin-bottom:14px;
   }
   h1{
     font-family:'Bebas Neue', sans-serif;
@@ -144,26 +150,41 @@
     letter-spacing:0.03em;
     line-height:0.98;
     margin-bottom:16px;
+    color:var(--text);
   }
   h2{
     font-family:'Bebas Neue', sans-serif;
     font-size:26px;
     letter-spacing:0.05em;
-    color:#2a2a26;
+    color:var(--text);
   }
   p{
     font-size:14px;
-    color:#3a3a36;
+    color:var(--text-soft);
   }
 
-  /* ---------- Trust section ---------- */
+  /* ---------- Trust section (signature texture touch) ---------- */
   .trust-card{
-    background: var(--panel);
+    position:relative;
+    isolation:isolate;
+    overflow:hidden;
+    background: var(--card-bg);
     border:1px solid var(--line);
-    border-radius:18px;
+    border-top:0.5px solid rgba(255,255,255,0.55);
+    border-radius:var(--radius);
+    box-shadow: var(--shadow-near), var(--shadow-far-strong);
     padding:32px;
     margin:24px 0 48px;
   }
+  .trust-card::before{
+    content:'';
+    position:absolute; inset:0;
+    filter:url(#concreteNoise);
+    opacity:0.35;
+    pointer-events:none;
+    z-index:0;
+  }
+  .trust-card > *{ position:relative; z-index:1; }
   .trust-card p{ margin-bottom:12px; }
   .trust-card p:last-of-type{ margin-bottom:0; }
   .trust-badge{
@@ -174,10 +195,10 @@
     padding:8px 16px;
     border-radius:999px;
     font-size:10.5px;
-    letter-spacing:0.1em;
-    background: rgba(184,150,62,0.12);
-    border:1px solid rgba(184,150,62,0.35);
-    color:var(--gold-dk);
+    letter-spacing:0.08em;
+    background: rgba(90,118,128,0.12);
+    border:1px solid rgba(90,118,128,0.35);
+    color:var(--accent-deep);
   }
 
   /* ---------- App list ---------- */
@@ -187,7 +208,7 @@
     justify-content:space-between;
     margin-bottom:20px;
   }
-  .section-heading p{ color:var(--muted); font-size:11px; }
+  .section-heading p{ color:var(--text-mute); font-size:11px; }
 
   .apps-grid{
     display:grid;
@@ -196,11 +217,11 @@
   }
 
   .app-card{
-    background:
-      linear-gradient(180deg, rgba(255,255,255,0.34), rgba(255,255,255,0.10)),
-      linear-gradient(180deg, var(--panel), var(--panel-2));
+    background: var(--card-bg);
     border:1px solid var(--line);
-    border-radius:22px;
+    border-top:0.5px solid rgba(255,255,255,0.5);
+    border-radius:var(--radius);
+    box-shadow: var(--shadow-near), var(--shadow-far);
     padding:24px 22px;
     display:flex;
     flex-direction:column;
@@ -208,7 +229,7 @@
 
   .app-icon{
     width:56px; height:56px;
-    background: linear-gradient(180deg, #d7cfc3, #bbb1a3);
+    background: linear-gradient(180deg, #cfd1cd, #b6b9b4);
     border:1px solid var(--line);
     border-radius:12px;
     margin-bottom:16px;
@@ -221,13 +242,13 @@
     font-family:'Bebas Neue', sans-serif;
     font-size:22px;
     letter-spacing:0.06em;
-    color:#20201d;
+    color:var(--text);
     margin-bottom:6px;
   }
 
   .app-tagline{
     font-size:11.5px;
-    color:var(--muted);
+    color:var(--text-mute);
     line-height:1.6;
     margin-bottom:18px;
     flex:1;
@@ -240,8 +261,8 @@
     gap:8px;
     padding:10px 20px;
     border-radius:999px;
-    background:var(--gold);
-    color:#1a1814;
+    background:var(--accent);
+    color:#F2F4F2;
     font-size:11px;
     letter-spacing:0.1em;
     text-transform:uppercase;
@@ -249,21 +270,21 @@
     border:none;
     cursor:pointer;
     margin-bottom:14px;
+    transition:background 0.2s;
   }
-  .app-download:hover{ background:var(--gold-dk); }
+  .app-download:hover{ background:var(--accent-deep); }
 
   .hash-details{
     font-size:11px;
-    color:var(--muted);
+    color:var(--text-mute);
     border-top:1px solid var(--line);
     padding-top:12px;
   }
   .hash-details summary{
     cursor:pointer;
-    letter-spacing:0.08em;
-    text-transform:uppercase;
+    letter-spacing:0.06em;
     font-size:10px;
-    color:var(--gold-dk);
+    color:var(--accent-deep);
     list-style:none;
   }
   .hash-details summary::-webkit-details-marker{ display:none; }
@@ -276,7 +297,7 @@
   .hash-value{
     margin-top:10px;
     padding:10px 12px;
-    background:#f2f2f0;
+    background:#F2F3F1;
     border:1px solid var(--line);
     border-radius:8px;
     font-size:11px;
@@ -286,7 +307,7 @@
   .hash-note{
     margin-top:8px;
     font-size:10.5px;
-    color:var(--muted);
+    color:var(--text-mute);
     line-height:1.6;
   }
 
@@ -299,7 +320,7 @@
 
   /* ---------- Footer ---------- */
   footer{
-    background: rgba(244,239,231,0.76);
+    background: rgba(222,224,220,0.8);
     border-top:1px solid var(--line);
     display:grid;
     grid-template-columns:1fr 1fr 1fr;
@@ -307,7 +328,7 @@
   }
   .footer-col{
     padding:28px 24px;
-    border-right:1px solid rgba(0,0,0,0.06);
+    border-right:1px solid var(--line-soft);
   }
   .footer-col:last-child{ border-right:none; }
   .footer-logo{
@@ -320,41 +341,52 @@
   }
   .footer-tagline{
     font-size:10px;
-    color:var(--muted);
+    color:var(--text-mute);
     margin-bottom:16px;
     line-height:1.6;
   }
   .footer-copy{
     font-size:9px;
-    color:var(--muted);
-    letter-spacing:0.06em;
+    color:var(--text-mute);
+    letter-spacing:0.05em;
     border-top:1px solid var(--line);
     padding-top:12px;
     margin-top:12px;
   }
   .footer-heading{
-    font-size:9px;
-    letter-spacing:0.2em;
-    text-transform:uppercase;
-    color:var(--gold-dk);
+    font-size:10px;
+    letter-spacing:0.1em;
+    color:var(--accent-deep);
     margin-bottom:14px;
   }
   .footer-links{ list-style:none; display:flex; flex-direction:column; gap:10px; }
   .footer-links a{
     font-size:11px;
-    color:var(--muted);
+    color:var(--text-mute);
     text-decoration:none;
   }
   .footer-links a:hover{ color:var(--text); }
 
   @media (max-width: 900px){
     footer{ grid-template-columns:1fr; }
-    .footer-col{ border-right:none; border-bottom:1px solid rgba(0,0,0,0.06); }
+    .footer-col{ border-right:none; border-bottom:1px solid var(--line-soft); }
     .footer-col:last-child{ border-bottom:none; }
   }
 </style>
 </head>
 <body>
+
+<!-- Concrete-noise filter, referenced by .trust-card::before as this page's signature texture touch -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <filter id="concreteNoise" color-interpolation-filters="sRGB" x="-20%" y="-20%" width="140%" height="140%">
+    <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="3" seed="7" result="noise"/>
+    <feColorMatrix in="noise" type="matrix" values="
+      0 0 0 0 0.30
+      0 0 0 0 0.31
+      0 0 0 0 0.30
+      0.34 0.33 0.33 0 0"/>
+  </filter>
+</svg>
 
 <nav>
   <a class="nav-logo" href="index.html">NUTEAM.ORG</a>
@@ -404,26 +436,27 @@ document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeN
 
 <main>
   <p class="eyebrow">Nuteam Store</p>
-  <h1>ร้านแอปจาก Nuteam</h1>
+  <h1>The Nuteam Store</h1>
 
   <!-- Trust section: establishes a real person behind the apps, not a faceless
        storefront. Copy below is placeholder — edit freely. -->
   <div class="trust-card">
     <p>
-      Nuteam ไม่ใช่บริษัทใหญ่ แต่เป็นงานของคนคนเดียว — อดีตประติมากรสายนานาชาติ
-      ที่ผันตัวมาออกแบบและเขียนโค้ดแอปด้วยตัวเอง ทุกแอปที่เห็นในหน้านี้ผ่านมือ
-      คนคนเดียวกันตั้งแต่ไอเดียแรกจนถึงวันที่ปล่อยให้ดาวน์โหลด
+      Nuteam isn't a big company — it's the work of one person: a former
+      international sculptor turned self-taught developer, who designs and
+      codes every app by hand. Everything on this page passes through the
+      same two hands, from the first idea to the day it ships.
     </p>
     <p>
-      ไม่มีทีมใหญ่ ไม่มีการจ้างเอาต์ซอร์ส — แค่คนคนหนึ่งที่ตั้งใจสร้างของที่ใช้งานได้จริง
-      และพร้อมรับผิดชอบในสิ่งที่ตัวเองสร้าง
+      No big team, no outsourcing — just one person committed to building
+      things that actually work, and standing behind everything he makes.
     </p>
-    <span class="trust-badge">🔑 ทุกแอปเซ็นด้วยกุญแจเดียวกันของ Nuteam</span>
+    <span class="trust-badge">🔑 Every app is signed with the same Nuteam key</span>
   </div>
 
   <div class="section-heading">
     <h2>App List</h2>
-    <p>อัปเดตล่าสุด</p>
+    <p>Last updated</p>
   </div>
 
   <div class="apps-grid">
@@ -443,16 +476,16 @@ document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeN
       <div class="app-icon">✦</div>
       <h3 class="app-name">Ed Prompt Pro</h3>
       <p class="app-tagline">
-        ผู้ช่วยสร้างพรอมต์ AI ที่ใช้งานง่าย ช่วยให้คำสั่งของคุณชัดเจนและได้ผลลัพธ์ที่ต้องการเร็วขึ้น
+        An easy-to-use AI prompt assistant — makes your instructions clearer and gets you the results you want, faster.
       </p>
 
-      <a href="https://github.com/EdAvatar-Studio/EdPromptPro-releases/releases/download/v1.2/app-arm64-v8a-release.apk" class="app-download">ดาวน์โหลด APK →</a>
+      <a href="https://github.com/EdAvatar-Studio/EdPromptPro-releases/releases/download/v1.2/app-arm64-v8a-release.apk" class="app-download">Download APK →</a>
 
       <details class="hash-details">
-        <summary>ตรวจสอบไฟล์ (SHA-256)</summary>
+        <summary>Verify the file (SHA-256)</summary>
         <div class="hash-value">120b87a3ae362f99605e8150d585bd0779bc160676adb32ebd9905a942c8b448</div>
         <p class="hash-note">
-          เทียบค่านี้กับไฟล์ที่ดาวน์โหลดมาเพื่อยืนยันว่าไม่ถูกแก้ไข
+          Compare this value against the file you downloaded to confirm it hasn't been altered.
         </p>
       </details>
     </div>
