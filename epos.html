@@ -9,21 +9,21 @@
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>
 <style>
   :root{
-    --hero-bg:#D6D8D6;
-    --zone-bg:#E6E7E4;
-    --text:#2B2E2D;
-    --text-soft:#4C4F4D;
-    --text-mute:#5F625F;
-    --accent:#5A7680;
-    --accent-deep:#41565D;
-    --card-bg:#DEE0DC;
-    --card-bg-inactive:rgba(210,212,208,0.75);
-    --line:rgba(43,46,45,0.16);
-    --line-soft:rgba(43,46,45,0.09);
-    --shadow-near:0 1px 2px rgba(43,46,45,0.06);
-    --shadow-far:0 6px 16px rgba(43,46,45,0.14);
-    --shadow-far-strong:0 16px 34px rgba(43,46,45,0.20);
-    --shadow-far-faint:0 4px 10px rgba(43,46,45,0.07);
+    --hero-bg:#201f1c;
+    --zone-bg:#26251f;
+    --text:#f4f1ea;
+    --text-soft:#cfc9ba;
+    --text-mute:#a8a59b;
+    --accent:#d9a54c;
+    --accent-deep:#b6874c;
+    --card-bg:#302f2a;
+    --card-bg-inactive:rgba(58,57,52,0.55);
+    --line:rgba(244,241,234,0.14);
+    --line-soft:rgba(244,241,234,0.08);
+    --shadow-near:0 1px 2px rgba(0,0,0,0.35);
+    --shadow-far:0 6px 16px rgba(0,0,0,0.45);
+    --shadow-far-strong:0 16px 34px rgba(0,0,0,0.55);
+    --shadow-far-faint:0 4px 10px rgba(0,0,0,0.30);
     --radius:18px;
   }
   ,::before,*::after{ box-sizing:border-box; margin:0; padding:0; }
@@ -38,7 +38,7 @@
     position:sticky; top:0; z-index:10;
     display:flex; align-items:center; gap:16px;
     padding:0 24px; height:64px;
-    background: rgba(214,216,214,0.92);
+    background: rgba(26,25,23,0.92);
     backdrop-filter:blur(8px);
     border-bottom:1px solid var(--line-soft);
   }
@@ -62,11 +62,11 @@
     flex-direction:column; align-items:center; justify-content:center; gap:4px;
     border-radius:10px;
     border:1px solid var(--line);
-    background:linear-gradient(180deg,#e9eae8,#cfd1cd);
+    background:linear-gradient(180deg,#3a3934,#26251f);
     box-shadow:
-      inset 0 1px 0 rgba(255,255,255,0.5),
-      inset 0 -2px 3px rgba(0,0,0,0.06),
-      0 3px 8px rgba(43,46,45,0.12);
+      inset 0 1px 0 rgba(255,255,255,0.08),
+      inset 0 -2px 3px rgba(0,0,0,0.4),
+      0 3px 8px rgba(0,0,0,0.4);
     cursor:pointer;
     margin-left:auto;
   }
@@ -100,13 +100,13 @@
     display:flex; flex-direction:column;
     background: linear-gradient(180deg, var(--card-bg), var(--zone-bg));
     border-left:1px solid var(--line);
-    box-shadow:-20px 0 40px rgba(43,46,45,0.18);
+    box-shadow:-20px 0 40px rgba(0,0,0,0.5);
   }
 
   .mobile-nav-rivets{ display:flex; justify-content:space-between; padding:0 2px; }
   .mobile-nav-rivets .rivet{
     width:16px; height:16px;
-    background: radial-gradient(circle at 35% 35%, #cfd1cd, #8f938f);
+    background: radial-gradient(circle at 35% 35%, #e8c98a, #a9853f);
     border-radius:50%;
     border:1px solid rgba(0,0,0,0.12);
     box-shadow: inset 0 1px 0 rgba(255,255,255,0.3), 0 1px 2px rgba(0,0,0,0.12);
@@ -196,8 +196,8 @@
     font-size:10px;
     letter-spacing:0.14em;
     text-transform:uppercase;
-    background: rgba(90,118,128,0.12);
-    border:1px solid rgba(90,118,128,0.35);
+    background: rgba(217,165,76,0.12);
+    border:1px solid rgba(217,165,76,0.35);
     color:var(--accent-deep);
     margin-bottom:28px;
   }
@@ -223,7 +223,7 @@
     overflow:hidden;
     background: var(--card-bg);
     border:1px solid var(--line);
-    border-top:0.5px solid rgba(255,255,255,0.55);
+    border-top:0.5px solid rgba(255,255,255,0.06);
     border-radius:var(--radius);
     box-shadow: var(--shadow-near), var(--shadow-far-strong);
     padding:28px;
@@ -249,7 +249,7 @@
     padding:10px 12px;
     border-radius:8px;
     border:1px solid var(--line);
-    background:#F2F3F1;
+    background:#26251f;
     color:var(--text);
     margin-bottom:12px;
     resize:vertical;
@@ -260,7 +260,7 @@
     padding:10px 22px;
     border-radius:999px;
     background:var(--accent);
-    color:#F2F4F2;
+    color:#201f1c;
     border:none;
     font-size:11px;
     letter-spacing:0.12em;
@@ -273,7 +273,7 @@
   .tool-output{
     margin-top:16px;
     padding:14px;
-    background:#F2F3F1;
+    background:#26251f;
     border:1px solid var(--line);
     border-radius:8px;
     font-size:12.5px;
@@ -290,8 +290,8 @@
     display:none;
     margin-top:14px;
     padding:12px 14px;
-    background:rgba(90,118,128,0.10);
-    border:1px solid rgba(90,118,128,0.30);
+    background:rgba(217,165,76,0.10);
+    border:1px solid rgba(217,165,76,0.30);
     border-radius:8px;
     font-size:12.5px;
     color:var(--accent-deep);
