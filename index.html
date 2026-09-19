@@ -321,6 +321,97 @@
     flex-wrap: wrap;
   }
 
+  /* ---------- Hero orbit (App Universe constellation) ---------- */
+  .hero-top{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+    flex-wrap: wrap;
+  }
+  .hero-copy{ flex: 1 1 420px; min-width: 260px; }
+  .hero-orbit{
+    --orbit-size: clamp(200px, 30vw, 360px);
+    position: relative;
+    width: var(--orbit-size);
+    height: var(--orbit-size);
+    flex: 0 0 auto;
+    margin-left: auto;
+  }
+  .orbit-ring{
+    position: absolute; inset: 6%;
+    border: 1px solid var(--line);
+    border-radius: 50%;
+    opacity: 0.6;
+  }
+  .orbit-ring.inner{ inset: 24%; border-style: dashed; opacity: 0.4; }
+  .orbit-hub{
+    position: absolute; left: 50%; top: 50%;
+    width: 15%; height: 15%;
+    transform: translate(-50%,-50%);
+    border-radius: 50%;
+    background: radial-gradient(circle at 36% 32%, #3c3a34, #201f1c 75%);
+    border: 1px solid var(--accent);
+    box-shadow: 0 0 20px rgba(217,165,76,0.25);
+  }
+  .orbit-hub::before{
+    content:'';
+    position: absolute; inset: -22%;
+    border-radius: 50%;
+    border: 1px solid var(--accent);
+    animation: hub-pulse 3.4s ease-out infinite;
+  }
+  .orbit-group{
+    position: absolute; inset: 0;
+    animation: orbit-spin 24s linear infinite;
+  }
+  .orbit-lines{ position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+  .orbit-node{
+    position: absolute;
+    transform: translate(-50%,-50%);
+    text-decoration: none;
+  }
+  .orbit-node-face{
+    display: flex; flex-direction: column; align-items: center; gap: 4px;
+    animation: orbit-counter 24s linear infinite;
+  }
+  .orbit-node-dot{
+    width: 30px; height: 30px;
+    border-radius: 50%;
+    background: var(--card-bg);
+    border: 1px solid var(--line);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 12px;
+    color: var(--text);
+    box-shadow: var(--shadow-near), var(--shadow-far-faint);
+    transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+  }
+  .orbit-node.orbit-flagship .orbit-node-dot{
+    border-color: var(--accent);
+    color: var(--accent);
+    box-shadow: 0 0 12px rgba(217,165,76,0.35);
+  }
+  .orbit-node:hover .orbit-node-dot{ transform: translateY(-2px); border-color: var(--accent); }
+  .orbit-node-label{
+    font-size: 8.5px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text-mute);
+    white-space: nowrap;
+  }
+  @keyframes orbit-spin{ from{ transform: rotate(0deg); } to{ transform: rotate(360deg); } }
+  @keyframes orbit-counter{ from{ transform: rotate(0deg); } to{ transform: rotate(-360deg); } }
+  @keyframes hub-pulse{
+    0%{ transform: scale(0.85); opacity: 0.6; }
+    70%{ transform: scale(1.3); opacity: 0; }
+    100%{ opacity: 0; }
+  }
+  @media (max-width: 640px){
+    .hero-top{ justify-content: center; }
+    .hero-orbit{ margin: 8px auto 0; }
+  }
+
   /* ---------- Section rule ---------- */
   .section-rule {
     display: flex; align-items: center; gap: 16px;
@@ -904,7 +995,8 @@ document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeN
 
 <section class="hero">
   <div class="hero-panel">
-    <div>
+    <div class="hero-top">
+      <div class="hero-copy">
       <p class="hero-eyebrow">Built in Reality</p>
       <h1 class="hero-title">NUTEAM</h1>
       <p class="hero-sub">The App Universe.</p>
@@ -920,6 +1012,66 @@ them share one mindset: build things that actually work.
         <a href="#apps" class="btn-primary">Explore Apps →</a>
         <a href="#ed" class="btn-secondary">Enter Ed →</a>
       </div>
+      </div>
+
+      <div class="hero-orbit" aria-hidden="false">
+        <div class="orbit-ring"></div>
+        <div class="orbit-ring inner"></div>
+        <div class="orbit-hub"></div>
+        <div class="orbit-group">
+          <svg class="orbit-lines" viewBox="0 0 100 100" >
+            <line x1="50" y1="50" x2="50" y2="14" style="stroke:var(--accent); stroke-width:0.6; opacity:0.55"/>
+            <line x1="50" y1="50" x2="81.2" y2="32" style="stroke:var(--line); stroke-width:0.5; opacity:0.6"/>
+            <line x1="50" y1="50" x2="81.2" y2="68" style="stroke:var(--line); stroke-width:0.5; opacity:0.6"/>
+            <line x1="50" y1="50" x2="50" y2="86" style="stroke:var(--line); stroke-width:0.5; opacity:0.6"/>
+            <line x1="50" y1="50" x2="18.8" y2="68" style="stroke:var(--line); stroke-width:0.5; opacity:0.6"/>
+            <line x1="50" y1="50" x2="18.8" y2="32" style="stroke:var(--line); stroke-width:0.5; opacity:0.6"/>
+            <line x1="50" y1="14" x2="81.2" y2="32" style="stroke:var(--line-soft); stroke-width:0.35; opacity:0.5"/>
+            <line x1="81.2" y1="32" x2="81.2" y2="68" style="stroke:var(--line-soft); stroke-width:0.35; opacity:0.5"/>
+            <line x1="81.2" y1="68" x2="50" y2="86" style="stroke:var(--line-soft); stroke-width:0.35; opacity:0.5"/>
+            <line x1="50" y1="86" x2="18.8" y2="68" style="stroke:var(--line-soft); stroke-width:0.35; opacity:0.5"/>
+            <line x1="18.8" y1="68" x2="18.8" y2="32" style="stroke:var(--line-soft); stroke-width:0.35; opacity:0.5"/>
+            <line x1="18.8" y1="32" x2="50" y2="14" style="stroke:var(--line-soft); stroke-width:0.35; opacity:0.5"/>
+          </svg>
+
+          <a href="epos.html" class="orbit-node orbit-flagship" style="left:50%; top:14%;">
+            <span class="orbit-node-face">
+              <span class="orbit-node-dot">E</span>
+              <span class="orbit-node-label">EPOS</span>
+            </span>
+          </a>
+          <a href="store.html" class="orbit-node" style="left:81.2%; top:32%;">
+            <span class="orbit-node-face">
+              <span class="orbit-node-dot">S</span>
+              <span class="orbit-node-label">Store</span>
+            </span>
+          </a>
+          <a href="https://edavatar-studio.github.io" target="_blank" rel="noopener" class="orbit-node" style="left:81.2%; top:68%;">
+            <span class="orbit-node-face">
+              <span class="orbit-node-dot">D</span>
+              <span class="orbit-node-label">Studio</span>
+            </span>
+          </a>
+          <a href="nuteam-gallery.html" class="orbit-node" style="left:50%; top:86%;">
+            <span class="orbit-node-face">
+              <span class="orbit-node-dot">G</span>
+              <span class="orbit-node-label">Gallery</span>
+            </span>
+          </a>
+          <a href="library.html" class="orbit-node" style="left:18.8%; top:68%;">
+            <span class="orbit-node-face">
+              <span class="orbit-node-dot">L</span>
+              <span class="orbit-node-label">Library</span>
+            </span>
+          </a>
+          <a href="about.html" class="orbit-node" style="left:18.8%; top:32%;">
+            <span class="orbit-node-face">
+              <span class="orbit-node-dot">A</span>
+              <span class="orbit-node-label">About</span>
+            </span>
+          </a>
+        </div>
+      </div>
     </div>
     <div class="hero-locations">
       <span>Curation</span>
@@ -931,7 +1083,7 @@ them share one mindset: build things that actually work.
       <span>Legacy</span>
     </div>
     <div class="hero-jagged-edge">
-      <svg viewBox="0 0 1440 42" preserveAspectRatio="none">
+      <svg viewBox="0 0 1440 42" >
         <path d="M0,0 L0,3 L70,3 L100,24 L130,24 L150,9 L220,9 L240,30 L255,17 L310,17 L330,4 L400,4 L420,28 L460,28 L480,13 L540,13 L565,36 L580,20 L630,20 L650,6 L710,6 L730,26 L760,26 L780,11 L840,11 L860,32 L875,18 L920,18 L940,3 L1000,3 L1020,24 L1050,24 L1070,9 L1130,9 L1150,29 L1165,14 L1220,14 L1240,2 L1300,2 L1320,22 L1440,22 L1440,42 L0,42 Z" fill="var(--hero-bg)"/>
       </svg>
     </div>
