@@ -360,10 +360,11 @@
     position: relative;
     isolation: isolate;
     overflow: hidden;
-    background: var(--accent-deep);
+    background: linear-gradient(160deg, #322a1c, #221c14);
+    border: 1px solid rgba(217,165,76,0.3);
     border-radius: var(--radius);
     padding: 56px 42px;
-    box-shadow: var(--shadow-near), var(--shadow-far-strong);
+    box-shadow: var(--shadow-near), var(--shadow-far-strong), 0 0 60px rgba(217,165,76,0.06);
   }
   .flagship::before{
     content:'';
@@ -378,21 +379,21 @@
   .flagship-label{
     font-size: 10px;
     letter-spacing: 0.18em;
-    color: rgba(32,31,28,0.65);
+    color: rgba(217,165,76,0.85);
     margin-bottom: 14px;
   }
   .flagship-title{
     font-family:'Bebas Neue', sans-serif;
     font-size: clamp(34px, 5vw, 48px);
     letter-spacing: 0.05em;
-    color: #201f1c;
+    color: var(--text);
     margin-bottom: 16px;
     line-height: 1;
   }
   .flagship-text{
     font-size: 13px;
     line-height: 1.8;
-    color: rgba(32,31,28,0.78);
+    color: rgba(244,241,234,0.72);
     margin-bottom: 24px;
   }
   .flagship-status{
@@ -400,24 +401,24 @@
     padding: 5px 12px;
     font-size: 9.5px;
     letter-spacing: 0.1em;
-    border: 1px solid rgba(32,31,28,0.35);
+    border: 1px solid rgba(217,165,76,0.4);
     border-radius: 999px;
-    color: rgba(32,31,28,0.85);
+    color: rgba(217,165,76,0.9);
     margin-bottom: 20px;
   }
   .flagship-btn{
     display:inline-flex; align-items:center; gap:8px;
     padding: 11px 24px;
     border-radius: 999px;
-    background: var(--card-bg);
-    color: var(--text);
+    background: var(--accent);
+    color: #201f1c;
     font-size: 11px;
     letter-spacing: 0.1em;
     text-transform: uppercase;
     text-decoration: none;
     transition: background 0.2s, transform 0.2s;
   }
-  .flagship-btn:hover{ background:#3a3934; transform: translateY(-1px); }
+  .flagship-btn:hover{ background: var(--accent-deep); transform: translateY(-1px); }
 
   /* ---------- Store + Studio, 2-col ---------- */
   .duo-grid{
