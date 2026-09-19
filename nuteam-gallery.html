@@ -404,6 +404,134 @@
       font-size:12px;
     }
 
+    /* ---------- AI Gallery (grid + detail) ---------- */
+    .gallery-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fill, minmax(240px, 1fr));
+      gap:18px;
+    }
+
+    .gallery-card{
+      display:block;
+      text-decoration:none;
+      color:inherit;
+      overflow:hidden;
+      transition:transform .18s ease;
+    }
+    .gallery-card:hover{ transform:translateY(-3px); }
+
+    .gallery-card-image{
+      aspect-ratio: 4 / 5;
+      overflow:hidden;
+      border-radius:24px 24px 0 0;
+      border-bottom:1px solid var(--line);
+      background: var(--card-bg-inactive);
+    }
+    .gallery-card-image img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+    }
+
+    .gallery-card-body{ padding:14px 16px 16px; }
+    .gallery-card-date{
+      font-size:11px;
+      color:var(--accent-deep);
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      margin-bottom:6px;
+    }
+    .gallery-card-article{
+      font-size:12px;
+      color:var(--text-mute);
+      line-height:1.6;
+      display:-webkit-box;
+      -webkit-line-clamp:3;
+      -webkit-box-orient:vertical;
+      overflow:hidden;
+    }
+
+    .gallery-state-note{
+      padding:40px 24px;
+      text-align:center;
+      color:var(--text-mute);
+      font-size:13px;
+      line-height:1.8;
+    }
+
+    .detail-back{
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      font-size:12px;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      color:var(--text-soft);
+      text-decoration:none;
+      margin-bottom:16px;
+    }
+    .detail-back:hover{ color:var(--text); }
+
+    .detail-image{
+      width:100%;
+      border-radius:24px;
+      overflow:hidden;
+      border:1px solid var(--line);
+      box-shadow: var(--shadow-near), var(--shadow-far-strong);
+      margin-bottom:20px;
+      background: var(--card-bg-inactive);
+    }
+    .detail-image img{
+      width:100%;
+      display:block;
+    }
+
+    .detail-article{
+      font-size:15px;
+      color:var(--text-soft);
+      line-height:1.9;
+      white-space:pre-wrap;
+      margin-bottom:20px;
+    }
+
+    .provenance-card{ padding:22px; }
+    .provenance-row{
+      display:flex;
+      justify-content:space-between;
+      gap:12px;
+      padding:9px 0;
+      border-bottom:1px solid var(--line-soft);
+      font-size:12px;
+    }
+    .provenance-row:last-child{ border-bottom:none; }
+    .provenance-label{ color:var(--text-mute); }
+    .provenance-value{
+      color:var(--text-soft);
+      font-family:'DM Mono',monospace;
+      text-align:right;
+      word-break:break-all;
+      max-width:65%;
+    }
+    .provenance-badge{
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      color:#3D7A4D;
+      font-weight:500;
+    }
+    .provenance-badge::before{
+      content:'✓';
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      width:16px; height:16px;
+      border-radius:50%;
+      background:#3D7A4D;
+      color:#fff;
+      font-size:10px;
+    }
+
     @media (max-width: 980px){
       .hero-card,
       .info-grid,
@@ -506,172 +634,133 @@
         <div>
           <p class="eyebrow">Nuteam Gallery</p>
           <h1>NUTEAM GALLERY</h1>
-          <div class="hero-sub">Current Exhibition: NU.</div>
+          <div class="hero-sub">AI-Generated, Signed by Device</div>
           <p class="hero-text">
-           A curated monthly exhibition presenting sculptural works through a quiet and focused digital space.
-           Each piece is arranged with attention to form, weight, and presence — extending physical art into a new dimension.
+           A personal gallery of images generated through Ed-Passport's on-device AI.
+           Each piece carries a cryptographic signature from the device that made it —
+           proof of origin, not just a picture.
           </p>
-          <a class="btn btn-secondary" href="#works">View Exhibition →</a>
+          <a class="btn btn-secondary" href="#gallery">View Gallery →</a>
         </div>
 
         <div class="hero-image">
-          <img src="art-1.jpeg" alt="Featured exhibition work">
+          <img id="heroImage" src="art-1.jpeg" alt="Gallery preview">
         </div>
       </div>
     </section>
 
-    <section class="section">
-      <div class="featured-card card">
-        <p class="eyebrow">Featured Work</p>
-        <div class="featured-image">
-          <img src="art-2.jpeg" alt="Featured artwork">
-        </div>
-        <h3>Artwork Title</h3>
-        <p class="section-note">NU, 2025</p>
-        <p class="work-note">
-          A single form held in balance between material, tension, and silence.
-        </p>
+    <section class="section" id="gallery">
+      <div id="galleryRoot">
+        <div class="gallery-state-note">กำลังโหลดภาพ...</div>
       </div>
     </section>
 
-    <section class="section">
-      <div class="info-grid">
-        <div class="info-card card signature">
-          <p class="eyebrow">Artist</p>
-          <h2>NU</h2>
-          <p>
-            NU works across material, structure, and presence.
-            The work reflects a direct relationship between hand, surface, and weight,
-            where form is shaped through both intention and resistance.
-          </p>
-        </div>
-
-        <div class="info-card card">
-          <p class="eyebrow">Exhibition</p>
-          <h2>Exhibition Title</h2>
-          <p>
-            This selection brings together a group of works that explore structure,
-            quiet tension, and the space between object and perception.
-            Each piece is placed not only as an image, but as a presence within a shared field.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="works">
-  <div class="section-head">
-    <div>
-      <p class="eyebrow">Current Exhibition</p>
-      <h2>WORKS ON VIEW</h2>
-    </div>
-    <p class="section-note">A curated selection arranged with minimal interruption.</p>
-  </div>
-
-  <div class="works-grid">
-    <article class="work-card card">
-      <div class="work-image">
-        <img src="art-1.jpeg" alt="Untitled Form I">
-      </div>
-      <div class="work-body">
-        <p class="work-meta">Untitled Form I · 2025</p>
-        <p class="work-note">A study of weight and silence held in a single sculptural presence.</p>
-      </div>
-    </article>
-
-    <article class="work-card card">
-      <div class="work-image">
-        <img src="art-2.jpeg" alt="Portrait Study I">
-      </div>
-      <div class="work-body">
-        <p class="work-meta">Portrait Study I · 2025</p>
-        <p class="work-note">A structural head study shaped through pressure, rhythm, and restraint.</p>
-      </div>
-    </article>
-
-    <article class="work-card card">
-      <div class="work-image">
-        <img src="art-3.jpeg" alt="Creature Presence">
-      </div>
-      <div class="work-body">
-        <p class="work-meta">Creature Presence · 2025</p>
-        <p class="work-note">An exploration of character through material tension and organic form.</p>
-      </div>
-    </article>
-
-    <article class="work-card card">
-      <div class="work-image">
-        <img src="belive-pencil.jpeg" alt="Believe (Ganesha)">
-      </div>
-      <div class="work-body">
-        <p class="work-meta">Believe (Ganesha) · 2025</p>
-        <p class="work-note">A quiet drawing study of symbol, fragility, and centered form.</p>
-      </div>
-    </article>
-
-    <article class="work-card card">
-      <div class="work-image">
-        <img src="ganesh_bluestone.jpeg" alt="Ganesha Blue Stone">
-      </div>
-      <div class="work-body">
-        <p class="work-meta">Ganesha Blue Stone · 2025</p>
-        <p class="work-note">A compact sacred form shaped through texture, balance, and surface presence.</p>
-      </div>
-    </article>
-
-    <article class="work-card card">
-      <div class="work-image">
-        <img src="ganesh_drop_on1.jpeg" alt="Ganesha Drop I">
-      </div>
-      <div class="work-body">
-        <p class="work-meta">Ganesha Drop I · 2025</p>
-        <p class="work-note">A relief work exploring contour, density, and devotional silhouette.</p>
-      </div>
-    </article>
-
-    <article class="work-card card">
-      <div class="work-image">
-        <img src="ganesh_drop_on2.jpeg" alt="Ganesha Drop II">
-      </div>
-      <div class="work-body">
-        <p class="work-meta">Ganesha Drop II · 2025</p>
-        <p class="work-note">A continuation of form through simplified line, weight, and icon-like presence.</p>
-      </div>
-    </article>
-
-    <article class="work-card card">
-      <div class="work-image">
-        <img src="ganesh_rock2.jpeg" alt="Ganesha Rock Relief">
-      </div>
-      <div class="work-body">
-        <p class="work-meta">Ganesha Rock Relief · 2025</p>
-        <p class="work-note">A stone-based relief study focused on compression, carving, and held energy.</p>
-      </div>
-    </article>
-
-    <article class="work-card card">
-      <div class="work-image">
-        <img src="ganesha_dropwater.jpeg" alt="Ganesha Water Relief">
-      </div>
-      <div class="work-body">
-        <p class="work-meta">Ganesha Water Relief · 2025</p>
-        <p class="work-note">A softer relief surface shaped by flow, symbol, and quiet dimensionality.</p>
-      </div>
-    </article>
-
-    <article class="work-card card">
-      <div class="work-image">
-        <img src="just_fish.jpeg" alt="Still Form (Fish)">
-      </div>
-      <div class="work-body">
-        <p class="work-meta">Still Form (Fish) · 2025</p>
-        <p class="work-note">A minimal composition balancing object, gesture, and suspended movement.</p>
-      </div>
-    </article>
-  </div>
-</section>
     <footer>
-      NUTEAM.ORG — Nuteam Gallery / Curated Digital Exhibition Space
+      NUTEAM.ORG — Nuteam Gallery / AI Image Provenance
     </footer>
   </main>
+
+  <script>
+  (function(){
+    var WORKER_BASE = 'https://nuteam-gallery-worker.wisanunu26.workers.dev';
+    var root = document.getElementById('galleryRoot');
+    var heroImage = document.getElementById('heroImage');
+
+    function escapeHtml(str){
+      var div = document.createElement('div');
+      div.textContent = str == null ? '' : String(str);
+      return div.innerHTML;
+    }
+
+    function formatDate(ms){
+      if (!ms) return '';
+      var d = new Date(ms);
+      return d.toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
+    }
+
+    function shortHash(hash){
+      if (!hash) return '—';
+      return hash.slice(0, 10) + '…' + hash.slice(-6);
+    }
+
+    function getIdFromUrl(){
+      var params = new URLSearchParams(window.location.search);
+      return params.get('id');
+    }
+
+    function renderGridError(){
+      root.innerHTML = '<div class="gallery-state-note">โหลดแกลเลอรีไม่สำเร็จ — กรุณาลองรีเฟรชหน้านี้อีกครั้ง</div>';
+    }
+
+    function renderEmpty(){
+      root.innerHTML = '<div class="gallery-state-note">ยังไม่มีภาพเผยแพร่ในแกลเลอรีนี้<br>ภาพแรกจะปรากฏที่นี่เมื่อมีการเผยแพร่จากแอป Ed Prompt Pro</div>';
+    }
+
+    function renderGrid(items){
+      if (!items.length) { renderEmpty(); return; }
+
+      if (items[0].imageUrl) {
+        heroImage.src = WORKER_BASE + items[0].imageUrl;
+      }
+
+      var html = '<div class="section-head">' +
+        '<div><p class="eyebrow">Gallery</p><h2>PUBLISHED WORKS</h2></div>' +
+        '<p class="section-note">' + items.length + ' image' + (items.length === 1 ? '' : 's') + '</p>' +
+        '</div><div class="gallery-grid">';
+
+      items.forEach(function(item){
+        html += '<a class="gallery-card card" href="nuteam-gallery.html?id=' + encodeURIComponent(item.id) + '">' +
+          '<div class="gallery-card-image"><img src="' + WORKER_BASE + item.imageUrl + '" loading="lazy" alt="AI-generated image"></div>' +
+          '<div class="gallery-card-body">' +
+          '<p class="gallery-card-date">' + formatDate(item.publishedAt) + '</p>' +
+          '<p class="gallery-card-article">' + escapeHtml(item.article) + '</p>' +
+          '</div></a>';
+      });
+
+      html += '</div>';
+      root.innerHTML = html;
+    }
+
+    function renderDetail(item){
+      heroImage.src = WORKER_BASE + item.imageUrl;
+
+      var html = '<a class="detail-back" href="nuteam-gallery.html">← Back to Gallery</a>' +
+        '<div class="detail-image"><img src="' + WORKER_BASE + item.imageUrl + '" alt="AI-generated image"></div>' +
+        '<p class="section-note" style="margin-bottom:10px">' + formatDate(item.publishedAt) + '</p>' +
+        '<p class="detail-article">' + escapeHtml(item.article) + '</p>' +
+        '<div class="provenance-card card">' +
+        '<p class="eyebrow">Provenance</p>' +
+        '<div class="provenance-row"><span class="provenance-label">Signature</span>' +
+        '<span class="provenance-value provenance-badge">Verified</span></div>' +
+        '<div class="provenance-row"><span class="provenance-label">Content hash (SHA-256)</span>' +
+        '<span class="provenance-value">' + shortHash(item.provenance.contentHash) + '</span></div>' +
+        '<div class="provenance-row"><span class="provenance-label">Device fingerprint</span>' +
+        '<span class="provenance-value">' + shortHash(item.provenance.deviceFingerprint) + '</span></div>' +
+        '<div class="provenance-row"><span class="provenance-label">Signed at</span>' +
+        '<span class="provenance-value">' + formatDate(item.provenance.signedAt) + '</span></div>' +
+        '</div>';
+
+      root.innerHTML = html;
+    }
+
+    function renderDetailError(){
+      root.innerHTML = '<a class="detail-back" href="nuteam-gallery.html">← Back to Gallery</a>' +
+        '<div class="gallery-state-note">ไม่พบภาพนี้ หรือถูกลบไปแล้ว</div>';
+    }
+
+    var id = getIdFromUrl();
+    if (id) {
+      fetch(WORKER_BASE + '/item/' + encodeURIComponent(id))
+        .then(function(res){ if (!res.ok) throw new Error('not found'); return res.json(); })
+        .then(renderDetail)
+        .catch(renderDetailError);
+    } else {
+      fetch(WORKER_BASE + '/gallery?limit=24')
+        .then(function(res){ if (!res.ok) throw new Error('bad response'); return res.json(); })
+        .then(function(data){ renderGrid(data.items || []); })
+        .catch(renderGridError);
+    }
+  })();
+  </script>
 </body>
 </html>
