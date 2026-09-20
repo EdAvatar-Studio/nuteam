@@ -495,6 +495,17 @@
       margin-bottom:20px;
     }
 
+    /* ---------- Share buttons (detail page) ---------- */
+    .share-card{ padding:22px; margin-bottom:20px; }
+    .share-row{ display:flex; flex-wrap:wrap; gap:10px; margin-top:6px; }
+    button.btn{ font-family:inherit; cursor:pointer; }
+    .share-note{
+      font-size:12px;
+      color:var(--text-mute);
+      margin-top:12px;
+      min-height:1.7em;
+    }
+
     .provenance-card{ padding:22px; }
     .provenance-row{
       display:flex;
@@ -693,7 +704,93 @@
     }
 
     function renderEmpty(){
-      root.innerHTML = '<div class="gallery-state-note">ยังไม่มีภาพเผยแพร่ในแกลเลอรีนี้<br>ภาพแรกจะปรากฏที่นี่เมื่อมีการเผยแพร่จากแอป Ed Prompt Pro</div>';
+      root.innerHTML = '<div class="gallery-state-note">ยังไม่มีภาพเผยแพร่ในแกลเลอรีนี้<br>ภาพแรกจะปรากฏที่นี่เมื่อมีการเผยแพร่จากแอป Ed Prompt Pro หรือ Ed-Passport</div>';
+    }
+
+    function truncateText(text, maxLen){
+      text = text == null ? '' : String(text);
+      return text.length <= maxLen ? text : text.slice(0, maxLen - 1).trimEnd() + '…';
+    }
+
+    // Facebook/LINE build their preview card from Open Graph tags, and this page
+    // is static + JS-rendered so crawlers can't see per-image tags on it. They
+    // get the Worker's /share/:id URL instead (per-image OG tags, then a redirect
+    // back here). Pinterest takes the image explicitly so it can pin the real page.
+    function buildShareLinks(item){
+      var shareUrl = WORKER_BASE + '/share/' + encodeURIComponent(item.id);
+      var pageUrl = window.location.origin + window.location.pathname + '?id=' + encodeURIComponent(item.id);
+      var imageUrl = WORKER_BASE + item.imageUrl;
+      var text = truncateText(item.article, 140);
+      return {
+        pageUrl: pageUrl,
+        imageUrl: imageUrl,
+        text: text,
+        facebook: 'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(shareUrl),
+        pinterest: 'https://www.pinterest.com/pin/create/button/?url=' + encodeURIComponent(pageUrl) +
+          '&media=' + encodeURIComponent(imageUrl) + '&description=' + encodeURIComponent(text),
+        line: 'https://social-plugins.line.me/lineit/share?url=' + encodeURIComponent(shareUrl)
+      };
+    }
+
+    function setShareNote(message){
+      var note = document.getElementById('shareNote');
+      if (note) note.textContent = message || '';
+    }
+
+    function copyLink(links){
+      var done = function(){ setShareNote('คัดลอกลิงก์แล้ว'); };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(links.pageUrl).then(done, function(){ window.prompt('คัดลอกลิงก์นี้', links.pageUrl); });
+      } else {
+        window.prompt('คัดลอกลิงก์นี้', links.pageUrl);
+      }
+    }
+
+    // Instagram has no web "share this URL" endpoint — the only way to post to it
+    // from a browser is the OS share sheet with the actual image file (phones).
+    // Where that isn't available we hand over the image file to upload by hand.
+    async function shareToInstagram(item, links){
+      setShareNote('กำลังเตรียมภาพ...');
+      var blob;
+      try {
+        var res = await fetch(links.imageUrl);
+        if (!res.ok) throw new Error('image fetch failed');
+        blob = await res.blob();
+      } catch (e) {
+        window.open(links.imageUrl, '_blank', 'noopener');
+        setShareNote('เปิดภาพในแท็บใหม่แล้ว — กดค้างที่ภาพเพื่อบันทึก แล้วอัปโหลดใน Instagram');
+        return;
+      }
+
+      var ext = blob.type === 'image/png' ? 'png' : (blob.type === 'image/webp' ? 'webp' : 'jpg');
+      var file = new File([blob], 'nuteam-' + item.id + '.' + ext, { type: blob.type || 'image/jpeg' });
+
+      if (navigator.canShare && navigator.canShare({ files: [file] })) {
+        try {
+          await navigator.share({ files: [file], text: links.text });
+          setShareNote('');
+        } catch (e) {
+          setShareNote(e && e.name === 'AbortError' ? '' : 'แชร์ไม่สำเร็จ ลองใหม่อีกครั้ง');
+        }
+        return;
+      }
+
+      var objectUrl = URL.createObjectURL(blob);
+      var a = document.createElement('a');
+      a.href = objectUrl;
+      a.download = file.name;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      setTimeout(function(){ URL.revokeObjectURL(objectUrl); }, 10000);
+      setShareNote('Instagram ไม่มีลิงก์แชร์จากเว็บ — ดาวน์โหลดภาพให้แล้ว เปิดแอป Instagram แล้วเลือกภาพนี้เพื่อโพสต์');
+    }
+
+    function bindShareButtons(item, links){
+      var ig = document.getElementById('shareInstagram');
+      var copy = document.getElementById('shareCopy');
+      if (ig) ig.addEventListener('click', function(){ shareToInstagram(item, links); });
+      if (copy) copy.addEventListener('click', function(){ copyLink(links); });
     }
 
     function renderGrid(items){
@@ -723,11 +820,23 @@
 
     function renderDetail(item){
       heroImage.src = WORKER_BASE + item.imageUrl;
+      var links = buildShareLinks(item);
 
       var html = '<a class="detail-back" href="nuteam-gallery.html">← Back to Gallery</a>' +
         '<div class="detail-image"><img src="' + WORKER_BASE + item.imageUrl + '" alt="AI-generated image"></div>' +
         '<p class="section-note" style="margin-bottom:10px">' + formatDate(item.publishedAt) + '</p>' +
         '<p class="detail-article">' + escapeHtml(item.article) + '</p>' +
+        '<div class="share-card card">' +
+        '<p class="eyebrow">Share</p>' +
+        '<div class="share-row">' +
+        '<a class="btn btn-secondary" target="_blank" rel="noopener noreferrer" href="' + escapeHtml(links.facebook) + '">Facebook</a>' +
+        '<button type="button" class="btn btn-secondary" id="shareInstagram">Instagram</button>' +
+        '<a class="btn btn-secondary" target="_blank" rel="noopener noreferrer" href="' + escapeHtml(links.pinterest) + '">Pinterest</a>' +
+        '<a class="btn btn-secondary" target="_blank" rel="noopener noreferrer" href="' + escapeHtml(links.line) + '">LINE</a>' +
+        '<button type="button" class="btn btn-secondary" id="shareCopy">Copy link</button>' +
+        '</div>' +
+        '<p class="share-note" id="shareNote" role="status" aria-live="polite"></p>' +
+        '</div>' +
         '<div class="provenance-card card">' +
         '<p class="eyebrow">Provenance</p>' +
         '<div class="provenance-row"><span class="provenance-label">Signature</span>' +
@@ -741,6 +850,7 @@
         '</div>';
 
       root.innerHTML = html;
+      bindShareButtons(item, links);
     }
 
     function renderDetailError(){
